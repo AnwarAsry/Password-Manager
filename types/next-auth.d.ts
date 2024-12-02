@@ -1,13 +1,9 @@
 import { AdapterUser } from "next-auth/adapters";
+import { User } from "@/models/User";
 
 declare module "next-auth" {
 	// Adding user properties
 	interface Session {
-        user: AdapterUser & {
-            name: string
-            password: string
-            googleID: string
-            image: string
-        }
+        user: User & AdapterUser,
     }
 }
