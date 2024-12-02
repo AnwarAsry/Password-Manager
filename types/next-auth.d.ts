@@ -4,10 +4,10 @@ declare module "next-auth" {
 	// Adding user properties
 	interface Session {
         user: AdapterUser & {
-            name: "",
-            password: "",
-            googleID: "",
-            image: "",
+            name: string
+            password: string
+            googleID: string
+            image: string
         }
     }
 }
