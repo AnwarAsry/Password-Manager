@@ -36,7 +36,7 @@ async function dbConnect() {
   if (!cached.promise) {
     const opts = {
             bufferCommands: false,
-            dbName: "helplist",
+            dbName: "pm",
         };
 
         cached.promise = connect(MONGODB_URI!, opts).then((mongoose) => {

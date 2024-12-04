@@ -7,8 +7,8 @@ export const getUser = async (userId: string | undefined) => {
     try {
         await dbConnect();
         
-        const user = await User.findOne({ userId });
-
+        const user = await User.findById(userId);
+        
         return user
     } catch(er) {
         throw er
