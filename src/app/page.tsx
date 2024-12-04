@@ -1,5 +1,5 @@
 import { auth } from "@/auth"
-import { Button } from "@/components/Button"
+import { AuthButton } from "@/components/AuthButton.client"
 import { redirect } from "next/navigation"
 
 export default async function Landing() {
@@ -15,7 +15,7 @@ export default async function Landing() {
 		<header></header>
 		<main>
 			Landing page
-			<Button />
+			<AuthButton />
 		</main>
 	</>
 }
