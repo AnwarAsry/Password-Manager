@@ -14,7 +14,7 @@ export const UserSchema = new Schema<UserDocument, UserModel>({
 	name: { type: String, required: true },
 	email: { type: String, required: true },
 	password: { type: String, required: false },
-	image: { type: String, required: false },
+	image: { type: String, required: true },
 });
 
 UserSchema.virtual("id").get(function () {

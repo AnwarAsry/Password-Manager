@@ -1,5 +1,5 @@
 import { auth } from "@/auth"
-import { Button } from "@/components/Button"
+import { AuthButton } from "@/components/AuthButton.client"
 import { redirect } from "next/navigation"
 
 export default async function Landing() {
@@ -8,14 +8,14 @@ export default async function Landing() {
 
 	// Checks if user is authenticated, if true redirect to dashboard
 	if (session?.user) {
-		redirect(`/dashboard/${session.user.id}`)
+		redirect(`/dashboard`)
 	}
 
 	return <>
 		<header></header>
 		<main>
 			Landing page
-			<Button />
+			<AuthButton />
 		</main>
 	</>
 }
