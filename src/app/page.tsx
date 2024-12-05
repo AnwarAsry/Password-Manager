@@ -8,7 +8,7 @@ export default async function Landing() {
 
 	// Checks if user is authenticated, if true redirect to dashboard
 	if (session?.user) {
-		redirect(`/dashboard/${session.user.id}`)
+		redirect(`/dashboard`)
 	}
 
 	return <>

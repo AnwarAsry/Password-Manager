@@ -53,7 +53,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         strategy: "database",
     },
     // This is for using my login page and not authjs provider page
-    // pages: {
-    //     signIn: "/login",
-    // },
+    pages: {
+        signIn: "/login",
+    },
 })
