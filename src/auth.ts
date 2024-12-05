@@ -4,6 +4,7 @@ import Google, { GoogleProfile } from "next-auth/providers/google"
 import client from "@/lib/db";
 import { Provider } from "next-auth/providers";
 
+// Any future providers or custom credentials add to this list
 const providers: Provider[] = [
     Google({
         clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -21,6 +22,7 @@ const providers: Provider[] = [
     }),
 ]
 
+// For client usem, list of only providers (e.g Github, Google, Facebook)
 export const providerMap = providers.map(provider => {
     if (typeof provider === "function") {
         const providerData = provider()
@@ -31,20 +33,20 @@ export const providerMap = providers.map(provider => {
 }).filter((provider) => provider.id !== "credentials")
 
 
-// Exporting handlers, signIn, signOut, and auth from NextAuth for authentication functionality.
+// Exporting handlers, signIn, signOut, and auth from NextAuth for authentication functionality
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers,
     callbacks: {
         // A callback to manipulate or customize the session object.
         // The user in the destructuring is only avalable if AuthConfig.session is set to strategy: "database"
         session: async ({ session, user }) => {
-            // Set the User to the session
+            // Set only the User properties we need to the session
             session.user.id = user.id;
             session.user.name = user.name
             session.user.image = user.image
             session.user.email = user?.email
 
-            // Returns the modified session object to be used on the client side.
+            // Returns the modified session object to be accessed on the client side
             return session; 
         },
     },
@@ -52,7 +54,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     session: {
         strategy: "database",
     },
-    // This is for using my login page and not authjs provider page
+    // This is for using my custom login page and not authjs provider page
     pages: {
         signIn: "/login",
     },

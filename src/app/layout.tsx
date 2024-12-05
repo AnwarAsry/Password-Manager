@@ -13,6 +13,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
+		// SessionProvider necessary for useSession hook in client components 
 		<SessionProvider>
 			<html lang="en">
 				<body>

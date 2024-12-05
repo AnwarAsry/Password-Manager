@@ -2,6 +2,7 @@ import { auth } from "@/auth"
 import { AuthButton } from "@/components/AuthButton.client"
 import { redirect } from "next/navigation"
 
+// Landing page, introduction for first time visitors
 export default async function Landing() {
 	// Calls the auth function to get the current user's session.
 	const session = await auth()
@@ -12,7 +13,6 @@ export default async function Landing() {
 	}
 
 	return <>
-		<header></header>
 		<main>
 			Landing page
 			<AuthButton />

@@ -33,6 +33,7 @@ export const CredentialsSchema = new Schema<CredentialsDocument, CredentialsMode
     }, required: false },
 });
 
+// MongoDB has id written like _id, instead make it like id 
 CredentialsSchema.virtual("id").get(function () {
 	return this._id.toString();
 });
