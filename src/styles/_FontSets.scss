@@ -1,0 +1,8 @@
+@use "variables"as v;
+
+@mixin DesktopDisplayLarge() {
+    font-size: v.$fontSize-huge;
+    line-height: 56px;
+    letter-spacing: -1px;
+    font-weight: v.$fontWeight-bold;
+}
