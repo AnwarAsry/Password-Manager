@@ -1,0 +1,14 @@
+.form {
+    width: 460px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 12px;
+    background-color: red;
+}
+
+.Input {
+    display: flex;
+    flex-direction: column;
+}
