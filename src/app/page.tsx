@@ -3,7 +3,7 @@ import { auth } from "@/auth"
 import { AuthButton } from "@/components/AuthButton.client"
 import { redirect } from "next/navigation"
 import Image from "next/image";
-import placeholder from "../public/placeholder.png"
+import placeholder from "@/public/placeholder.png"
 
 // Landing page, introduction for first time visitors
 export default async function Landing() {

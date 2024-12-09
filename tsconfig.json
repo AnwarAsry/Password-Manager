@@ -24,6 +24,7 @@
       "@/lib/*": ["./src/lib/*"],
       "@/styles/*": ["./src/styles/*"],
       "@/models/*": ["./src/models/*"],
+      "@/public/*": ["./public/*"],
       "@/auth": ["./src/auth.ts"],
     }
   },
