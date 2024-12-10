@@ -1,7 +1,7 @@
 import { Model, Schema } from "mongoose";
 import createModel from "@/lib/createModel";
 
-export type Credentials = {
+export type Accounts = {
     id: string
     userID: string
     platform: string
@@ -17,10 +17,10 @@ export type Credentials = {
     }
 };
 
-type CredentialsDocument = Document & Credentials;
-type CredentialsModel = Model<CredentialsDocument>;
+type AccountsDocument = Document & Accounts;
+type AccountsModel = Model<AccountsDocument>;
 
-export const CredentialsSchema = new Schema<CredentialsDocument, CredentialsModel>({
+export const AccountsSchema = new Schema<AccountsDocument, AccountsModel>({
     userID: { type: String, required: true },
     platform: { type: String, required: true },
     password: { type: String, required: false },
@@ -34,8 +34,8 @@ export const CredentialsSchema = new Schema<CredentialsDocument, CredentialsMode
 });
 
 // MongoDB has id written like _id, instead make it like id 
-CredentialsSchema.virtual("id").get(function () {
+AccountsSchema.virtual("id").get(function () {
 	return this._id.toString();
 });
 
-export default createModel<CredentialsDocument, CredentialsModel>("credentials", CredentialsSchema);
+export default createModel<AccountsDocument, AccountsModel>("credentials", AccountsSchema);
