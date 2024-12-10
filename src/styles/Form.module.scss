@@ -1,9 +1,23 @@
+@use "variables"as v;
+
+.formBackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(22, 22, 22, 0.5);
+}
+
 .form {
     width: 460px;
-    padding: 16px;
+    padding: v.$spacing-md;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: v.$spacing-md;
     border-radius: 12px;
     background-color: red;
 }
@@ -11,4 +25,13 @@
 .Input {
     display: flex;
     flex-direction: column;
+}
+
+.closeIcon {
+    width: 32px;
+    height: 32px;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
