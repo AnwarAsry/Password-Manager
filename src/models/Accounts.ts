@@ -2,19 +2,27 @@ import { Model, Schema } from "mongoose";
 import createModel from "@/lib/createModel";
 
 export type Accounts = {
-    id: string
+    id?: string
     userID: string
     platform: string
     password?: string
     username: string
     category?: string[]
     notes?: string
-    createdAt: Date
-    updatedAt: Date
+    created?: Date
+    updated?: Date
     subscription?: {
         active: boolean
         payDay: Date
     }
+};
+
+export const duummyyData: Accounts = {
+    userID: "string",
+    platform: "string",
+    password: "string",
+    username: "string",
+    notes: "string",
 };
 
 type AccountsDocument = Document & Accounts;
@@ -25,8 +33,12 @@ export const AccountsSchema = new Schema<AccountsDocument, AccountsModel>({
     platform: { type: String, required: true },
     password: { type: String, required: false },
     username: { type: String, required: true },
-    category: [{type: String, required: false }],
+    // This property creates automatically by mongoose even when we dont want to
+    // To prevent that set default to undefined
+    category: { type: [String], default: undefined },
     notes: { type: String, required: false },
+    created: { type: Date, required: false },
+    updated: { type: Date, required: false },
     subscription: {  type: { 
         active: { type: Boolean, required: false },
         payDay: { type: Date, required: false }
