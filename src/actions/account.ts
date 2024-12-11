@@ -1,10 +1,15 @@
 import { post } from "@/serviceBase";
 
 // When you want a credentials saved call this function that takes form entries as argument
-export const createAccount = async () => {
+export const createAccount = async (prevState, formData: FormData) => {
     try {
+        // FormData is an array of key-value pair
+        // Turn the data into an Object
+        const body = Object.fromEntries(formData);
+        
         // Send the form entries via post
-        const response = await post("/credential")
+        const response = await post("/credential", body)
+        
         // Json the response because the response is string
         const data = await response.json()
 

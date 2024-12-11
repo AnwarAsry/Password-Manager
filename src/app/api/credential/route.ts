@@ -5,11 +5,12 @@ export async function POST(req: Request) {
     await dbConnect();
 
     try {
-        console.log("Inside Post REQ");
+
+        console.log("Inside");
         
         // Get the data passed through body and turn it into an object
         const body = await req.json()
-        // const body = duummyyData;
+        console.log("Inside", body);
 
         // Create a new Credential to save
         const createObject = new Accounts({
