@@ -22,7 +22,7 @@ const providers: Provider[] = [
     }),
 ]
 
-// For client usem, list of only providers (e.g Github, Google, Facebook)
+// For client use, list of only providers (e.g Github, Google, Facebook)
 export const providerMap = providers.map(provider => {
     if (typeof provider === "function") {
         const providerData = provider()
