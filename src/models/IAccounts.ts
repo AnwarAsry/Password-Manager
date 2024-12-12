@@ -2,27 +2,15 @@ import { Model, Schema } from "mongoose";
 import createModel from "@/lib/createModel";
 
 export type IAccounts = {
-    id?: string
+    id: string
     userID: string
     platform: string
     password?: string
     username: string
     category?: string[]
     notes?: string
-    created?: Date
-    updated?: Date
-    subscription?: {
-        active: boolean
-        payDay: Date
-    }
-};
-
-export const duummyyData: IAccounts = {
-    userID: "string",
-    platform: "string",
-    password: "string",
-    username: "string",
-    notes: "string",
+    createdAt: Date
+    updatedAt: Date
 };
 
 type AccountsDocument = Document & IAccounts;
@@ -37,13 +25,9 @@ export const AccountsSchema = new Schema<AccountsDocument, AccountsModel>({
     // To prevent that set default to undefined
     category: { type: [String], default: undefined },
     notes: { type: String, required: false },
-    created: { type: Date, required: false },
-    updated: { type: Date, required: false },
-    subscription: {  type: { 
-        active: { type: Boolean, required: false },
-        payDay: { type: Date, required: false }
-    }, required: false },
-});
+    createdAt: { type: Date, required: false },
+    updatedAt: { type: Date, required: false },
+}, { timestamps: true });
 
 // MongoDB has id written like _id, instead make it like id 
 AccountsSchema.virtual("id").get(function () {

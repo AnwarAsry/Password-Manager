@@ -1,12 +1,13 @@
 import dbConnect from "@/lib/dbConnect";
 import IAccounts from "@/models/IAccounts"
+import { CreateCredentialReq } from "@/models/request/CreateCredentialReq";
 
 export async function POST(req: Request) {
     await dbConnect();
 
     try {
         // Get the data passed through body and turn it into an object
-        const body = await req.json()
+        const body: CreateCredentialReq = await req.json()
 
         // Create a new Credential to save
         const createObject = new IAccounts({
