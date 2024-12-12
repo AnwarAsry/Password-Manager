@@ -1,5 +1,28 @@
 import { post } from "@/serviceBase";
 
+// Fetch all Credentials saved by user
+export const getAllCredentialsForUser = async (userId: string) => {
+    try {
+        // Send the form entries via post
+        const response = await post(`/credential/${userId}`)
+        
+        // Json the response because the response is string
+        const data = await response.json()
+
+        // Check if the Server did succed in creating
+        if (data.success) {
+            // Return unsuccessfull message
+            return { success: false, message: "Server Error" };
+        }
+
+        // Return successfull message
+        return data;
+    } catch (error) {
+        // Return unsuccessfull message
+        return { success: false, message: JSON.stringify(error) };
+    }
+};
+
 // When you want a credentials saved call this function that takes form entries as argument
 export const createAccount = async (prevState, formData: FormData) => {
     try {
@@ -20,7 +43,7 @@ export const createAccount = async (prevState, formData: FormData) => {
         }
 
         // Return successfull message
-        return { success: true, message: "Saved Credenbtials" };
+        return data;
     } catch (error) {
         // Return unsuccessfull message
         return { success: false, message: JSON.stringify(error) };
