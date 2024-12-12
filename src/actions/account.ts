@@ -1,24 +1,26 @@
 import { IAccounts } from "@/models/IAccounts";
 import { ServerAction, ServerActionResponse } from "@/models/responses/ServerAction";
-import { post } from "@/serviceBase";
+import { get, post } from "@/serviceBase";
 
 // Fetch all Credentials saved by user
 export const getAllCredentialsForUser = async (userId: string): Promise<ServerActionResponse<IAccounts[]> | ServerAction> => {
     try {
         // Send the form entries via post
-        const response = await post(`/credential/${userId}`)
+        const response = await get<ServerActionResponse<IAccounts[]>>(`/credential/${userId}`)
+        
+        console.log("haelloo",response);
         
         // Json the response because the response is string
-        const data = await response.json()
+        // const data = await response.json()
 
-        // Check if the Server did succeed in creating
-        if (data.success) {
+        // Check if the Server did not succeed in creating
+        if (!response.success) {
             // Return unsuccessfull message
             return { success: false, message: "Server Error" };
         }
 
         // Return successfull message
-        return data;
+        return response;
     } catch (error) {
         // Return unsuccessfull message
         return { success: false, message: JSON.stringify(error) };
@@ -38,8 +40,8 @@ export const createAccount = async (prevState, formData: FormData): Promise<Serv
         // Json the response because the response is string
         const data = await response.json()
 
-        // Check if the Server did succeed in creating
-        if (data.success) {
+        // Check if the Server did not succeed in creating
+        if (!data.success) {
             // Return unsuccessfull message
             return { success: false, message: "Server Error" };
         }

@@ -1,3 +1,4 @@
+import { getAllCredentialsForUser } from "@/actions/account";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
@@ -7,6 +8,8 @@ const Dashboard = async () => {
     if (!session || !session.user) {
         redirect("/")
     }
+
+    const data = await getAllCredentialsForUser(session.user.id)
 
     if (session.user) {
         return <>
