@@ -1,19 +1,15 @@
 import dbConnect from "@/lib/dbConnect";
-import Accounts from "@/models/Accounts"
+import IAccounts from "@/models/IAccounts"
 
 export async function POST(req: Request) {
     await dbConnect();
 
     try {
-
-        console.log("Inside");
-        
         // Get the data passed through body and turn it into an object
         const body = await req.json()
-        console.log("Inside", body);
 
         // Create a new Credential to save
-        const createObject = new Accounts({
+        const createObject = new IAccounts({
             userID: body.userID,
             platform: body.platform,
             password: body.password,
@@ -25,7 +21,7 @@ export async function POST(req: Request) {
         await createObject.save()
     
         // Return successfull
-        return new Response(JSON.stringify({success: true}))
+        return new Response(JSON.stringify({success: true, message: "Saved Credenbtials" }))
     } catch (error) {
         // Return unsuccessfull message        
         return new Response(JSON.stringify({success: false, message: JSON.stringify(error)}))
