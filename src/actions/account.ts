@@ -1,7 +1,9 @@
+import { IAccounts } from "@/models/IAccounts";
+import { ServerAction, ServerActionResponse } from "@/models/responses/ServerAction";
 import { post } from "@/serviceBase";
 
 // Fetch all Credentials saved by user
-export const getAllCredentialsForUser = async (userId: string) => {
+export const getAllCredentialsForUser = async (userId: string): Promise<ServerActionResponse<IAccounts[]> | ServerAction> => {
     try {
         // Send the form entries via post
         const response = await post(`/credential/${userId}`)
@@ -9,7 +11,7 @@ export const getAllCredentialsForUser = async (userId: string) => {
         // Json the response because the response is string
         const data = await response.json()
 
-        // Check if the Server did succed in creating
+        // Check if the Server did succeed in creating
         if (data.success) {
             // Return unsuccessfull message
             return { success: false, message: "Server Error" };
@@ -24,7 +26,7 @@ export const getAllCredentialsForUser = async (userId: string) => {
 };
 
 // When you want a credentials saved call this function that takes form entries as argument
-export const createAccount = async (prevState, formData: FormData) => {
+export const createAccount = async (prevState, formData: FormData): Promise<ServerAction> => {
     try {
         // FormData is an array of key-value pair
         // Turn the data into an Object
@@ -36,7 +38,7 @@ export const createAccount = async (prevState, formData: FormData) => {
         // Json the response because the response is string
         const data = await response.json()
 
-        // Check if the Server did succed in creating
+        // Check if the Server did succeed in creating
         if (data.success) {
             // Return unsuccessfull message
             return { success: false, message: "Server Error" };

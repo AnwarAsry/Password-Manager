@@ -1,5 +1,5 @@
 import dbConnect from "@/lib/dbConnect";
-import Accounts from "@/models/Accounts";
+import IAccounts from "@/models/IAccounts";
 
 export async function GET(req: Request) {
     await dbConnect();
@@ -11,7 +11,7 @@ export async function GET(req: Request) {
         const userId = url.searchParams.get("userId")
 
         // Get all Credentials in the database that has userID property value same as user's id
-        const listOfObjects = Accounts.find({ "userID": userId })
+        const listOfObjects = IAccounts.find({ "userID": userId })
     
         // Return successfull
         return new Response(JSON.stringify({success: true, data: listOfObjects, message: "Successfully retrived"}))

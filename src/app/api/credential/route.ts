@@ -1,5 +1,5 @@
 import dbConnect from "@/lib/dbConnect";
-import Accounts from "@/models/Accounts"
+import IAccounts from "@/models/IAccounts"
 
 export async function POST(req: Request) {
     await dbConnect();
@@ -9,7 +9,7 @@ export async function POST(req: Request) {
         const body = await req.json()
 
         // Create a new Credential to save
-        const createObject = new Accounts({
+        const createObject = new IAccounts({
             userID: body.userID,
             platform: body.platform,
             password: body.password,

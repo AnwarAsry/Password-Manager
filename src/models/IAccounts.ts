@@ -1,7 +1,7 @@
 import { Model, Schema } from "mongoose";
 import createModel from "@/lib/createModel";
 
-export type Accounts = {
+export type IAccounts = {
     id?: string
     userID: string
     platform: string
@@ -17,7 +17,7 @@ export type Accounts = {
     }
 };
 
-export const duummyyData: Accounts = {
+export const duummyyData: IAccounts = {
     userID: "string",
     platform: "string",
     password: "string",
@@ -25,7 +25,7 @@ export const duummyyData: Accounts = {
     notes: "string",
 };
 
-type AccountsDocument = Document & Accounts;
+type AccountsDocument = Document & IAccounts;
 type AccountsModel = Model<AccountsDocument>;
 
 export const AccountsSchema = new Schema<AccountsDocument, AccountsModel>({
