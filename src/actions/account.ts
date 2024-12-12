@@ -7,11 +7,6 @@ export const getAllCredentialsForUser = async (userId: string): Promise<ServerAc
     try {
         // Send the form entries via post
         const response = await get<ServerActionResponse<IAccounts[]>>(`/credential/${userId}`)
-        
-        console.log("haelloo",response);
-        
-        // Json the response because the response is string
-        // const data = await response.json()
 
         // Check if the Server did not succeed in creating
         if (!response.success) {
