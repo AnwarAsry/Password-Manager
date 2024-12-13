@@ -1,12 +1,16 @@
 import dbConnect from "@/lib/dbConnect";
 import IAccounts from "@/models/IAccounts";
 
-export async function GET(req: Request, { params }: { params: { userId: string } }) {
+type Params = Promise<{ userId: string }>
+
+export async function GET(req: Request, { params }: { params: Params}) {
     await dbConnect();
 
     try {
+        // Previously synchronous Dynamic APIs that rely on runtime information are now asynchronous in this new Nextjs 15v
         // Get query userId param
-        const { userId } = params;
+        const querys = await params;
+        const userId = querys.userId;
 
         // Get all Credentials in the database that has userID property value same as user's id
         // const dbSavedCredentials = await IAccounts.find();
