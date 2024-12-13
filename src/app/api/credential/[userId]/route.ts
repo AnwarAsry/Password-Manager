@@ -13,10 +13,11 @@ export async function GET(req: Request, { params }: { params: Params}) {
         const userId = querys.userId;
 
         // Get all Credentials in the database that has userID property value same as user's id
-        const listOfSavedCredentials = await IAccounts.find({ "userID": userId })
+        // const dbSavedCredentials = await IAccounts.find();
+        const dbSavedCredentials = await IAccounts.find({ "userID": userId });  
 
         // Return successfull
-        return new Response(JSON.stringify({success: true, data: listOfSavedCredentials, message: "Successfully retrived"}))
+        return new Response(JSON.stringify({success: true, data: dbSavedCredentials, message: "Successfully retrived"}))
     } catch (error) {
         // Return unsuccessfull message        
         return new Response(JSON.stringify({success: false, message: JSON.stringify(error)}))

@@ -10,6 +10,7 @@ const Dashboard = async () => {
     }
 
     const data = await getAllCredentialsForUser(session.user.id)
+    console.log(data);
 
     if (session.user) {
         return <>
