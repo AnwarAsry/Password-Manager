@@ -15,7 +15,9 @@ export async function POST(req: Request) {
             platform: body.platform,
             password: body.password,
             username: body.username,
-            notes: body.notes
+            notes: body.notes,
+            createdAt: new Date,
+            updatedAt: new Date
         })
 
         // Save the updataed database
