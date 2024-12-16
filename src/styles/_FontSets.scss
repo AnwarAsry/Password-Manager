@@ -2,7 +2,13 @@
 
 @mixin DesktopDisplayLarge() {
     font-size: v.$fontSize-huge;
+    font-weight: v.$fontWeight-bold;
     line-height: 56px;
     letter-spacing: -1px;
-    font-weight: v.$fontWeight-bold;
+}
+
+@mixin UserCardTitle() {
+    font-size: v.$fontSize-x-big;
+    font-weight: v.$fontWeight-semibold;
+    line-height: 28px;
 }

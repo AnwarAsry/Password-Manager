@@ -1,0 +1,18 @@
+@use "variables"as v;
+@use "FontSets"as text;
+
+.UserCard {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: v.$spacing-x-sm;
+}
+
+.profilePic {
+    border-radius: 100%;
+}
+
+.UserCardTitle {
+    @include text.UserCardTitle();
+}

@@ -2,10 +2,12 @@
     max-width: 100%;
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 400px 1fr;
+    grid-template-columns: 300px 1fr;
 }
 
 .header {
+    display: grid;
+    grid-template-rows: 1fr 150px;
     background-color: #fff;
 }
 
