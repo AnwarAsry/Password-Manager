@@ -35,3 +35,10 @@
         cursor: pointer;
     }
 }
+
+.tagsContainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: v.$spacing-xx-sm;
+}
