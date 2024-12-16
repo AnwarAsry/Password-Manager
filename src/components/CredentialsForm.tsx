@@ -7,6 +7,7 @@ import { createAccount } from "@/actions/account"
 import { useActionState, useState } from "react"
 import { useSession } from "next-auth/react"
 import { redirect } from "next/navigation"
+import { Tag } from "@/components/Tag"
 
 interface IFormProps {
     Cancel: () => void
@@ -46,11 +47,13 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
     return <>
         <div className={FormStyles.formBackground}>
             <form action={formAction} className={FormStyles.form}>
+                {/* Close form icon */}
                 <IoIosClose className={FormStyles.closeIcon} onClick={Cancel} />
+
+                {/* Inputs */}
                 <FormInput label="Website" type="text" name="platform" />
                 <FormInput label="Username/Email" type="text" name="username" />
                 <FormInput label="Password" type="password" name="password" />
-
                 <label className={FormStyles.Input}>
                     Note:
                     <textarea name="notes"></textarea>
@@ -59,20 +62,9 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                 {/* The category field */}
                 <FormInput label="Category" type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={e => addTag(e)} />
                 {/* Display the categories */}
-                <div className={FormStyles.tagsInput}>
+                <div className={FormStyles.tagsContainer}>
                     {
-                        categories.map((tag, index) => (
-                            <span key={index} className={FormStyles.tag}>
-                                {tag}
-                                <button
-                                    type="button"
-                                    onClick={() => removeTag(index)}
-                                    className={FormStyles.removeTag}
-                                >
-                                    ×
-                                </button>
-                            </span>
-                        ))
+                        categories.map((tag, i) => <Tag text={tag} key={i} index={i} removeIcon Remove={() => removeTag(i)} />)
                     }
                 </div>
 
