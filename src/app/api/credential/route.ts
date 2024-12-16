@@ -16,6 +16,7 @@ export async function POST(req: Request) {
             password: body.password,
             username: body.username,
             notes: body.notes,
+            category: body.category,
             createdAt: new Date,
             updatedAt: new Date
         })

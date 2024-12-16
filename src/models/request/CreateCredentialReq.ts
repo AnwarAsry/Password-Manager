@@ -4,5 +4,6 @@ export type CreateCredentialReq = {
     password: string
     username: string
     notes: string
+    category: string[]
 };
   
