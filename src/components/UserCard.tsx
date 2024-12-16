@@ -1,3 +1,4 @@
+import UserCardStyles from "@/styles/UserCard.module.scss"
 import { auth } from "@/auth";
 import Image from "next/image";
 import avatar from "@/public/avatar.png"
@@ -6,15 +7,19 @@ export const UserCard = async () => {
     const session = await auth();
 
     // Checks if there is a session and has a user for log in and log out button
-    if (session) {
+    if (session?.user) {
         return <>
-            <Image src={session.user.image} alt="hej" width={60} height={60} />
-            <h1>{session.user.name}</h1>
+            <div className={UserCardStyles.UserCard}>
+                <Image className={UserCardStyles.profilePic} src={session.user.image} alt="hej" width={48} height={48} />
+                <h1 className={UserCardStyles.UserCardTitle}>{session.user.name}</h1>
+            </div>
         </>
     }
 
     return <>
-        <Image src={avatar} alt="default pic" />
-        <h1>No name</h1>
+        <div className={UserCardStyles.UserCard}>
+            <Image className={UserCardStyles.profilePic} src={avatar} alt="default pic" width={48} height={48} />
+            <h1 className={UserCardStyles.UserCardTitle}>No name</h1>
+        </div>
     </>
 }   
