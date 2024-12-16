@@ -25,12 +25,27 @@ export const getAllCredentialsForUser = async (userId: string): Promise<ServerAc
 // When you want a credentials saved call this function that takes form entries as argument
 export const createAccount = async (prevState, formData: FormData): Promise<ServerAction> => {
     try {
-        // FormData is an array of key-value pair
-        // Turn the data into an Object
-        const body = Object.fromEntries(formData);
+        // Collect other form data
+        const platform = formData.get("platform");
+        const username = formData.get("username");
+        const password = formData.get("password");
+        const notes = formData.get("notes");
+        // Get categories
+        const category = JSON.parse(formData.get("category") as string);
+        const userID = formData.get("userID");
+
+        // Payload
+        const payload = {
+            platform,
+            username,
+            password,
+            notes,
+            category,   // This is an array
+            userID,
+        };
         
         // Send the form entries via post
-        const response = await post("/credential", body)
+        const response = await post("/credential", payload)
         
         // Json the response because the response is string
         const data = await response.json()
