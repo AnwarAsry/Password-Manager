@@ -12,3 +12,9 @@
     font-weight: v.$fontWeight-semibold;
     line-height: 28px;
 }
+
+@mixin LabelLarge() {
+    font-size: v.$fontSize-md;
+    font-weight: v.$fontWeight-medium;
+    line-height: 18px;
+}
