@@ -8,4 +8,3 @@ export type ServerActionResponse<T> = {
     data: T;
     message: string;
 };
-  

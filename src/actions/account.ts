@@ -3,7 +3,7 @@ import { ServerAction, ServerActionResponse } from "@/models/responses/ServerAct
 import { get, post } from "@/serviceBase";
 
 // Fetch all Credentials saved by user
-export const getAllCredentialsForUser = async (userId: string): Promise<ServerActionResponse<IAccounts[]> | ServerAction> => {
+export const getAllCredentialsForUser = async (userId: string): Promise<ServerActionResponse<IAccounts[] | undefined>>  	 => {
     try {
         // Send the form entries via post
         const response = await get<ServerActionResponse<IAccounts[]>>(`/credential/${userId}`)
@@ -11,14 +11,14 @@ export const getAllCredentialsForUser = async (userId: string): Promise<ServerAc
         // Check if the Server did not succeed in creating
         if (!response.success) {
             // Return unsuccessfull message
-            return { success: false, message: "Server Error" };
+            return { success: false, data: undefined, message: "Server Error" };
         }
 
         // Return successfull message
         return response;
     } catch (error) {
         // Return unsuccessfull message
-        return { success: false, message: JSON.stringify(error) };
+        return { success: false, data: undefined, message: JSON.stringify(error) };
     }
 };
 
