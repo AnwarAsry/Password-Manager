@@ -3,22 +3,22 @@ import { ServerAction, ServerActionResponse } from "@/models/responses/ServerAct
 import { get, post } from "@/serviceBase";
 
 // Fetch all Credentials saved by user
-export const getAllCredentialsForUser = async (userId: string): Promise<ServerActionResponse<IAccounts[] | undefined>>  	 => {
+export const getAllCredentialsForUser = async (userId: string): Promise<ServerActionResponse<IAccounts[] | null>>  	 => {
     try {
-        // Send the form entries via post
+        // Send the userId as parameter
         const response = await get<ServerActionResponse<IAccounts[]>>(`/credential/${userId}`)
 
-        // Check if the Server did not succeed in creating
+        // Check if the Server did not succeed in fetching
         if (!response.success) {
             // Return unsuccessfull message
-            return { success: false, data: undefined, message: "Server Error" };
+            return { success: false, data: null, message: "Server Error" };
         }
 
-        // Return successfull message
+        // Return successfull
         return response;
     } catch (error) {
         // Return unsuccessfull message
-        return { success: false, data: undefined, message: JSON.stringify(error) };
+        return { success: false, data: null, message: JSON.stringify(error)};
     }
 };
 
@@ -56,10 +56,29 @@ export const createAccount = async (prevState, formData: FormData): Promise<Serv
             return { success: false, message: "Server Error" };
         }
 
-        // Return successfull message
+        // Return successfull
         return data;
     } catch (error) {
         // Return unsuccessfull message
         return { success: false, message: JSON.stringify(error) };
     }
 };
+
+export const getSearchResult = async (searchText: string): Promise<ServerActionResponse<IAccounts[] | null>> => {
+    try {
+        // Send the text as query
+        const response = await get<ServerActionResponse<IAccounts[]>>(`/search?searchQuery=${searchText}`);
+
+        // Check if the Server did not succeed in searching
+        if (!response.success) {
+            // Return unsuccessfull message
+            return { success: false, data: null, message: "Server Error" };
+        }
+
+        // Return successfull
+        return response;
+    } catch (error) {
+        // Return unsuccessfull message
+        return { success: false, data: null, message: JSON.stringify(error)};
+    }
+}
