@@ -14,7 +14,6 @@ const Dashboard = async () => {
 
     if (session.user) {
         return <>
-            <h1>Helloo Welcome!!!</h1>
             <section>
                 <h5 className={tableStyles.Title}>All saved passwords</h5>
                 <table className={tableStyles.tableCredentials}>
