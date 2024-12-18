@@ -13,7 +13,7 @@ export const SearchBar = () => {
 
     return <>
         <div className={SearchBarStyles.SearchContainer}>
-            <form action="/dashboard/results" className={SearchBarStyles.SearchForm}>
+            <form action="/results" className={SearchBarStyles.SearchForm}>
                 <IoSearch className={SearchBarStyles.SerchIcon} />
                 <input type="text" name="searchQuery" defaultValue={search} className={SearchBarStyles.SearchInput} placeholder="Search for platform..." />
             </form>
