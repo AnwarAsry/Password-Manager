@@ -25,7 +25,7 @@ export async function POST(req: Request) {
         await createObject.save()
     
         // Return successfull
-        return new Response(JSON.stringify({success: true, message: "Saved Credenbtials" }))
+        return new Response(JSON.stringify({success: true, message: "Saved Credentials" }))
     } catch (error) {
         // Return unsuccessfull message        
         return new Response(JSON.stringify({success: false, message: JSON.stringify(error)}))
