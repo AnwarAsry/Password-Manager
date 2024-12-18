@@ -46,7 +46,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
 
     return <>
         <div className={FormStyles.formBackground}>
-            <form action={formAction} className={FormStyles.form}>
+            <form action={formAction} className={FormStyles.SubmitForm}>
                 {/* Close form icon */}
                 <IoIosClose className={FormStyles.closeIcon} onClick={Cancel} />
 
@@ -54,7 +54,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                 <FormInput label="Website" type="text" name="platform" />
                 <FormInput label="Username/Email" type="text" name="username" />
                 <FormInput label="Password" type="password" name="password" />
-                <label className={FormStyles.Input}>
+                <label className={FormStyles.LabelContainer}>
                     Note:
                     <textarea name="notes"></textarea>
                 </label>
