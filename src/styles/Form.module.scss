@@ -1,6 +1,40 @@
 @use "FontSets"as text;
 @use "variables"as v;
 
+@mixin Input($height: 100%) {
+    width: 100%;
+    height: $height;
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+    @include text.ParagraphMedium();
+}
+
+@mixin LabelContainer($elementOnFocus, $alignLabel: center, $height: 42px) {
+    height: $height;
+    display: flex;
+    align-items: $alignLabel;
+    gap: v.$spacing-sm;
+    border-radius: 8px;
+    background-color: v.$inputBgc;
+
+    box-shadow: 0 8px 24px -3px rgba($color: #101828, $alpha: .05),
+        0 8px 24px -3px rgba($color: #101828, $alpha: .1);
+
+    @if $elementOnFocus==input {
+        &:has(input:focus) {
+            background-color: v.$inputBgcOnFocus;
+        }
+    }
+
+    @if $elementOnFocus==textarea {
+        &:has(textarea:focus) {
+            background-color: v.$inputBgcOnFocus;
+        }
+    }
+}
+
 .formBackground {
     display: flex;
     justify-content: center;
@@ -20,12 +54,29 @@
     flex-direction: column;
     gap: v.$spacing-md;
     border-radius: 12px;
-    background-color: red;
+    background-color: v.$formBgc;
+
+    hr {
+        border: 1px solid v.$inputBgc;
+    }
 }
 
 .LabelContainer {
-    display: flex;
-    flex-direction: column;
+    padding: 0 v.$spacing-sm;
+    @include LabelContainer(input);
+}
+
+.Input {
+    @include Input();
+}
+
+.LabelTextareaContainer {
+    padding: v.$spacing-sm;
+    @include LabelContainer(textarea, flex-start, fit-content);
+}
+
+.FormTextarea {
+    @include Input(100px);
 }
 
 .closeIcon {
@@ -57,23 +108,16 @@
     display: flex;
     align-items: center;
     gap: v.$spacing-sm;
-    border: 1px solid #9CA3AF;
+    border: 1px solid v.$searchInpBorder;
     border-radius: 8px;
 }
 
 .SerchIcon {
     width: 20px;
     height: 20px;
-    color: #9CA3AF;
+    color: v.$searchInpBorder;
 }
 
 .SearchInput {
-    width: 100%;
-    height: 100%;
-    border: none;
-    outline: none;
-    color: white;
-    background-color: transparent;
-
-    @include text.ParagraphMedium();
+    @include Input();
 }

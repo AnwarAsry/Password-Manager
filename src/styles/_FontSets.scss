@@ -20,9 +20,15 @@
     line-height: 28px;
 }
 
+@mixin ParagraphLarge() {
+    font-size: v.$fontSize-big;
+    font-weight: v.$fontWeight-normal;
+    line-height: 28px;
+}
+
 @mixin ParagraphMedium() {
     font-size: v.$fontSize-sm;
-    font-weight: v.$fontWeight-medium;
+    font-weight: v.$fontWeight-semibold;
     line-height: 20px;
 }
 
