@@ -14,7 +14,7 @@ export const FormInput = ({ label, type, name, value, defaultValue, onChange, on
     return <>
         <label className={FormStyles.LabelContainer}>
             {label}
-            <input className={FormStyles.Input} type={type} name={name} onChange={onChange} onKeyDown={onKeyDown} value={value} defaultValue={defaultValue} />
+            <input className={FormStyles.Input} type={type} name={name} onChange={onChange} onKeyDown={onKeyDown} value={value} defaultValue={defaultValue} autoComplete="off" />
         </label>
     </>
 }

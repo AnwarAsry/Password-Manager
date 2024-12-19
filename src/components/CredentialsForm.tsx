@@ -54,9 +54,9 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                 <FormInput label="Website" type="text" name="platform" />
                 <FormInput label="Username/Email" type="text" name="username" />
                 <FormInput label="Password" type="password" name="password" />
-                <label className={FormStyles.LabelContainer}>
-                    Note:
-                    <textarea name="notes"></textarea>
+                <label className={FormStyles.LabelTextareaContainer}>
+                    Note
+                    <textarea name="notes" className={FormStyles.FormTextarea}></textarea>
                 </label>
 
                 {/* The category field */}
@@ -72,6 +72,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                 <input type="hidden" name="category" value={JSON.stringify(categories)} />
                 <input type="hidden" value={session?.user.id} name="userID" />
 
+                <hr />
                 <button type="button" onClick={Cancel}>Cancel</button>
                 <button type="submit" disabled={pending}>Add</button>
             </form>
