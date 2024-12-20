@@ -80,7 +80,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
 
                 <FormInput label="Password" type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} />
                 {/* When pressing this button it changes the value in the password input to the generated password */}
-                <button type="button" onClick={generatePassword}>Generate password</button>
+                <button className={ButtonStyles.PrimaryBtn} type="button" onClick={generatePassword}>Generate password</button>
 
                 <label className={FormStyles.LabelTextareaContainer}>
                     Note

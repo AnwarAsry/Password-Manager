@@ -38,9 +38,9 @@
 }
 
 @mixin InputText() {
-    font-size: v.$fontSize-sm;
+    font-size: v.$fontSize-md;
     font-weight: v.$fontWeight-medium;
-    line-height: 20px;
+    line-height: 24px;
 }
 
 @mixin ButtonText() {
