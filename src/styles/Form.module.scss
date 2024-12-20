@@ -18,7 +18,6 @@
     gap: v.$spacing-sm;
     border-radius: 8px;
     background-color: v.$inputBgc;
-
     box-shadow: 0 8px 24px -3px rgba($color: #101828, $alpha: .05),
         0 8px 24px -3px rgba($color: #101828, $alpha: .1);
 
@@ -80,12 +79,9 @@
 }
 
 .closeIcon {
+    cursor: pointer;
     width: 32px;
     height: 32px;
-
-    &:hover {
-        cursor: pointer;
-    }
 }
 
 .tagsContainer {
@@ -93,6 +89,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: v.$spacing-xx-sm;
+}
+
+.BtnsContainer {
+    display: flex;
+    justify-content: flex-end;
+    gap: v.$spacing-x-sm;
 }
 
 .SearchContainer {
