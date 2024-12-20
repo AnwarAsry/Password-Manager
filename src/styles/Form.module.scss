@@ -8,14 +8,14 @@
     outline: none;
     background-color: transparent;
 
-    @include text.ParagraphMedium();
+    @include text.InputText();
 }
 
 @mixin LabelContainer($elementOnFocus, $alignLabel: center, $height: 42px) {
     height: $height;
     display: flex;
     align-items: $alignLabel;
-    gap: v.$spacing-sm;
+    gap: v.$spacing-x-big;
     border-radius: 8px;
     background-color: v.$inputBgc;
     box-shadow: 0 8px 24px -3px rgba($color: #101828, $alpha: .05),
