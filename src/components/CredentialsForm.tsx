@@ -9,6 +9,7 @@ import { useActionState, useState } from "react"
 import { useSession } from "next-auth/react"
 import { redirect } from "next/navigation"
 import { Tag } from "@/components/Tag"
+import { randomBytes } from "crypto";
 
 interface IFormProps {
     Cancel: () => void
@@ -45,6 +46,28 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
         setCategories(categories.filter((tag, i) => i !== index));
     };
 
+    // Password State
+    const [password, setPassword] = useState<string>("");
+
+    // Password generate
+    const generatePassword = () => {
+        // A string of characters to use in the password
+        const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789£€?!@#$%&()";
+        // Generate random bytes equal to the password length
+        const bytes = randomBytes(16);
+        // An array to store characters
+        const chars = [];
+        // Map each byte to a character from the charset
+        for (let i = 0; i < bytes.length; i++) {
+            // Modulo ensure the byte maps to a valid index in the charset
+            chars.push(charset[bytes[i] % charset.length]);
+        }
+        // Join characters to form the password
+        const pass = chars.join('');
+        // Set the value to the password state
+        setPassword(pass)
+    }
+
     return <>
         <div className={FormStyles.formBackground}>
             <form action={formAction} className={FormStyles.SubmitForm}>
@@ -54,7 +77,11 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                 {/* Inputs */}
                 <FormInput label="Website" type="text" name="platform" />
                 <FormInput label="Username/Email" type="text" name="username" />
-                <FormInput label="Password" type="password" name="password" />
+
+                <FormInput label="Password" type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} />
+                {/* When pressing this button it changes the value in the password input to the generated password */}
+                <button className={ButtonStyles.PrimaryBtn} type="button" onClick={generatePassword}>Generate password</button>
+
                 <label className={FormStyles.LabelTextareaContainer}>
                     Note
                     <textarea name="notes" className={FormStyles.FormTextarea}></textarea>
