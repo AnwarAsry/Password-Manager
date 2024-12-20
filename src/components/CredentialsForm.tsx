@@ -1,6 +1,7 @@
 "use client"
 
 import FormStyles from "@/styles/Form.module.scss"
+import ButtonStyles from "@/styles/Buttons.module.scss";
 import { FormInput } from "./FormInput"
 import { IoIosClose } from "react-icons/io"
 import { createAccount } from "@/actions/account"
@@ -73,8 +74,10 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                 <input type="hidden" value={session?.user.id} name="userID" />
 
                 <hr />
-                <button type="button" onClick={Cancel}>Cancel</button>
-                <button type="submit" disabled={pending}>Add</button>
+                <div className={FormStyles.BtnsContainer}>
+                    <button className={ButtonStyles.SecondaryBtn} type="button" onClick={Cancel}>Cancel</button>
+                    <button className={ButtonStyles.PrimaryBtn} type="submit" disabled={pending}>Add</button>
+                </div>
             </form>
         </div>
     </>
