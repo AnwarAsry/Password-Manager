@@ -4,14 +4,12 @@
     font-size: v.$fontSize-huge;
     font-weight: v.$fontWeight-bold;
     line-height: 56px;
-    letter-spacing: -1px;
 }
 
 @mixin DesktopHeadingFive() {
     font-size: v.$fontSize-xx-big;
     font-weight: v.$fontWeight-semibold;
     line-height: 32px;
-    letter-spacing: -1px;
 }
 
 @mixin UserCardTitle() {
@@ -20,17 +18,6 @@
     line-height: 28px;
 }
 
-@mixin ParagraphLarge() {
-    font-size: v.$fontSize-big;
-    font-weight: v.$fontWeight-normal;
-    line-height: 28px;
-}
-
-@mixin ParagraphMedium() {
-    font-size: v.$fontSize-sm;
-    font-weight: v.$fontWeight-semibold;
-    line-height: 20px;
-}
 
 @mixin LabelLarge() {
     font-size: v.$fontSize-md;
@@ -48,6 +35,12 @@
     font-size: v.$fontSize-x-sm;
     font-weight: v.$fontWeight-medium;
     line-height: 14px;
+}
+
+@mixin InputText() {
+    font-size: v.$fontSize-sm;
+    font-weight: v.$fontWeight-medium;
+    line-height: 20px;
 }
 
 @mixin ButtonText() {
