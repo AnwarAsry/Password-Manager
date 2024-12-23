@@ -45,7 +45,7 @@ export const createAccount = async (prevState, formData: FormData): Promise<Serv
         };
         
         // Send the form entries via post
-        const response = await post("/credential", payload)
+        const response = await post("/credential/item", payload)
         
         // Json the response because the response is string
         const data = await response.json()
@@ -68,6 +68,25 @@ export const getSearchResult = async (searchText: string): Promise<ServerActionR
     try {
         // Send the text as query
         const response = await get<ServerActionResponse<IAccounts[]>>(`/search?searchQuery=${searchText}`);
+
+        // Check if the Server did not succeed in searching
+        if (!response.success) {
+            // Return unsuccessfull message
+            return { success: false, data: null, message: "Server Error" };
+        }
+
+        // Return successfull
+        return response;
+    } catch (error) {
+        // Return unsuccessfull message
+        return { success: false, data: null, message: JSON.stringify(error)};
+    }
+}
+
+export const getCredential = async (id: string): Promise<ServerActionResponse<IAccounts | null>> => {
+    try {
+        // Send the id as param
+        const response = await get<ServerActionResponse<IAccounts>>(`/credential/item/${id}`);
 
         // Check if the Server did not succeed in searching
         if (!response.success) {

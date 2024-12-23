@@ -1,7 +1,6 @@
 import DashboardStyles from "@/styles/Dashboard.module.scss"
 import { UserCard } from "@/components/UserCard"
 import { CredentialsAddBtn } from "@/components/CredentialsAddBtn"
-import { SearchBar } from "@/components/SearchBar"
 
 export default function DashboardLayout({
     children
@@ -15,7 +14,6 @@ export default function DashboardLayout({
                 <UserCard />
             </header>
             <main className={DashboardStyles.main}>
-                <SearchBar />
                 {children}
             </main>
         </div>

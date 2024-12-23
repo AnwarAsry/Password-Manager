@@ -2,10 +2,12 @@ import { getAllCredentialsForUser } from "@/actions/account";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import tableStyles from "@/styles/CredentialsTable.module.scss"
+import { SearchBar } from "@/components/SearchBar";
+import Link from "next/link";
 
 const Dashboard = async () => {
     const session = await auth();
-
+    
     if (!session || !session.user) {
         redirect("/")
     }
@@ -14,6 +16,7 @@ const Dashboard = async () => {
 
     if (session.user) {
         return <>
+            <SearchBar />
             <section>
                 <h5 className={tableStyles.Title}>All saved passwords</h5>
                 <table className={tableStyles.tableCredentials}>
@@ -28,7 +31,7 @@ const Dashboard = async () => {
                         {
                             res.data?.map(obj => {
                                 return <tr key={obj.id} className={tableStyles.CredentialCard}>
-                                    <td>{obj.platform}</td>
+                                    <td><Link href={`/view/${obj.id}`}>{obj.platform}</Link></td>
                                     <td>{obj.username}</td>
                                     <td>{obj.password}</td>
                                 </tr>
