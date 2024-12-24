@@ -30,8 +30,6 @@ const Dashboard = async () => {
                     <tbody>
                         {
                             res.data?.map(obj => {
-                                console.log(obj.id);
-
                                 return <tr key={obj.id} className={tableStyles.CredentialCard}>
                                     <td><Link href={`/view/${obj.id}`}>{obj.platform}</Link></td>
                                     <td>{obj.username}</td>
