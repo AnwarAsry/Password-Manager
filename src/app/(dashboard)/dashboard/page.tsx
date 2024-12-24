@@ -33,7 +33,7 @@ const Dashboard = async () => {
                                 return <tr key={obj.id} className={tableStyles.CredentialCard}>
                                     <td><Link href={`/view/${obj.id}`}>{obj.platform}</Link></td>
                                     <td>{obj.username}</td>
-                                    <td>{obj.password}</td>
+                                    <td>{obj.password && "*".repeat(obj.password.length)}</td>
                                 </tr>
                             })
                         }

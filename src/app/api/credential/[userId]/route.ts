@@ -1,5 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
 import IAccounts from "@/models/IAccounts";
+import CryptoJS from "crypto-js";
 
 type Params = Promise<{ userId: string }>
 
@@ -12,18 +13,29 @@ export async function GET(req: Request, { params }: { params: Params}) {
         const parameters = await params;
         const userId = parameters.userId;
 
+        const secretKey = process.env.SECRET_KEY as string;
+
         // Get all Credentials in the database that has userID property value same as user's id
         // const dbSavedCredentials = await IAccounts.find();
         const dbSavedCredentials = await IAccounts.find({ "userID": userId });
 
         // If the object is not found 
-        // if (!dbSavedCredentials) {
-        //     return new Response(JSON.stringify({success: true, data: null, message: "Credentials not found" }))
-        // }
+        if (!dbSavedCredentials) {
+            return new Response(JSON.stringify({success: true, data: [], message: "Credentials not found" }))
+        }
 
-        // This makes it so _id becomes id
-        const formatedCredentials = dbSavedCredentials.map(obj => obj.toObject())
+        // toObject makes it so _id becomes id
+        // Decrypt the password aswell
+        const formatedCredentials = dbSavedCredentials.map(obj => {
+            if (obj.password) {
+                const decrypted = CryptoJS.AES.decrypt(obj.password, secretKey).toString(CryptoJS.enc.Utf8)
+                obj.password = decrypted;
+                return obj.toObject()
+            }
 
+            return obj.toObject()
+        })
+        
         // Return successfull
         return new Response(JSON.stringify({success: true, data: formatedCredentials, message: "Successfully retrived"}))
     } catch (error) {
