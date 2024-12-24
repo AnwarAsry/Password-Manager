@@ -28,3 +28,10 @@
     @include Btn(transparent, v.$primaryBtnColor);
     @include text.ButtonText();
 }
+
+.DeleteBtn {
+    border: 2px solid v.$danger600;
+
+    @include Btn(transparent, v.$danger600);
+    @include text.ButtonText();
+}

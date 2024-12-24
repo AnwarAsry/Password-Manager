@@ -1,6 +1,6 @@
 import { IAccounts } from "@/models/IAccounts";
 import { ServerAction, ServerActionResponse } from "@/models/responses/ServerAction";
-import { get, post } from "@/serviceBase";
+import { get, post, remove } from "@/serviceBase";
 
 // Fetch all Credentials saved by user
 export const getAllCredentialsForUser = async (userId: string): Promise<ServerActionResponse<IAccounts[] | null>>  	 => {
@@ -99,5 +99,24 @@ export const getCredential = async (id: string): Promise<ServerActionResponse<IA
     } catch (error) {
         // Return unsuccessfull message
         return { success: false, data: null, message: JSON.stringify(error)};
+    }
+}
+
+export const deleteCredential = async (id: string): Promise<ServerAction> => {
+    try {
+        // Send the id as param
+        const response = await remove<ServerAction>(`/credential/item/${id}`);
+
+        // Check if the Server did not succeed in searching
+        if (!response.success) {
+            // Return unsuccessfull message
+            return { success: false, message: "Server Error" };
+        }
+
+        // Return successfull
+        return response;
+    } catch (error) {
+        // Return unsuccessfull message
+        return { success: false, message: JSON.stringify(error)};
     }
 }
