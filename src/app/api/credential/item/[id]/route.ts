@@ -15,9 +15,17 @@ export async function GET(req: NextRequest, { params }: { params: Params}) {
 
         // Find object by id
         const dbCredentialFound = await IAccounts.findById(id);
+
+        // If the object is not found 
+        if (!dbCredentialFound) {
+            return new Response(JSON.stringify({success: true, data: null, message: "Credential not found" }))
+        }
+
+        // This makes it so _id becomes id
+        const formatedCredential = dbCredentialFound.toObject();
         
         // Return successfull
-        return new Response(JSON.stringify({success: true, data: dbCredentialFound, message: "Successfull fetch" }));
+        return new Response(JSON.stringify({success: true, data: formatedCredential, message: "Successfull fetch" }));
     } catch (error) {
         // Return unsuccessfull message        
         return new Response(JSON.stringify({success: false, data: null, message: JSON.stringify(error)}));
