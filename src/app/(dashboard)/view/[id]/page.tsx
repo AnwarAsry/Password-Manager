@@ -9,7 +9,7 @@ import { ViewInputValue } from "@/components/ViewInputValue";
 import { IAccounts } from "@/models/IAccounts";
 import Link from "next/link";
 import { redirect, useParams } from "next/navigation";
-import { useActionState, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { FormInput } from "@/components/FormInput";
@@ -26,8 +26,21 @@ const CredentialPage = () => {
     // Parameter for id
     const params = useParams<{ id: string }>();
 
-    // New react hook for form handling, used to be known as useFormState
-    const [state, formAction, pending] = useActionState(updateCredential, null)
+    const handleUpdate = async (formData: FormData) => {
+        if (pageInfo) {
+            try {
+                console.log(formData);
+
+                const response = await updateCredential(pageInfo.id, formData)
+
+                if (response.success) {
+                    // redirect("/dashboard")
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
 
     // State to handle what tags user has labeld
     const [categories, setCategories] = useState<string[]>([]);
@@ -84,14 +97,14 @@ const CredentialPage = () => {
             </header>
             <section className={CredentialPageStyles.Content}>
                 {
-                    edit && <form action={formAction} className={FormStyles.SubmitFormAlt}>
-                        <FormInput label="Platform" type="text" defaultValue={pageInfo.platform} />
-                        <FormInput label="Username/Email" type="text" defaultValue={pageInfo.username} />
-                        <FormInput label="Password" type="password" defaultValue={pageInfo.password} />
+                    edit && <form action={handleUpdate} className={FormStyles.SubmitFormAlt}>
+                        <FormInput name="platform" label="Platform" type="text" defaultValue={pageInfo.platform} />
+                        <FormInput name="username" label="Username/Email" type="text" defaultValue={pageInfo.username} />
+                        <FormInput name="password" label="Password" type="password" defaultValue={pageInfo.password} />
 
                         <label className={FormStyles.LabelTextareaContainer}>
                             Notes:
-                            <textarea className={FormStyles.FormTextarea} defaultValue={pageInfo.notes}></textarea>
+                            <textarea name="notes" className={FormStyles.FormTextarea} defaultValue={pageInfo.notes}></textarea>
                         </label>
 
                         {/* The category field */}
@@ -106,7 +119,7 @@ const CredentialPage = () => {
                         <hr />
                         <div className={FormStyles.BtnsContainer}>
                             <button className={ButtonStyles.SecondaryBtn} type="button" onClick={() => setEdit(false)}>Cancel</button>
-                            <button className={ButtonStyles.PrimaryBtn} type="submit" disabled={pending}>Save</button>
+                            <button className={ButtonStyles.PrimaryBtn} type="submit">Save</button>
                         </div>
                     </form>
                 }
@@ -122,26 +135,22 @@ const CredentialPage = () => {
                 }
 
                 {
-                    !edit && pageInfo.notes && <label className={CredentialPageStyles.ViewTextarea}>
+                    !edit && <label className={CredentialPageStyles.ViewTextarea}>
                         Notes:
                         <textarea disabled defaultValue={pageInfo.notes}></textarea>
                     </label>
                 }
 
                 {
-                    !edit && pageInfo.category && pageInfo.category?.length > 0 && <div className={CredentialPageStyles.CategoriesSection}>
+                    !edit && <div className={CredentialPageStyles.CategoriesSection}>
                         <label>Categories:</label>
-                        {
-                            edit ? <div className={CredentialPageStyles.Categories}>
-                                editable
-                            </div> : <div className={CredentialPageStyles.Categories}>
-                                {
-                                    pageInfo.category.map((obj, i) => {
-                                        return <Tag key={i} text={obj} />
-                                    })
-                                }
-                            </div>
-                        }
+                        <div className={CredentialPageStyles.Categories}>
+                            {
+                                pageInfo.category?.map((obj, i) => {
+                                    return <Tag key={i} text={obj} />
+                                })
+                            }
+                        </div>
                     </div>
                 }
 
