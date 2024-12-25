@@ -6,11 +6,11 @@ interface IViewInputValue {
     defaultValue?: string
 }
 
-export const ViewInputValue = ({ label, defaultValue }: IViewInputValue) => {
+export const ViewInputValue = ({ label, type, defaultValue }: IViewInputValue) => {
     return <>
         <label className={CredentialPageStyles.ViewInput}>
             {label}
-            <input type="text" disabled defaultValue={defaultValue} />
+            <input type={type} disabled defaultValue={defaultValue} />
         </label>
     </>
 }

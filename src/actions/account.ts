@@ -1,6 +1,6 @@
 import { IAccounts } from "@/models/IAccounts";
 import { ServerAction, ServerActionResponse } from "@/models/responses/ServerAction";
-import { get, post, remove } from "@/serviceBase";
+import { get, post, put, remove } from "@/serviceBase";
 
 // Fetch all Credentials saved by user
 export const getAllCredentialsForUser = async (userId: string): Promise<ServerActionResponse<IAccounts[] | null>> => {
@@ -23,7 +23,7 @@ export const getAllCredentialsForUser = async (userId: string): Promise<ServerAc
 };
 
 // When you want a credentials saved call this function that takes form entries as argument
-export const createAccount = async (prevState, formData: FormData): Promise<ServerAction> => {
+export const createCredential = async (prevState: unknown, formData: FormData): Promise<ServerAction> => {
     try {
         // Collect other form data
         const platform = formData.get("platform");
@@ -109,6 +109,43 @@ export const deleteCredential = async (id: string): Promise<ServerAction> => {
     try {
         // Send the id as param
         const response = await remove<ServerAction>(`/credential/item/${id}`);
+
+        // Check if the Server did not succeed in searching
+        if (!response.success) {
+            // Return unsuccessfull message
+            return { success: false, message: "Server Error" };
+        }
+
+        // Return successfull
+        return response;
+    } catch (error) {
+        // Return unsuccessfull message
+        return { success: false, message: JSON.stringify(error)};
+    }
+}
+
+// Delete request for deleting a credential based on id
+export const updateCredential = async (id: string, formData: FormData): Promise<ServerAction> => {
+    try {
+        // Collect other form data
+        const platform = formData.get("platform");
+        const username = formData.get("username");
+        const password = formData.get("password");
+        const notes = formData.get("notes");
+        // Get categories
+        const category = JSON.parse(formData.get("category") as string);
+        
+        // Payload
+        const payload = {
+            platform,
+            username,
+            password,
+            notes,
+            category   // This is an array
+        };
+
+        // Send the id as param and obj with values to update
+        const response = await put(`/credential/item/${id}`, payload);
 
         // Check if the Server did not succeed in searching
         if (!response.success) {
