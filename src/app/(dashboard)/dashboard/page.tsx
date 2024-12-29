@@ -10,38 +10,37 @@ const Dashboard = async () => {
 
     if (!session || !session.user) {
         redirect("/")
+        return
     }
 
     const res = await getAllCredentialsForUser(session.user.id)
 
-    if (session.user) {
-        return <>
-            <SearchBar />
-            <section>
-                <h5 className={tableStyles.Title}>All saved passwords</h5>
-                <table className={tableStyles.tableCredentials}>
-                    <thead>
-                        <tr>
-                            <th>Platform</th>
-                            <th>Username</th>
-                            <th>Password</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            res.data?.map(obj => {
-                                return <tr key={obj.id} className={tableStyles.CredentialCard}>
-                                    <td><Link href={`/view/${obj.id}`}>{obj.platform}</Link></td>
-                                    <td>{obj.username}</td>
-                                    <td>{obj.password && "*".repeat(obj.password.length)}</td>
-                                </tr>
-                            })
-                        }
-                    </tbody>
-                </table>
-            </section >
-        </>
-    }
+    return <>
+        <SearchBar />
+        <section>
+            <h5 className={tableStyles.Title}>All saved passwords</h5>
+            <table className={tableStyles.tableCredentials}>
+                <thead>
+                    <tr>
+                        <th>Platform</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        res.data?.map(obj => {
+                            return <tr key={obj.id} className={tableStyles.CredentialCard}>
+                                <td><Link href={`/view/${obj.id}`}>{obj.platform}</Link></td>
+                                <td>{obj.username}</td>
+                                <td>{obj.password && "*".repeat(obj.password.length)}</td>
+                            </tr>
+                        })
+                    }
+                </tbody>
+            </table>
+        </section >
+    </>
 }
 
 export default Dashboard;

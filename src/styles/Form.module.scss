@@ -117,7 +117,11 @@
 .SearchContainer {
     height: 70px;
     display: flex;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
 }
 
 .SearchForm {
@@ -139,4 +143,32 @@
 
 .SearchInput {
     @include Input();
+}
+
+.SearchResults {
+    width: 100%;
+    height: fit-content;
+    padding: 20px 0 12px;
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-x-sm;
+    position: absolute;
+    z-index: -1;
+    top: 48px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    list-style: none;
+    border-radius: 0 0 8px 8px;
+    background-color: v.$neutral-700;
+
+    li {
+        cursor: pointer;
+        height: fit-content;
+        padding: 4px 12px;
+
+        &:hover {
+            background-color: #4b586d;
+        }
+    }
 }

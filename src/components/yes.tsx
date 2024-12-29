@@ -5,50 +5,22 @@ import ButtonStyles from "@/styles/Buttons.module.scss";
 import { FormInput } from "./FormInput"
 import { IoIosClose } from "react-icons/io"
 import { createCredential } from "@/actions/account"
-import { useActionState, useState } from "react"
+import { useState } from "react"
 import { useSession } from "next-auth/react"
 import { redirect } from "next/navigation"
-import { Tag } from "@/components/Tag"
 import { randomBytes } from "crypto";
+import { Tag } from "./Tag";
 
 interface IFormProps {
     Cancel: () => void
 }
 
 export const Form = ({ Cancel }: IFormProps) => {
-
     // Get the id of the current user in the session
     const { data: session } = useSession();
 
-    // New react hook for form handling, used to be known as useFormState
-    const [state, formAction, pending] = useActionState(createCredential, null)
-
-    // If successfull redirect to dashboard
-    if (state) {
-        redirect("/dashboard")
-    }
-
-    // State to handle what tags user has labeld
-    const [categories, setCategories] = useState<string[]>([]);
-    // Handle the value of the input
-    const [tagInput, setTagInput] = useState<string>("");
-
-    // Handle adding a new tag
-    const addTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
-            e.preventDefault(); // Prevent form submission
-            setCategories([...categories, tagInput.trim()]); // Add tag
-            setTagInput(""); // Clear input
-        }
-    };
-    // Handle removing a tag
-    const removeTag = (index: number) => {
-        setCategories(categories.filter((tag, i) => i !== index));
-    };
-
     // Password State
     const [password, setPassword] = useState<string>("");
-
     // Password generate
     const generatePassword = () => {
         // A string of characters to use in the password
@@ -68,8 +40,50 @@ export const Form = ({ Cancel }: IFormProps) => {
         setPassword(pass)
     }
 
+    // State to handle what tags user has labeld
+    const [categories, setCategories] = useState<string[]>([]);
+    // Handle the value of the input
+    const [tagInput, setTagInput] = useState<string>("");
+    // Handle adding a new tag
+    const addTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            e.preventDefault(); // Prevent form submission
+            setCategories([...categories, tagInput.trim()]); // Add tag
+            setTagInput(""); // Clear input
+        }
+    };
+    // Handle removing a tag
+    const removeTag = (index: number) => {
+        setCategories(categories.filter((tag, i) => i !== index));
+    };
+
+    // If form submission is pending state
+    const [pending, setPending] = useState(false);
+    // Handle submit function
+    const handleSubmit = async (e: React.FormEvent) => {
+        // Set pending state true
+        setPending(true)
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget as HTMLFormElement);
+        // Append the array as a single field
+        formData.append("category", JSON.stringify(categories));
+
+        try {
+            const response = await createCredential(formData);
+
+            if (response.success) {
+                setPending(false)
+                redirect("/dashboard")
+            }
+
+        } catch (error) {
+            console.log("Error submitting form:", error);
+        }
+    }
+
     return <>
-        <form action={formAction} className={FormStyles.SubmitForm}>
+        <form onSubmit={handleSubmit} className={FormStyles.SubmitForm}>
             {/* Close form icon */}
             <IoIosClose className={FormStyles.closeIcon} onClick={Cancel} />
 
@@ -87,7 +101,7 @@ export const Form = ({ Cancel }: IFormProps) => {
             </label>
 
             {/* The category field */}
-            <FormInput label="Category" type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={e => addTag(e)} />
+            <FormInput name="category" label="Category" type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={e => addTag(e)} />
             {/* Display the categories */}
             <div className={FormStyles.tagsContainer}>
                 {

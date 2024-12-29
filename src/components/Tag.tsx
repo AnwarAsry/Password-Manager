@@ -3,18 +3,16 @@ import { CgClose } from "react-icons/cg"
 
 interface ITagProps {
     text: string
-    index?: number
-    removeIcon?: boolean
-    Remove?: (index: number) => void
+    Remove?: () => void
 }
 
-export const Tag = ({ text, index, removeIcon, Remove }: ITagProps) => {
+export const Tag = ({ text, Remove }: ITagProps) => {
 
-    if (removeIcon && Remove && index) {
+    if (Remove) {
         return <>
-            <span className={TagStyles.tagRemove} onClick={() => Remove(index)} >
+            <span className={TagStyles.tagRemove} onClick={() => Remove()} >
                 {text}
-                {removeIcon && <CgClose className={TagStyles.removeIcon} />}
+                <CgClose className={TagStyles.removeIcon} />
             </span>
         </>
     }

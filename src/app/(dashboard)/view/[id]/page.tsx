@@ -5,7 +5,6 @@ import ButtonStyles from "@/styles/Buttons.module.scss"
 import FormStyles from "@/styles/Form.module.scss"
 import { deleteCredential, getCredential, updateCredential } from "@/actions/account";
 import { Tag } from "@/components/Tag";
-import { ViewInputValue } from "@/components/ViewInputValue";
 import { IAccounts } from "@/models/IAccounts";
 import Link from "next/link";
 import { redirect, useParams } from "next/navigation";
@@ -112,7 +111,7 @@ const CredentialPage = () => {
                         {/* Display the categories */}
                         <div className={FormStyles.tagsContainer}>
                             {
-                                categories.map((tag, i) => <Tag text={tag} key={i} index={i} removeIcon Remove={() => removeTag(i)} />)
+                                categories.map((tag, i) => <Tag text={tag} key={i} Remove={() => removeTag(i)} />)
                             }
                         </div>
 
@@ -128,10 +127,10 @@ const CredentialPage = () => {
                     !edit && <h3 className={CredentialPageStyles.TitlePlatform}>{pageInfo.platform}</h3>
                 }
                 {
-                    !edit && <ViewInputValue label="Username/Email" type="text" defaultValue={pageInfo.username} />
+                    !edit && <FormInput viewOnly label="Username/Email" type="text" defaultValue={pageInfo.username} />
                 }
                 {
-                    !edit && <ViewInputValue label="Password" type="password" defaultValue={pageInfo.password} />
+                    !edit && <FormInput viewOnly label="Password" type="password" defaultValue={pageInfo.password} />
                 }
 
                 {
