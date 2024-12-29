@@ -1,21 +1,21 @@
 @use "variables"as v;
+@use "FontSets"as text;
 
-.tagRemove {
+
+@mixin Tag() {
     width: fit-content;
     padding: v.$spacing-x-sm v.$spacing-sm;
     display: flex;
     align-items: center;
     gap: v.$spacing-xx-sm;
     border-radius: 4px;
-    font-size: v.$fontSize-x-sm;
-    font-weight: v.$fontWeight-semibold;
-    line-height: 14px;
     text-align: center;
     color: white;
     background-color: #1F2937;
 
+    @include text.TagText();
+
     &:hover {
-        cursor: pointer;
         // Prevention For highlighting text
         /* Safari */
         -webkit-user-select: none;
@@ -26,28 +26,15 @@
     }
 }
 
-.tag {
-    width: fit-content;
-    padding: v.$spacing-x-sm v.$spacing-sm;
-    display: flex;
-    align-items: center;
-    gap: v.$spacing-xx-sm;
-    border-radius: 4px;
-    font-size: v.$fontSize-x-sm;
-    font-weight: v.$fontWeight-semibold;
-    line-height: 14px;
-    text-align: center;
-    color: white;
-    background-color: #1F2937;
+.tagRemove {
+    @include Tag();
 
     &:hover {
-        cursor: default;
-        // Prevention For highlighting text
-        /* Safari */
-        -webkit-user-select: none;
-        /* IE 10 and IE 11 */
-        -ms-user-select: none;
-        /* Standard syntax */
-        user-select: none;
+        cursor: pointer;
+        text-decoration: line-through;
     }
+}
+
+.tag {
+    @include Tag();
 }

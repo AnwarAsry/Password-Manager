@@ -36,6 +36,31 @@
     }
 }
 
+.FormLogin {
+    width: fit-content;
+    padding: v.$spacing-md;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px 0 rgba(16, 24, 40, 0.06);
+    background-color: #f5f5f5;
+}
+
+.ProviderLogin {
+    min-width: 150px;
+    padding: v.$spacing-md v.$spacing-sm;
+
+    font-size: v.$fontSize-md;
+    font-weight: v.$fontWeight-semibold;
+
+    border: 2px solid #bdbdbd;
+    border-radius: 8px;
+    outline: none;
+    background: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 .formBackground {
     display: flex;
     justify-content: center;

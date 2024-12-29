@@ -1,6 +1,6 @@
 "use client"
 
-import loginStyles from "@/styles/login.module.scss"
+import FormStyles from "@/styles/Form.module.scss"
 import { signIn } from "next-auth/react"
 
 interface IProviderProps {
@@ -20,7 +20,7 @@ export const ProviderButton = ({ provider }: IProviderProps) => {
 
     return <>
         {/* The type button is there to prevent the form on the parent to not submit and call the onClick function for sign in */}
-        <button className={loginStyles.provider} type="button" onClick={() => handleOnClick(provider.id)}>
+        <button className={FormStyles.ProviderLogin} type="button" onClick={() => handleOnClick(provider.id)}>
             Sign in with {provider.name}
         </button>
     </>

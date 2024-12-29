@@ -184,7 +184,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
             const response = await createCredential(formData);
 
             if (response.success) {
-                redirect("/results")
+                redirect("/dashboard")
             }
 
         } catch (error) {

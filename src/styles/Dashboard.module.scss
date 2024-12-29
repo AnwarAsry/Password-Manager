@@ -15,8 +15,7 @@
 
 .main {
     margin: 0 v.$spacing-big;
-    // display: grid;
-    // grid-template-columns: repeat(8, 1fr);
-    // column-gap: 20px;
-    // display: flex    ;
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-big;
 }

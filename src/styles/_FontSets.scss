@@ -47,3 +47,9 @@
     font-weight: v.$fontWeight-semibold;
     line-height: 18px;
 }
+
+@mixin TagText() {
+    font-size: v.$fontSize-x-sm;
+    font-weight: v.$fontWeight-semibold;
+    line-height: 14px;
+}
