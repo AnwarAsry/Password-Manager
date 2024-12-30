@@ -12,7 +12,7 @@ export default function DashboardLayout({
         <div className={DashboardStyles.Layout}>
             <header className={DashboardStyles.header}>
                 <div className={DashboardStyles.HeaderContent}>
-                    <CredentialsAddBtn />
+                    <CredentialsAddBtn text="ADD CREDENTIALS" />
                     <AuthButton />
                 </div>
                 <div>

@@ -21,7 +21,7 @@ const Dashboard = async () => {
         <section>
             <div className={TableStyles.TitleCallToAction}>
                 <h5 className={TableStyles.Title}>All saved passwords <span className={TableStyles.NumberOfRowSpan}>{res.data && res.data.length}</span></h5>
-                <CredentialsAddBtn />
+                <CredentialsAddBtn addIcon />
             </div>
             <table className={TableStyles.tableCredentials}>
                 <thead>

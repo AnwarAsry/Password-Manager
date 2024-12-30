@@ -6,12 +6,11 @@ import FormStyles from "@/styles/Form.module.scss"
 import { deleteCredential, getCredential, updateCredential } from "@/actions/account";
 import { Tag } from "@/components/Tag";
 import { IAccounts } from "@/models/IAccounts";
-import Link from "next/link";
 import { redirect, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { IoArrowBackOutline } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { FormInput } from "@/components/FormInput";
+import { BackLink } from "@/components/BackLink";
 
 const CredentialPage = () => {
 
@@ -101,10 +100,7 @@ const CredentialPage = () => {
     if (pageInfo) {
         return <>
             <header className={CredentialPageStyles.header}>
-                <div className={CredentialPageStyles.BackLink}>
-                    <IoArrowBackOutline className="icon" />
-                    <Link href="/dashboard">Back to homepage</Link>
-                </div>
+                <BackLink hrefLink="/dashboard" text="Back to dashboard" />
             </header>
             <section className={CredentialPageStyles.Content}>
                 {
