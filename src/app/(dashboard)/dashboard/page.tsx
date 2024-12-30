@@ -20,7 +20,7 @@ const Dashboard = async () => {
         <SearchBar />
         <section>
             <div className={TableStyles.TitleCallToAction}>
-                <h5 className={TableStyles.Title}>All saved passwords <span className={TableStyles.NumberOfRowSpan}>{res.data && res.data.length}</span></h5>
+                <h5 className={TableStyles.Title}>All passwords <span className={TableStyles.NumberOfRowSpan}>{res.data && res.data.length}</span></h5>
                 <CredentialsAddBtn addIcon />
             </div>
             <table className={TableStyles.tableCredentials}>
