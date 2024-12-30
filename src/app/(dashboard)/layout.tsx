@@ -11,9 +11,14 @@ export default function DashboardLayout({
     return (
         <div className={DashboardStyles.Layout}>
             <header className={DashboardStyles.header}>
-                <CredentialsAddBtn />
-                <UserCard />
-                <AuthButton />
+                <div className={DashboardStyles.HeaderContent}>
+                    <CredentialsAddBtn />
+                    <AuthButton />
+                </div>
+                <div>
+                    <hr className={DashboardStyles.LineBreak} />
+                    <UserCard />
+                </div>
             </header>
             <main className={DashboardStyles.main}>
                 {children}

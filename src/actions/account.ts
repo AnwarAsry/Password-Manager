@@ -112,8 +112,8 @@ export const deleteCredential = async (id: string): Promise<ServerAction> => {
     }
 }
 
-// Delete request for deleting a credential based on id
-export const updateCredential = async (id: string, formData: FormData): Promise<ServerAction> => {
+// Update request for updating a credential based on id
+export const updateCredential = async (id: string, formData: FormData): Promise<ServerActionResponse<IAccounts | null>> => {
     try {
         // Payload
         const payload = {
@@ -130,13 +130,13 @@ export const updateCredential = async (id: string, formData: FormData): Promise<
         // Check if the Server did not succeed in searching
         if (!response.success) {
             // Return unsuccessfull message
-            return { success: false, message: "Server Error" };
+            return { success: false, data: null, message: "Server Error" };
         }
 
         // Return successfull
         return response;
     } catch (error) {
         // Return unsuccessfull message
-        return { success: false, message: JSON.stringify(error)};
+        return { success: false, data: null, message: JSON.stringify(error)};
     }
 }

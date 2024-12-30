@@ -25,15 +25,18 @@ const CredentialPage = () => {
     // Parameter for id
     const params = useParams<{ id: string }>();
 
-    const handleUpdate = async (formData: FormData) => {
+    const handleUpdate = async (e: React.FormEvent) => {
         if (pageInfo) {
             try {
-                console.log(formData);
+                const formData = new FormData(e.currentTarget as HTMLFormElement);
+                // Append the array as a single field
+                formData.append("category", JSON.stringify(categories));
 
                 const response = await updateCredential(pageInfo.id, formData)
 
                 if (response.success) {
-                    // redirect("/dashboard")
+                    setPageInfo(response.data)
+                    setEdit(false)
                 }
             } catch (error) {
                 console.log(error);
@@ -66,9 +69,18 @@ const CredentialPage = () => {
         const getData = async () => {
             // If parameter exist
             if (params) {
-                const resposne = await getCredential(params.id)
-                setPageInfo(resposne.data)
-                setLoading(true)
+                try {
+                    const response = await getCredential(params.id)
+
+                    if (response.success && response.data) {
+                        setPageInfo(response.data)
+                        setCategories(response.data.category || [])
+                    }
+                } catch (error) {
+                    console.log("Something went wrong with updating. Error message: ", error);
+                } finally {
+                    setLoading(true)
+                }
             }
         }
 
@@ -96,7 +108,7 @@ const CredentialPage = () => {
             </header>
             <section className={CredentialPageStyles.Content}>
                 {
-                    edit && <form action={handleUpdate} className={FormStyles.SubmitFormAlt}>
+                    edit && <form onSubmit={handleUpdate} className={FormStyles.SubmitFormAlt}>
                         <FormInput name="platform" label="Platform" type="text" defaultValue={pageInfo.platform} />
                         <FormInput name="username" label="Username/Email" type="text" defaultValue={pageInfo.username} />
                         <FormInput name="password" label="Password" type="password" defaultValue={pageInfo.password} />
@@ -111,7 +123,7 @@ const CredentialPage = () => {
                         {/* Display the categories */}
                         <div className={FormStyles.tagsContainer}>
                             {
-                                categories.map((tag, i) => <Tag text={tag} key={i} Remove={() => removeTag(i)} />)
+                                categories?.map((tag, i) => <Tag text={tag} key={i} Remove={() => removeTag(i)} />)
                             }
                         </div>
 

@@ -40,12 +40,25 @@ $spacing-xxx-huge: 192px;
 
 // COLORS
 $primaryBtnColor: #2E54FF;
-$formBgc: #2E2E38;
-$inputBgc: #444451;
-$inputBgcOnFocus: #515160;
+
+$tableHeaderBgc: #26272B;
+$tableRow: #212226;
+$tableTextColor: #9CA3AF;
+
 $danger600: #DC2626;
-// This is on search icon aswell
-$searchInpBorder: #9CA3AF;
+$headerBgc: #212226;
+$tagBgc: #2A2B2F;
+
+// $formBgc: #2E2E38;
+$formBgc: #212226;
+
+$inputBgc: #2A2B2F;
+$inputBgcOnFocus: #373743;
+$inputBoxShadow: #101828;
+$searchInpBgc: #2A2B2F;
+$searchResultBgc: #212226;
+$searchResultOnFocus: #2F3137;
+
 
 // NEUTRAL COLORS
 $neutral-50: #F9FAFB;

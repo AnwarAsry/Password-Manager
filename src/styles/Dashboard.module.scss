@@ -2,15 +2,27 @@
 
 .Layout {
     max-width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     display: grid;
     grid-template-columns: 300px 1fr;
 }
 
 .header {
     display: grid;
-    grid-template-rows: 1fr 150px;
-    background-color: #fff;
+    grid-template-rows: 1fr 125px;
+    background-color: v.$headerBgc;
+}
+
+.HeaderContent {
+    padding: v.$spacing-big v.$spacing-sm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.LineBreak {
+    border: 1px solid #2A2B2F;
 }
 
 .main {

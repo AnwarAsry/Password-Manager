@@ -11,7 +11,7 @@
     border-radius: 4px;
     text-align: center;
     color: white;
-    background-color: #1F2937;
+    background-color: v.$tagBgc;
 
     @include text.TagText();
 

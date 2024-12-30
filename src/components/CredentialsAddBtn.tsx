@@ -9,7 +9,7 @@ export const CredentialsAddBtn = () => {
     const [showForm, setShowForm] = useState(false);
 
     return <>
-        <button className={ButtonStyles.PrimaryBtn} onClick={() => setShowForm(true)}>Add Credentials</button>
+        <button className={ButtonStyles.PrimaryBtn} onClick={() => setShowForm(true)}>ADD CREDENTIALS</button>
 
         {showForm && <CredentialsForm Cancel={() => setShowForm(false)} />}
     </>

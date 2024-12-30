@@ -51,8 +51,8 @@ export const SearchBar = () => {
     return <>
         <div className={SearchBarStyles.SearchContainer}>
             <form action="/results" className={SearchBarStyles.SearchForm}>
-                <IoSearch className={SearchBarStyles.SerchIcon} />
-                <input className={SearchBarStyles.SearchInput} type="text" name="searchQuery" placeholder="Search for platform..." defaultValue={search} onChange={handleSearchOnChange} />
+                <input className={SearchBarStyles.SearchInput} type="text" name="searchQuery" placeholder="Search for platform" defaultValue={search} onChange={handleSearchOnChange} autoComplete="off" />
+                <IoSearch className={SearchBarStyles.SearchIcon} />
             </form>
             {
                 searchCredentials?.length > 0 && <ul className={SearchBarStyles.SearchResults}>

@@ -1,9 +1,10 @@
 import { getAllCredentialsForUser } from "@/actions/account";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import tableStyles from "@/styles/CredentialsTable.module.scss"
+import TableStyles from "@/styles/CredentialsTable.module.scss"
 import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
+import { CredentialsAddBtn } from "@/components/CredentialsAddBtn";
 
 const Dashboard = async () => {
     const session = await auth();
@@ -18,8 +19,11 @@ const Dashboard = async () => {
     return <>
         <SearchBar />
         <section>
-            <h5 className={tableStyles.Title}>All saved passwords</h5>
-            <table className={tableStyles.tableCredentials}>
+            <div className={TableStyles.TitleCallToAction}>
+                <h5 className={TableStyles.Title}>All saved passwords <span className={TableStyles.NumberOfRowSpan}>{res.data && res.data.length}</span></h5>
+                <CredentialsAddBtn />
+            </div>
+            <table className={TableStyles.tableCredentials}>
                 <thead>
                     <tr>
                         <th>Platform</th>
@@ -30,7 +34,7 @@ const Dashboard = async () => {
                 <tbody>
                     {
                         res.data?.map(obj => {
-                            return <tr key={obj.id} className={tableStyles.CredentialCard}>
+                            return <tr key={obj.id} className={TableStyles.CredentialCard}>
                                 <td><Link href={`/view/${obj.id}`}>{obj.platform}</Link></td>
                                 <td>{obj.username}</td>
                                 <td>{obj.password && "*".repeat(obj.password.length)}</td>
