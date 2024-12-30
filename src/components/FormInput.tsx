@@ -1,6 +1,8 @@
 import FormStyles from "@/styles/Form.module.scss"
+import CredentialPageStyles from "@/styles/CredentialPage.module.scss"
 
 interface IFormInputProps {
+    viewOnly?: boolean
     label?: string
     type: string
     name?: string
@@ -10,7 +12,16 @@ interface IFormInputProps {
     onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
-export const FormInput = ({ label, type, name, value, defaultValue, onChange, onKeyDown }: IFormInputProps) => {
+export const FormInput = ({ viewOnly, label, type, name, value, defaultValue, onChange, onKeyDown }: IFormInputProps) => {
+    if (viewOnly) {
+        return <>
+            <label className={CredentialPageStyles.ViewInput}>
+                {label}
+                <input type={type} disabled defaultValue={defaultValue} />
+            </label>
+        </>
+    }
+
     return <>
         <label className={FormStyles.LabelContainer}>
             {label}

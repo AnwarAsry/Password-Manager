@@ -6,7 +6,7 @@ import avatar from "@/public/avatar.png"
 export const UserCard = async () => {
     const session = await auth();
 
-    // Checks if there is a session and has a user for log in and log out button
+    // Checks if there is a session and has a user
     if (session?.user) {
         return <>
             <div className={UserCardStyles.UserCard}>

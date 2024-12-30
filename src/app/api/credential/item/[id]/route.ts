@@ -15,12 +15,20 @@ export async function GET(req: NextRequest, { params }: { params: Params}) {
         const parameters = await params;
         const id = parameters.id;
 
+        const secretKey = process.env.SECRET_KEY as string;
+
         // Find object by id
         const dbCredentialFound = await IAccounts.findById(id);
 
         // If the object is not found 
         if (!dbCredentialFound) {
             return new Response(JSON.stringify({success: true, data: null, message: "Credential not found" }))
+        }
+        
+        // Decrypt the password for the user to see
+        if (dbCredentialFound.password) {
+            const decrypted = CryptoJS.AES.decrypt(dbCredentialFound.password, secretKey).toString(CryptoJS.enc.Utf8)
+            dbCredentialFound.password = decrypted;
         }
 
         // This makes it so _id becomes id
@@ -78,16 +86,17 @@ export async function PUT(req: Request, { params }: { params: Params}) {
         }
 
         // Update object
-        await IAccounts.findByIdAndUpdate(id,{ $set: {
+        const updatedCredential = await IAccounts.findByIdAndUpdate(id, { $set: {
             platform: body.platform,
             username: body.username,
             password: body.password,
             notes: body.notes,
-            category: body.category
-        }});
+            category: body.category,
+            updatedAt: new Date
+        }}, { new: true });        
 
         // Return successfull
-        return new Response(JSON.stringify({success: true, message: "Updated Credentials" }));
+        return new Response(JSON.stringify({success: true, data: updatedCredential, message: "Updated Credentials" }));
     } catch (error) {
         // Return unsuccessfull message        
         return new Response(JSON.stringify({success: false, message: JSON.stringify(error)}));

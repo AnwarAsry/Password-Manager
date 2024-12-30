@@ -21,12 +21,10 @@ export const AccountsSchema = new Schema<AccountsDocument, AccountsModel>({
     platform: { type: String, required: true },
     password: { type: String, required: false },
     username: { type: String, required: true },
-    // This property creates automatically by mongoose even when we dont want to
-    // To prevent that set default to undefined
-    category: { type: [String], default: undefined },
+    category: { type: [String], default: [] },
     notes: { type: String, required: false },
-    createdAt: { type: Date, required: false },
-    updatedAt: { type: Date, required: false },
+    createdAt: { type: Date, required: true },
+    updatedAt: { type: Date, required: true },
 }, { 
     timestamps: true,
     toJSON: {virtuals: true},

@@ -5,14 +5,12 @@ import ButtonStyles from "@/styles/Buttons.module.scss"
 import FormStyles from "@/styles/Form.module.scss"
 import { deleteCredential, getCredential, updateCredential } from "@/actions/account";
 import { Tag } from "@/components/Tag";
-import { ViewInputValue } from "@/components/ViewInputValue";
 import { IAccounts } from "@/models/IAccounts";
-import Link from "next/link";
 import { redirect, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { IoArrowBackOutline } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { FormInput } from "@/components/FormInput";
+import { BackLink } from "@/components/BackLink";
 
 const CredentialPage = () => {
 
@@ -26,15 +24,18 @@ const CredentialPage = () => {
     // Parameter for id
     const params = useParams<{ id: string }>();
 
-    const handleUpdate = async (formData: FormData) => {
+    const handleUpdate = async (e: React.FormEvent) => {
         if (pageInfo) {
             try {
-                console.log(formData);
+                const formData = new FormData(e.currentTarget as HTMLFormElement);
+                // Append the array as a single field
+                formData.append("category", JSON.stringify(categories));
 
                 const response = await updateCredential(pageInfo.id, formData)
 
                 if (response.success) {
-                    // redirect("/dashboard")
+                    setPageInfo(response.data)
+                    setEdit(false)
                 }
             } catch (error) {
                 console.log(error);
@@ -67,9 +68,18 @@ const CredentialPage = () => {
         const getData = async () => {
             // If parameter exist
             if (params) {
-                const resposne = await getCredential(params.id)
-                setPageInfo(resposne.data)
-                setLoading(true)
+                try {
+                    const response = await getCredential(params.id)
+
+                    if (response.success && response.data) {
+                        setPageInfo(response.data)
+                        setCategories(response.data.category || [])
+                    }
+                } catch (error) {
+                    console.log("Something went wrong with updating. Error message: ", error);
+                } finally {
+                    setLoading(true)
+                }
             }
         }
 
@@ -90,14 +100,11 @@ const CredentialPage = () => {
     if (pageInfo) {
         return <>
             <header className={CredentialPageStyles.header}>
-                <div className={CredentialPageStyles.BackLink}>
-                    <IoArrowBackOutline className="icon" />
-                    <Link href="/dashboard">Back to homepage</Link>
-                </div>
+                <BackLink hrefLink="/dashboard" text="Back to dashboard" />
             </header>
             <section className={CredentialPageStyles.Content}>
                 {
-                    edit && <form action={handleUpdate} className={FormStyles.SubmitFormAlt}>
+                    edit && <form onSubmit={handleUpdate} className={FormStyles.SubmitFormAlt}>
                         <FormInput name="platform" label="Platform" type="text" defaultValue={pageInfo.platform} />
                         <FormInput name="username" label="Username/Email" type="text" defaultValue={pageInfo.username} />
                         <FormInput name="password" label="Password" type="password" defaultValue={pageInfo.password} />
@@ -112,7 +119,7 @@ const CredentialPage = () => {
                         {/* Display the categories */}
                         <div className={FormStyles.tagsContainer}>
                             {
-                                categories.map((tag, i) => <Tag text={tag} key={i} index={i} removeIcon Remove={() => removeTag(i)} />)
+                                categories?.map((tag, i) => <Tag text={tag} key={i} Remove={() => removeTag(i)} />)
                             }
                         </div>
 
@@ -128,10 +135,10 @@ const CredentialPage = () => {
                     !edit && <h3 className={CredentialPageStyles.TitlePlatform}>{pageInfo.platform}</h3>
                 }
                 {
-                    !edit && <ViewInputValue label="Username/Email" type="text" defaultValue={pageInfo.username} />
+                    !edit && <FormInput viewOnly label="Username/Email" type="text" defaultValue={pageInfo.username} />
                 }
                 {
-                    !edit && <ViewInputValue label="Password" type="password" defaultValue={pageInfo.password} />
+                    !edit && <FormInput viewOnly label="Password" type="password" defaultValue={pageInfo.password} />
                 }
 
                 {

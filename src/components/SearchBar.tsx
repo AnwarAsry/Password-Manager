@@ -1,14 +1,15 @@
 "use client"
 
+import SearchBarStyles from "@/styles/Form.module.scss"
 import { getSearchResult } from "@/actions/account"
 import { IAccounts } from "@/models/IAccounts"
-import SearchBarStyles from "@/styles/Form.module.scss"
 import { useSearchParams } from "next/navigation"
 import { useState } from "react"
 import { IoSearch } from "react-icons/io5"
 
 export const SearchBar = () => {
-    const [searchCredentials, setSearchCredentials] = useState<IAccounts[] | null>([])
+    // Search results
+    const [searchCredentials, setSearchCredentials] = useState<IAccounts[]>([])
 
     // Timer to keep track how long user is not typing
     const [timer, setTimer] = useState<null | NodeJS.Timeout>(null);
@@ -35,8 +36,8 @@ export const SearchBar = () => {
                 try {
                     // Fetch
                     const response = await getSearchResult(e.target.value);
-                    // Check if success
-                    if (response.success) {
+                    // Check if success and has data
+                    if (response.success && response.data) {
                         setSearchCredentials(response.data)
                     }
 
@@ -50,19 +51,21 @@ export const SearchBar = () => {
     return <>
         <div className={SearchBarStyles.SearchContainer}>
             <form action="/results" className={SearchBarStyles.SearchForm}>
-                <IoSearch className={SearchBarStyles.SerchIcon} />
-                <input className={SearchBarStyles.SearchInput} type="text" name="searchQuery" placeholder="Search for platform..." defaultValue={search} onChange={handleSearchOnChange} />
+                <input className={SearchBarStyles.SearchInput} type="text" name="searchQuery" placeholder="Search for platform" defaultValue={search} onChange={handleSearchOnChange} autoComplete="off" />
+                <IoSearch className={SearchBarStyles.SearchIcon} />
             </form>
-            <div>
-                {
-                    searchCredentials?.map(obj => {
-                        return <div key={obj.id}>
-                            <p>{obj.platform}</p>
-                            <p>{obj.username}</p>
-                        </div>
-                    })
-                }
-            </div>
+            {
+                searchCredentials?.length > 0 && <ul className={SearchBarStyles.SearchResults}>
+                    {
+                        searchCredentials.map(obj => {
+                            return <li key={obj.id}>
+                                <span>{obj.platform}</span>
+                                <span>{obj.username}</span>
+                            </li>
+                        })
+                    }
+                </ul>
+            }
         </div>
     </>
 }

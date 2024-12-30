@@ -1,0 +1,14 @@
+@use "variables"as v;
+
+@mixin InputBoxShadow() {
+    box-shadow: 0 8px 24px -3px rgba($color: v.$inputBoxShadow, $alpha: .05),
+        0 8px 24px -3px rgba($color: v.$inputBoxShadow, $alpha: .1);
+}
+
+@mixin BackLink() {
+    cursor: pointer;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: v.$spacing-xx-sm;
+}

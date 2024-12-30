@@ -18,9 +18,9 @@
     line-height: 28px;
 }
 
-@mixin LabelLarge() {
+@mixin TableHeaderText() {
     font-size: v.$fontSize-md;
-    font-weight: v.$fontWeight-medium;
+    font-weight: v.$fontWeight-semibold;
     line-height: 18px;
 }
 
@@ -32,7 +32,7 @@
 
 @mixin LabelSmall() {
     font-size: v.$fontSize-x-sm;
-    font-weight: v.$fontWeight-medium;
+    font-weight: v.$fontWeight-semibold;
     line-height: 14px;
 }
 
@@ -46,4 +46,16 @@
     font-size: v.$fontSize-md;
     font-weight: v.$fontWeight-semibold;
     line-height: 18px;
+}
+
+@mixin TagText() {
+    font-size: v.$fontSize-x-sm;
+    font-weight: v.$fontWeight-semibold;
+    line-height: 14px;
+}
+
+@mixin TableLengthNumber() {
+    font-size: v.$fontSize-sm;
+    font-weight: v.$fontWeight-medium;
+    line-height: 16px;
 }

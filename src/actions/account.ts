@@ -23,41 +23,29 @@ export const getAllCredentialsForUser = async (userId: string): Promise<ServerAc
 };
 
 // When you want a credentials saved call this function that takes form entries as argument
-export const createCredential = async (prevState: unknown, formData: FormData): Promise<ServerAction> => {
+export const createCredential = async (formData: FormData): Promise<ServerAction> => {
     try {
-        // Collect other form data
-        const platform = formData.get("platform");
-        const username = formData.get("username");
-        const password = formData.get("password");
-        const notes = formData.get("notes");
-        // Get categories
-        const category = JSON.parse(formData.get("category") as string);
-        const userID = formData.get("userID");
-
         // Payload
         const payload = {
-            platform,
-            username,
-            password,
-            notes,
-            category,   // This is an array
-            userID,
+            platform: formData.get("platform"),
+            username: formData.get("username"),
+            password: formData.get("password"),
+            notes: formData.get("notes"),
+            userID: formData.get("userID"),
+            category: JSON.parse(formData.get("category") as string), // This is an array
         };
         
-        // Send the form entries via post
+        // // Send the form entries via post
         const response = await post("/credential/item", payload)
-        
-        // Json the response because the response is string
-        const data = await response.json()
 
-        // Check if the Server did not succeed in creating
-        if (!data.success) {
+        // // Check if the Server did not succeed in creating
+        if (!response.success) {
             // Return unsuccessfull message
             return { success: false, message: "Server Error" };
         }
 
-        // Return successfull
-        return data;
+        // // Return successfull
+        return response;
     } catch (error) {
         // Return unsuccessfull message
         return { success: false, message: JSON.stringify(error) };
@@ -124,24 +112,16 @@ export const deleteCredential = async (id: string): Promise<ServerAction> => {
     }
 }
 
-// Delete request for deleting a credential based on id
-export const updateCredential = async (id: string, formData: FormData): Promise<ServerAction> => {
+// Update request for updating a credential based on id
+export const updateCredential = async (id: string, formData: FormData): Promise<ServerActionResponse<IAccounts | null>> => {
     try {
-        // Collect other form data
-        const platform = formData.get("platform");
-        const username = formData.get("username");
-        const password = formData.get("password");
-        const notes = formData.get("notes");
-        // Get categories
-        const category = JSON.parse(formData.get("category") as string);
-        
         // Payload
         const payload = {
-            platform,
-            username,
-            password,
-            notes,
-            category   // This is an array
+            platform: formData.get("platform"),
+            username: formData.get("username"),
+            password: formData.get("password"),
+            notes: formData.get("notes"),
+            category: JSON.parse(formData.get("category") as string)  // This is an array
         };
 
         // Send the id as param and obj with values to update
@@ -150,13 +130,13 @@ export const updateCredential = async (id: string, formData: FormData): Promise<
         // Check if the Server did not succeed in searching
         if (!response.success) {
             // Return unsuccessfull message
-            return { success: false, message: "Server Error" };
+            return { success: false, data: null, message: "Server Error" };
         }
 
         // Return successfull
         return response;
     } catch (error) {
         // Return unsuccessfull message
-        return { success: false, message: JSON.stringify(error)};
+        return { success: false, data: null, message: JSON.stringify(error)};
     }
 }

@@ -6,7 +6,7 @@ export default function LoginLayout({
     children: React.ReactNode
 }) {
     return (
-        <main className={LoginStyles.loginLayout}>
+        <main className={LoginStyles.LoginLayout}>
             {children}
         </main>
     )

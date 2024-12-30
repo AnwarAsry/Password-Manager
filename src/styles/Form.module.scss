@@ -1,5 +1,6 @@
 @use "FontSets"as text;
 @use "variables"as v;
+@use "mixins"as mx;
 
 @mixin Input($height: 100%) {
     width: 100%;
@@ -20,8 +21,8 @@
     gap: v.$spacing-x-big;
     border-radius: 8px;
     background-color: v.$inputBgc;
-    box-shadow: 0 8px 24px -3px rgba($color: #101828, $alpha: .05),
-        0 8px 24px -3px rgba($color: #101828, $alpha: .1);
+
+    @include mx.InputBoxShadow();
 
     @if $elementOnFocus==input {
         &:has(input:focus) {
@@ -33,6 +34,31 @@
         &:has(textarea:focus) {
             background-color: v.$inputBgcOnFocus;
         }
+    }
+}
+
+.FormLogin {
+    width: fit-content;
+    padding: v.$spacing-md;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px 0 rgba(16, 24, 40, 0.06);
+    background-color: v.$formBgc;
+}
+
+.ProviderLogin {
+    min-width: 150px;
+    padding: v.$spacing-md v.$spacing-sm;
+
+    font-size: v.$fontSize-md;
+    font-weight: v.$fontWeight-semibold;
+
+    // border: 2px solid #bdbdbd;
+    border-radius: 8px;
+    outline: none;
+    background-color: v.$inputBgc;
+
+    &:hover {
+        cursor: pointer;
     }
 }
 
@@ -117,7 +143,11 @@
 .SearchContainer {
     height: 70px;
     display: flex;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
 }
 
 .SearchForm {
@@ -127,16 +157,44 @@
     display: flex;
     align-items: center;
     gap: v.$spacing-sm;
-    border: 1px solid v.$searchInpBorder;
     border-radius: 8px;
+    background-color: v.$searchInpBgc;
 }
 
-.SerchIcon {
+.SearchIcon {
     width: 20px;
     height: 20px;
-    color: v.$searchInpBorder;
+    color: v.$neutral-400;
 }
 
 .SearchInput {
     @include Input();
+}
+
+.SearchResults {
+    width: 100%;
+    height: fit-content;
+    padding: 20px 0 12px;
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-x-sm;
+    position: absolute;
+    z-index: -1;
+    top: 48px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    list-style: none;
+    border-radius: 0 0 8px 8px;
+    background-color: v.$searchResultBgc;
+
+    li {
+        cursor: pointer;
+        height: fit-content;
+        padding: 4px 12px;
+
+        &:hover {
+            background-color: v.$searchResultOnFocus;
+        }
+    }
 }

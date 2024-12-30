@@ -5,50 +5,22 @@ import ButtonStyles from "@/styles/Buttons.module.scss";
 import { FormInput } from "./FormInput"
 import { IoIosClose } from "react-icons/io"
 import { createCredential } from "@/actions/account"
-import { useActionState, useState } from "react"
+import { useState } from "react"
 import { useSession } from "next-auth/react"
-import { redirect } from "next/navigation"
-import { Tag } from "@/components/Tag"
 import { randomBytes } from "crypto";
+import { Tag } from "./Tag";
+import { redirect } from "next/navigation";
 
 interface IFormProps {
     Cancel: () => void
 }
 
 export const CredentialsForm = ({ Cancel }: IFormProps) => {
-
     // Get the id of the current user in the session
     const { data: session } = useSession();
 
-    // New react hook for form handling, used to be known as useFormState
-    const [state, formAction, pending] = useActionState(createCredential, null)
-
-    // If successfull redirect to dashboard
-    if (state) {
-        redirect("/dashboard")
-    }
-
-    // State to handle what tags user has labeld
-    const [categories, setCategories] = useState<string[]>([]);
-    // Handle the value of the input
-    const [tagInput, setTagInput] = useState<string>("");
-
-    // Handle adding a new tag
-    const addTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
-            e.preventDefault(); // Prevent form submission
-            setCategories([...categories, tagInput.trim()]); // Add tag
-            setTagInput(""); // Clear input
-        }
-    };
-    // Handle removing a tag
-    const removeTag = (index: number) => {
-        setCategories(categories.filter((tag, i) => i !== index));
-    };
-
     // Password State
     const [password, setPassword] = useState<string>("");
-
     // Password generate
     const generatePassword = () => {
         // A string of characters to use in the password
@@ -68,9 +40,55 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
         setPassword(pass)
     }
 
+    // State to handle what tags user has labeld
+    const [categories, setCategories] = useState<string[]>([]);
+    // Handle the value of the input
+    const [tagInput, setTagInput] = useState<string>("");
+    // Handle adding a new tag
+    const addTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            e.preventDefault(); // Prevent form submission
+            setCategories([...categories, tagInput.trim()]); // Add tag
+            setTagInput(""); // Clear input
+        }
+    };
+    // Handle removing a tag
+    const removeTag = (index: number) => {
+        setCategories(categories.filter((tag, i) => i !== index));
+    };
+
+    // If form submission is pending state
+    const [pending, setPending] = useState(false);
+    // Handle submit function
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        try {
+            // Set pending state true
+            setPending(true)
+
+            const formData = new FormData(e.currentTarget as HTMLFormElement);
+            // Append the array as a single field
+            formData.append("category", JSON.stringify(categories));
+            formData.append("userID", session!.user.id);
+
+            const response = await createCredential(formData);
+
+            if (response.success) {
+                redirect("/dashboard")
+            }
+
+        } catch (error) {
+            console.log("Error submitting form:", error);
+        } finally {
+            // Reset pending state
+            setPending(false);
+        }
+    }
+
     return <>
-        <div className={FormStyles.formBackground}>
-            <form action={formAction} className={FormStyles.SubmitForm}>
+        <div className={FormStyles.formBackground}  >
+            <form onSubmit={handleSubmit} className={FormStyles.SubmitForm}>
                 {/* Close form icon */}
                 <IoIosClose className={FormStyles.closeIcon} onClick={Cancel} />
 
@@ -92,13 +110,9 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                 {/* Display the categories */}
                 <div className={FormStyles.tagsContainer}>
                     {
-                        categories.map((tag, i) => <Tag text={tag} key={i} index={i} removeIcon Remove={() => removeTag(i)} />)
+                        categories.map((tag, i) => <Tag text={tag} key={i} Remove={() => removeTag(i)} />)
                     }
                 </div>
-
-                {/* Hidden fields. ONLY FOR TESTING NOT FOR PRODUCTION SHOULD BE REMOVED */}
-                <input type="hidden" name="category" value={JSON.stringify(categories)} />
-                <input type="hidden" value={session?.user.id} name="userID" />
 
                 <hr />
                 <div className={FormStyles.BtnsContainer}>
