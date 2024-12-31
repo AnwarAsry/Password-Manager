@@ -1,5 +1,6 @@
 @use "variables"as v;
 @use "FontSets"as text;
+@use "mixins"as mx;
 
 .UserCard {
     width: 100%;
@@ -12,8 +13,17 @@
 
 .profilePic {
     border-radius: 100%;
+
+    @include mx.MobileLandscape {
+        width: 40px;
+        height: 40px;
+    }
 }
 
 .UserCardTitle {
     @include text.UserCardTitle();
+
+    @include mx.MobileLandscape {
+        display: none;
+    }
 }

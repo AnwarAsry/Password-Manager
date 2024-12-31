@@ -164,7 +164,7 @@ const CredentialPage = () => {
                 {
                     !edit && <div className={FormStyles.BtnsContainer}>
                         <button className={ButtonStyles.DeleteBtn} onClick={() => handleDelete(pageInfo.id)}>Delete</button>
-                        <button className={ButtonStyles.PrimaryBtn} onClick={() => setEdit(true)}><FiEdit /> Edit Credential</button>
+                        <button className={ButtonStyles.PrimaryBtn} onClick={() => setEdit(true)}><FiEdit /> Edit</button>
                     </div>
                 }
             </section >

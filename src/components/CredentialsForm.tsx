@@ -90,7 +90,9 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
         <div className={FormStyles.formBackground}  >
             <form onSubmit={handleSubmit} className={FormStyles.SubmitForm}>
                 {/* Close form icon */}
-                <IoIosClose className={FormStyles.closeIcon} onClick={Cancel} />
+                <div className={FormStyles.FormHeader}>
+                    <IoIosClose className={FormStyles.closeIcon} onClick={Cancel} />
+                </div>
 
                 {/* Inputs */}
                 <FormInput label="Website" type="text" name="platform" />
