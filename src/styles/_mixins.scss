@@ -12,3 +12,22 @@
     align-items: center;
     gap: v.$spacing-xx-sm;
 }
+
+
+@mixin Tablet {
+    @media (max-width: #{v.$tabletWidth}) {
+        @content;
+    }
+}
+
+@mixin MobileLandscape {
+    @media (max-width: #{v.$mobileLandscapeWidth}) {
+        @content;
+    }
+}
+
+@mixin MobilePortrait {
+    @media (max-width: #{v.$mobilePortraitWidth}) {
+        @content;
+    }
+}
