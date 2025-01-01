@@ -14,8 +14,3 @@
 .IntroductionHeading {
     @include text.DesktopDisplayLarge();
 }
-
-.Content {
-    display: flex;
-    gap: v.$spacing-xxx-big;
-}

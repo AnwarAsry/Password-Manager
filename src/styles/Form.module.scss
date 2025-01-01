@@ -53,12 +53,14 @@
     font-weight: v.$fontWeight-semibold;
 
     // border: 2px solid #bdbdbd;
+    border: none;
     border-radius: 8px;
     outline: none;
     background-color: v.$inputBgc;
-
+    
     &:hover {
         cursor: pointer;
+        background-color: v.$inputBgcOnFocus;
     }
 }
 
