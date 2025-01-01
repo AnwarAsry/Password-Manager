@@ -8,11 +8,12 @@ interface IFormInputProps {
     name?: string
     value?: string
     defaultValue?: string
+    required?: boolean
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
     onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
-export const FormInput = ({ viewOnly, label, type, name, value, defaultValue, onChange, onKeyDown }: IFormInputProps) => {
+export const FormInput = ({ viewOnly, label, type, name, value, defaultValue, required, onChange, onKeyDown }: IFormInputProps) => {
     if (viewOnly) {
         return <>
             <label className={CredentialPageStyles.ViewInput}>
@@ -25,7 +26,7 @@ export const FormInput = ({ viewOnly, label, type, name, value, defaultValue, on
     return <>
         <label className={FormStyles.LabelContainer}>
             {label}
-            <input className={FormStyles.Input} type={type} name={name} onChange={onChange} onKeyDown={onKeyDown} value={value} defaultValue={defaultValue} autoComplete="off" />
+            <input className={FormStyles.Input} type={type} name={name} onChange={onChange} onKeyDown={onKeyDown} value={value} defaultValue={defaultValue} autoComplete="off" required={required}/>
         </label>
     </>
 }

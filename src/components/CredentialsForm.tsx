@@ -9,7 +9,7 @@ import { useState } from "react"
 import { useSession } from "next-auth/react"
 import { randomBytes } from "crypto";
 import { Tag } from "./Tag";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface IFormProps {
     Cancel: () => void
@@ -18,6 +18,8 @@ interface IFormProps {
 export const CredentialsForm = ({ Cancel }: IFormProps) => {
     // Get the id of the current user in the session
     const { data: session } = useSession();
+
+    const router = useRouter();
 
     // Password State
     const [password, setPassword] = useState<string>("");
@@ -75,7 +77,8 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
             const response = await createCredential(formData);
 
             if (response.success) {
-                redirect("/dashboard")
+                Cancel()
+                router.push("/dashboard")
             }
 
         } catch (error) {
@@ -95,8 +98,8 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                 </div>
 
                 {/* Inputs */}
-                <FormInput label="Website" type="text" name="platform" />
-                <FormInput label="Username/Email" type="text" name="username" />
+                <FormInput label="Website" type="text" name="platform" required />
+                <FormInput label="Username/Email" type="text" name="username" required />
 
                 <FormInput label="Password" type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} />
                 {/* When pressing this button it changes the value in the password input to the generated password */}
