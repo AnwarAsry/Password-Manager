@@ -173,7 +173,8 @@ const CredentialPage = () => {
 
     // If there is no object
     return <>
-        <h1>No Data found</h1>
+        {!loading && <h1>Loading..</h1>}
+        {!pageInfo && loading && <h1>No Data Found</h1>}
     </>
 }
 

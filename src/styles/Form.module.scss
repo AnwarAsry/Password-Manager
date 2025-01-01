@@ -218,3 +218,16 @@
         }
     }
 }
+
+.Result {
+    height: 34px;
+    display: flex;
+
+    div {
+        flex-grow: 1;
+    }
+
+    p {
+        color: v.$neutral-400;
+    }
+}

@@ -6,6 +6,7 @@ import { IAccounts } from "@/models/IAccounts"
 import { useSearchParams } from "next/navigation"
 import { useState } from "react"
 import { IoSearch } from "react-icons/io5"
+import Link from "next/link"
 
 export const SearchBar = () => {
     // Search results
@@ -58,10 +59,18 @@ export const SearchBar = () => {
                 searchCredentials?.length > 0 && <ul className={SearchBarStyles.SearchResults}>
                     {
                         searchCredentials.map(obj => {
-                            return <li key={obj.id}>
-                                <span>{obj.platform}</span>
-                                <span>{obj.username}</span>
-                            </li>
+                            return <Link key={obj.id} href={`view/${obj.id}`}>
+                                <li className={SearchBarStyles.Result} >
+                                    <div>
+                                        <p>Platform</p>
+                                        <span>{obj.platform}</span>
+                                    </div>
+                                    <div>
+                                        <p>Username</p>
+                                        <span>{obj.username}</span>
+                                    </div>
+                                </li>
+                            </Link>
                         })
                     }
                 </ul>
