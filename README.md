@@ -4,7 +4,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, install necessary packages by running:
+First, after downloading this project switch to the dev branch.
+
+Secondly, install necessary packages by running:
 
 ``` bash
 npm i
@@ -12,7 +14,7 @@ npm i
 npm install
 ```
 
-Secondly, create a ```.env.local``` file in the root of the project and add the following:
+Thirdly, create a ```.env.local``` file in the root of the project and add the following:
 ```
 GOOGLE_CLIENT_ID=ADD_YOUR_OWN_GOOGLE_CLIENT_ID
 GOOGLE_CLIENT_SECRET=ADD_YOUR_GOOGLE_CLIENT_SECRET
@@ -35,7 +37,7 @@ AuthJs or NextAuthJS documentation:
 https://authjs.dev/
 https://next-auth.js.org/
 
-Thirdly, run the development server:
+Fourthly, run the development server:
 
 ```bash
 npm run dev
