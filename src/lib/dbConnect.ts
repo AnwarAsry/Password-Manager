@@ -17,11 +17,10 @@ if (!MONGODB_URI) {
     );
 }
 
-/**
- * Global is used here to maintain a cached connection across hot reloads
- * in development. This prevents connections from growing exponentially
- * during API Route usage.
- */
+
+//  Global is used here to maintain a cached connection across hot reloads
+//  in development. This prevents connections from growing exponentially
+//  during API Route usage.
 let cached = global.mongoose;
 
 if (!cached) {

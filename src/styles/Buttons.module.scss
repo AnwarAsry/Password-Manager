@@ -1,0 +1,73 @@
+@use "FontSets"as text;
+@use "variables"as v;
+@use "mixins"as mx;
+
+@mixin Btn($bgc, $color) {
+    cursor: pointer;
+    width: fit-content;
+    max-width: 100%;
+    height: fit-content;
+    padding: v.$spacing-md v.$spacing-sm;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: v.$spacing-xx-sm;
+    border-radius: 8px;
+    outline: none;
+    color: $color;
+    background-color: $bgc;
+    transition: all ease-in-out 200ms;
+
+    @include mx.InputBoxShadow();
+    @include text.ButtonText();
+
+    @include mx.MobileLandscape {
+        font-size: v.$fontSize-sm;
+        line-height: 16px;
+    }
+}
+
+.PrimaryBtn {
+    border: none;
+
+    @include Btn(v.$primaryBtnColor, ¤fff);
+
+    &:hover {
+        background-color: rgb(79, 111, 255);
+    }
+}
+
+.SecondaryBtn {
+    border: 2px solid v.$primaryBtnColor;
+
+    @include Btn(transparent, v.$primaryBtnColor);
+
+    &:hover {
+        color: #f5f5f5;
+        background-color: #2e54ff8f;
+    }
+}
+
+.DeleteBtn {
+    border: 2px solid v.$danger600;
+
+    @include Btn(transparent, v.$danger600);
+
+    &:hover {
+        color: #f5f5f5;
+        background-color: v.$danger400;
+    }
+}
+
+.LogoutBtn {
+    cursor: pointer;
+    min-width: fit-content;
+    max-width: 150px;
+    padding: v.$spacing-x-sm v.$spacing-md;
+    border: none;
+    outline: none;
+    color: v.$neutral-500;
+    background-color: transparent;
+
+    @include text.ButtonText();
+}

@@ -1,0 +1,235 @@
+@use "FontSets"as text;
+@use "variables"as v;
+@use "mixins"as mx;
+
+@mixin Input($height: 42px) {
+    width: 100%;
+    height: $height;
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+    @include text.InputText();
+}
+
+@mixin LabelContainer($elementOnFocus, $alignLabel: center, $height: 42px) {
+    width: 100%;
+    max-width: 460px;
+    height: $height;
+    display: flex;
+    align-items: $alignLabel;
+    gap: v.$spacing-x-big;
+    border-radius: 8px;
+    background-color: v.$inputBgc;
+
+    @include mx.InputBoxShadow();
+
+    @if $elementOnFocus==input {
+        &:has(input:focus) {
+            background-color: v.$inputBgcOnFocus;
+        }
+    }
+
+    @if $elementOnFocus==textarea {
+        &:has(textarea:focus) {
+            background-color: v.$inputBgcOnFocus;
+        }
+    }
+}
+
+.FormLogin {
+    width: fit-content;
+    padding: v.$spacing-md;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px 0 rgba(16, 24, 40, 0.06);
+    background-color: v.$formBgc;
+}
+
+.ProviderLogin {
+    min-width: 150px;
+    padding: v.$spacing-md v.$spacing-sm;
+
+    font-size: v.$fontSize-md;
+    font-weight: v.$fontWeight-semibold;
+
+    // border: 2px solid #bdbdbd;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background-color: v.$inputBgc;
+    
+    &:hover {
+        cursor: pointer;
+        background-color: v.$inputBgcOnFocus;
+    }
+}
+
+.formBackground {
+    padding: v.$spacing-md;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: rgba(22, 22, 22, 0.5);
+}
+
+.FormHeader {
+    width: 100%;
+}
+
+.SubmitForm {
+    width: 460px;
+    padding: v.$spacing-md;
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-x-big;
+    border-radius: 12px;
+    background-color: v.$formBgc;
+
+    hr {
+        border: 1px solid v.$inputBgc;
+
+        @include mx.Tablet {
+            width: 100%;
+            // height: 100;
+        }
+    }
+
+    @include mx.Tablet {
+        width: 100%;
+        height: fit-content;
+        max-height: 100%;
+        align-items: center;
+        overflow-y: scroll;
+        // height: 100;
+    }
+}
+
+.SubmitFormAlt {
+    width: 100%;
+    max-width: 460px;
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-x-big;
+    border-radius: 12px;
+
+    hr {
+        border: 1px solid v.$inputBgc;
+    }
+}
+
+.LabelContainer {
+    padding: 0 v.$spacing-sm;
+    @include LabelContainer(input);
+}
+
+.Input {
+    @include Input();
+}
+
+.LabelTextareaContainer {
+    padding: v.$spacing-sm;
+    @include LabelContainer(textarea, flex-start, fit-content);
+}
+
+.FormTextarea {
+    @include Input(100px);
+}
+
+.closeIcon {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+}
+
+.tagsContainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: v.$spacing-xx-sm;
+}
+
+.BtnsContainer {
+    width: 100%;
+    max-width: 460px;
+    display: flex;
+    justify-content: flex-end;
+    gap: v.$spacing-x-sm;
+}
+
+.SearchContainer {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.SearchForm {
+    width: 100%;
+    height: 48px;
+    padding: 0 v.$spacing-sm;
+    display: flex;
+    align-items: center;
+    gap: v.$spacing-sm;
+    border-radius: 8px;
+    background-color: v.$searchInpBgc;
+}
+
+.SearchIcon {
+    width: 20px;
+    height: 20px;
+    color: v.$neutral-400;
+}
+
+.SearchInput {
+    @include Input();
+}
+
+.SearchResults {
+    width: 100%;
+    height: fit-content;
+    padding: 20px 0 12px;
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-x-sm;
+    position: absolute;
+    z-index: -1;
+    top: 48px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    list-style: none;
+    border-radius: 0 0 8px 8px;
+    background-color: v.$searchResultBgc;
+
+    li {
+        cursor: pointer;
+        height: fit-content;
+        padding: 4px 12px;
+
+        &:hover {
+            background-color: v.$searchResultOnFocus;
+        }
+    }
+}
+
+.Result {
+    height: 34px;
+    display: flex;
+
+    div {
+        flex-grow: 1;
+    }
+
+    p {
+        color: v.$neutral-400;
+    }
+}

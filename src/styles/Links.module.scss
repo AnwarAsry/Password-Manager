@@ -1,0 +1,5 @@
+@use "mixins"as mx;
+
+.BackLink {
+    @include mx.BackLink();
+}

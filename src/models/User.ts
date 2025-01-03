@@ -14,9 +14,10 @@ export const UserSchema = new Schema<UserDocument, UserModel>({
 	name: { type: String, required: true },
 	email: { type: String, required: true },
 	password: { type: String, required: false },
-	image: { type: String, required: false },
+	image: { type: String, required: true },
 });
 
+// MongoDB has id written like _id, instead make it like id 
 UserSchema.virtual("id").get(function () {
 	return this._id.toString();
 });

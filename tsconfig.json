@@ -24,6 +24,9 @@
       "@/lib/*": ["./src/lib/*"],
       "@/styles/*": ["./src/styles/*"],
       "@/models/*": ["./src/models/*"],
+      "@/public/*": ["./public/*"],
+      "@/serviceBase": ["./src/serviceBase.ts"],
+      "@/actions/*": ["./src/actions/*"],
       "@/auth": ["./src/auth.ts"],
     }
   },
