@@ -8,7 +8,6 @@ import { createCredential } from "@/actions/account"
 import { useState } from "react"
 import { useSession } from "next-auth/react"
 import { randomBytes } from "crypto";
-import { Tag } from "./Tag";
 import { useRouter } from "next/navigation";
 
 interface IFormProps {
@@ -42,23 +41,6 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
         setPassword(pass)
     }
 
-    // State to handle what tags user has labeld
-    const [categories, setCategories] = useState<string[]>([]);
-    // Handle the value of the input
-    const [tagInput, setTagInput] = useState<string>("");
-    // Handle adding a new tag
-    const addTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
-            e.preventDefault(); // Prevent form submission
-            setCategories([...categories, tagInput.trim()]); // Add tag
-            setTagInput(""); // Clear input
-        }
-    };
-    // Handle removing a tag
-    const removeTag = (index: number) => {
-        setCategories(categories.filter((tag, i) => i !== index));
-    };
-
     // If form submission is pending state
     const [pending, setPending] = useState(false);
     // Handle submit function
@@ -71,7 +53,6 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
 
             const formData = new FormData(e.currentTarget as HTMLFormElement);
             // Append the array as a single field
-            formData.append("category", JSON.stringify(categories));
             formData.append("userID", session!.user.id);
 
             const response = await createCredential(formData);
@@ -98,26 +79,12 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                 </div>
 
                 {/* Inputs */}
-                <FormInput label="Website" type="text" name="platform" required />
-                <FormInput label="Username/Email" type="text" name="username" required />
+                <FormInput label="Platform*" type="text" name="platform" />
+                <FormInput label="Email*" type="email" name="username" />
 
                 <FormInput label="Password" type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} />
                 {/* When pressing this button it changes the value in the password input to the generated password */}
                 <button className={ButtonStyles.PrimaryBtn} type="button" onClick={generatePassword}>Generate password</button>
-
-                <label className={FormStyles.LabelTextareaContainer}>
-                    Note
-                    <textarea name="notes" className={FormStyles.FormTextarea}></textarea>
-                </label>
-
-                {/* The category field */}
-                <FormInput label="Category" type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={e => addTag(e)} />
-                {/* Display the categories */}
-                <div className={FormStyles.tagsContainer}>
-                    {
-                        categories.map((tag, i) => <Tag text={tag} key={i} Remove={() => removeTag(i)} />)
-                    }
-                </div>
 
                 <hr />
                 <div className={FormStyles.BtnsContainer}>
