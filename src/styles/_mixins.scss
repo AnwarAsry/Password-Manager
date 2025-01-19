@@ -31,6 +31,11 @@
         border-color: #268AFF;
     }
 
+    // &:valid {
+    //     border-width: 2px;
+    //     border-color: v.$InputBgcOnValid;
+    // }
+
     &:invalid {
         border-width: 2px;
         border-color: v.$InputBgcOnInvalid;

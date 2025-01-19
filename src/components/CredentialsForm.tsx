@@ -5,10 +5,9 @@ import ButtonStyles from "@/styles/Buttons.module.scss";
 import { FormInput } from "./FormInput"
 import { IoIosClose } from "react-icons/io"
 import { createCredential } from "@/actions/account"
-import { useState } from "react"
+import { useActionState, useState } from "react"
 import { useSession } from "next-auth/react"
 import { randomBytes } from "crypto";
-import { useRouter } from "next/navigation";
 
 interface IFormProps {
     Cancel: () => void
@@ -18,7 +17,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
     // Get the id of the current user in the session
     const { data: session } = useSession();
 
-    const router = useRouter();
+    const [state, formAction, isPending] = useActionState(createCredential, null);
 
     // Password State
     const [password, setPassword] = useState<string>("");
@@ -41,55 +40,28 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
         setPassword(pass)
     }
 
-    // If form submission is pending state
-    const [pending, setPending] = useState(false);
-    // Handle submit function
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-        try {
-            // Set pending state true
-            setPending(true)
-
-            const formData = new FormData(e.currentTarget as HTMLFormElement);
-            // Append the array as a single field
-            formData.append("userID", session!.user.id);
-
-            const response = await createCredential(formData);
-
-            if (response.success) {
-                Cancel()
-                router.push("/dashboard")
-            }
-
-        } catch (error) {
-            console.log("Error submitting form:", error);
-        } finally {
-            // Reset pending state
-            setPending(false);
-        }
-    }
-
     return <>
-        <div className={FormStyles.formBackground}  >
-            <form onSubmit={handleSubmit} className={FormStyles.SubmitForm}>
+        <div className={FormStyles.FormBackground}  >
+            <form action={formAction} className={FormStyles.Form}>
                 {/* Close form icon */}
                 <div className={FormStyles.FormHeader}>
                     <IoIosClose className={FormStyles.closeIcon} onClick={Cancel} />
                 </div>
 
-                {/* Inputs */}
-                <FormInput label="Platform*" type="text" name="platform" />
-                <FormInput label="Email*" type="email" name="username" />
+                <div className={FormStyles.FormContent}>
+                    {/* Inputs */}
+                    <FormInput label="Platform*" type="text" name="platform" placeholder="Enter the Platform name or website" />
+                    <FormInput label="Email Address*" type="email" name="username" placeholder="Enter your Email Address" />
 
-                <FormInput label="Password" type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} />
-                {/* When pressing this button it changes the value in the password input to the generated password */}
-                <button className={ButtonStyles.PrimaryBtn} type="button" onClick={generatePassword}>Generate password</button>
-
+                    <FormInput label="Password" type="password" name="password" placeholder="Enter your Password" value={password} onChange={e => setPassword(e.target.value)} />
+                    {/* When pressing this button it changes the value in the password input to the generated password */}
+                    <button className={ButtonStyles.PrimaryBtn} type="button" onClick={generatePassword} disabled={isPending}>Generate password</button>
+                    <input type="hidden" name="userID" value={session?.user.id} />
+                </div>
                 <hr />
-                <div className={FormStyles.BtnsContainer}>
-                    <button className={ButtonStyles.SecondaryBtn} type="button" onClick={Cancel}>Cancel</button>
-                    <button className={ButtonStyles.PrimaryBtn} type="submit" disabled={pending}>Add</button>
+                <div className={FormStyles.FormFooter}>
+                    <button className={ButtonStyles.SecondaryBtn} type="button" onClick={Cancel} disabled={isPending}>Cancel</button>
+                    <button className={ButtonStyles.PrimaryBtn} type="submit" disabled={isPending}>Add</button>
                 </div>
             </form>
         </div>

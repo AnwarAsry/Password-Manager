@@ -3,6 +3,61 @@
 @use "mixins"as mx;
 
 
+.Label {
+    margin-bottom: v.$spacing-x-sm;
+    display: block;
+}
+
+.Input {
+    @include mx.Input();
+}
+
+.Form {
+    width: 100%;
+    max-width: 460px;
+    padding: v.$spacing-md;
+    border-radius: 16px;
+    background-color: v.$formBgc;
+
+    hr {
+        margin: v.$spacing-md 0;
+        border: 1px solid grey;
+    }
+}
+
+.FormHeader {
+    margin-bottom: v.$spacing-sm;
+    display: flex;
+    align-items: center;
+}
+
+.FormContent {
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-x-big;
+}
+
+.FormFooter {
+    display: flex;
+    justify-content: flex-end;
+    gap: v.$spacing-x-sm;
+}
+
+.FormBackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: rgba(22, 22, 22, 0.5);
+}
+
+
+
 .FormLogin {
     width: fit-content;
     padding: v.$spacing-md;
@@ -30,52 +85,6 @@
     }
 }
 
-.formBackground {
-    padding: v.$spacing-md;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 100;
-    background-color: rgba(22, 22, 22, 0.5);
-}
-
-.FormHeader {
-    width: 100%;
-}
-
-.SubmitForm {
-    width: 460px;
-    padding: v.$spacing-md;
-    display: flex;
-    flex-direction: column;
-    gap: v.$spacing-x-big;
-    border-radius: 12px;
-    background-color: v.$formBgc;
-
-    hr {
-        border: 1px solid grey;
-
-        @include mx.Tablet {
-            width: 100%;
-            // height: 100;
-        }
-    }
-
-    @include mx.Tablet {
-        width: 100%;
-        height: fit-content;
-        max-height: 100%;
-        align-items: center;
-        overflow-y: scroll;
-        // height: 100;
-    }
-}
-
 .SubmitFormAlt {
     width: 100%;
     max-width: 460px;
@@ -87,15 +96,6 @@
     hr {
         border: 1px solid v.$InputBgc;
     }
-}
-
-.Label {
-    margin-bottom: v.$spacing-x-sm;
-    display: block;
-}
-
-.Input {
-    @include mx.Input();
 }
 
 .LabelTextareaContainer {}
@@ -115,14 +115,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: v.$spacing-xx-sm;
-}
-
-.BtnsContainer {
-    width: 100%;
-    max-width: 460px;
-    display: flex;
-    justify-content: flex-end;
-    gap: v.$spacing-x-sm;
 }
 
 .SearchContainer {
