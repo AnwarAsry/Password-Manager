@@ -1,4 +1,4 @@
-import LoginStyles from "@/styles/login.module.scss"
+import LoginStyles from "@/styles/Layout.module.scss"
 
 export default function LoginLayout({
     children

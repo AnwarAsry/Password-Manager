@@ -67,7 +67,7 @@ export const SearchBar = () => {
                                     </div>
                                     <div>
                                         <p>Username</p>
-                                        <span>{obj.username}</span>
+                                        <span>{obj.email}</span>
                                     </div>
                                 </li>
                             </Link>

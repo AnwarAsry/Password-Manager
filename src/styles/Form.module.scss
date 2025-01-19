@@ -3,16 +3,20 @@
 @use "mixins"as mx;
 
 
+.FormControl {
+    width: 100%;
+}
+
 .Label {
     margin-bottom: v.$spacing-x-sm;
     display: block;
 }
 
 .Input {
-    @include mx.Input();
+    @include mx.Input(true);
 }
 
-.Form {
+.Form, .FormLogin {
     width: 100%;
     max-width: 460px;
     padding: v.$spacing-md;
@@ -25,6 +29,10 @@
     }
 }
 
+.FormLogin {
+    box-shadow: 0 2px 6px 0 rgba(16, 24, 40, 0.06);
+}
+
 .FormHeader {
     margin-bottom: v.$spacing-sm;
     display: flex;
@@ -34,6 +42,7 @@
 .FormContent {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: v.$spacing-x-big;
 }
 
@@ -56,34 +65,79 @@
     background-color: rgba(22, 22, 22, 0.5);
 }
 
-
-
-.FormLogin {
-    width: fit-content;
-    padding: v.$spacing-md;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px 0 rgba(16, 24, 40, 0.06);
-    background-color: v.$formBgc;
+.CloseIcon {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
 }
 
-.ProviderLogin {
-    min-width: 150px;
-    padding: v.$spacing-md v.$spacing-sm;
-
-    font-size: v.$fontSize-md;
-    font-weight: v.$fontWeight-semibold;
-
-    // border: 2px solid #bdbdbd;
-    border: none;
+// Kanske behöver göra om
+.SearchContainer {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+.SearchForm {
+    width: 100%;
+    height: 48px;
+    padding-right: v.$spacing-sm;
+    display: flex;
+    align-items: center;
     border-radius: 8px;
-    outline: none;
-    background-color: v.$InputBgc;
-    
-    &:hover {
+    background-color: v.$searchInpBgc;
+}
+.SearchIcon {
+    width: 20px;
+    height: 20px;
+    color: v.$neutral-400;
+}
+.SearchInput {
+    @include mx.Input();
+}
+.SearchResults {
+    height: fit-content;
+    padding: v.$spacing-big 0 v.$spacing-sm;
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-x-sm;
+    position: absolute;
+    z-index: -1;
+    top: 48px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    list-style: none;
+    border-radius: 0 0 8px 8px;
+    background-color: v.$searchResultBgc;
+
+    li {
         cursor: pointer;
-        background-color: v.$InputBgcOnFocus;
+        height: fit-content;
+        padding: v.$spacing-xx-sm v.$spacing-sm;
+
+        &:hover {
+            background-color: v.$searchResultOnFocus;
+        }
     }
 }
+.Result {
+    height: 34px;
+    display: flex;
+
+    div {
+        flex-grow: 1;
+    }
+
+    p {
+        color: v.$neutral-400;
+    }
+}
+
+
+
 
 .SubmitFormAlt {
     width: 100%;
@@ -104,87 +158,9 @@
     @include mx.Input(100px);
 }
 
-.closeIcon {
-    cursor: pointer;
-    width: 32px;
-    height: 32px;
-}
-
 .tagsContainer {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     gap: v.$spacing-xx-sm;
-}
-
-.SearchContainer {
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-    z-index: 1;
-}
-
-.SearchForm {
-    width: 100%;
-    height: 48px;
-    padding: 0 v.$spacing-sm;
-    display: flex;
-    align-items: center;
-    gap: v.$spacing-sm;
-    border-radius: 8px;
-    background-color: v.$searchInpBgc;
-}
-
-.SearchIcon {
-    width: 20px;
-    height: 20px;
-    color: v.$neutral-400;
-}
-
-.SearchInput {
-    @include mx.Input();
-}
-
-.SearchResults {
-    width: 100%;
-    height: fit-content;
-    padding: 20px 0 12px;
-    display: flex;
-    flex-direction: column;
-    gap: v.$spacing-x-sm;
-    position: absolute;
-    z-index: -1;
-    top: 48px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    list-style: none;
-    border-radius: 0 0 8px 8px;
-    background-color: v.$searchResultBgc;
-
-    li {
-        cursor: pointer;
-        height: fit-content;
-        padding: 4px 12px;
-
-        &:hover {
-            background-color: v.$searchResultOnFocus;
-        }
-    }
-}
-
-.Result {
-    height: 34px;
-    display: flex;
-
-    div {
-        flex-grow: 1;
-    }
-
-    p {
-        color: v.$neutral-400;
-    }
 }

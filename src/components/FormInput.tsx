@@ -25,7 +25,7 @@ export const FormInput = ({ viewOnly, label, type, name, placeholder, value, def
     }
 
     return <>
-        <div>
+        <div className={FormStyles.FormControl}>
             <label className={FormStyles.Label}> {label} </label>
             <input className={FormStyles.Input} type={type} name={name} placeholder={placeholder} onChange={onChange} onKeyDown={onKeyDown} value={value} defaultValue={defaultValue} autoComplete="off" required={required} />
         </div>

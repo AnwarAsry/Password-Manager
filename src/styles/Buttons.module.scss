@@ -71,3 +71,25 @@
 
     @include text.ButtonText();
 }
+
+.ProviderLogin {
+    cursor: pointer;
+    min-width: 150px;
+    width: fit-content;
+    padding: v.$spacing-md v.$spacing-sm;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: v.$spacing-xx-sm;
+    border: 1px solid #86868638;
+    border-radius: 8px;
+    outline: none;
+    background-color: v.$InputBgc;
+    transition: all ease-in-out 100ms;
+    
+    @include text.ButtonText();
+
+    &:hover {
+        background-color: #86868638;
+    }
+}

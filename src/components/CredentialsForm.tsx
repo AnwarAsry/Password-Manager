@@ -45,7 +45,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
             <form action={formAction} className={FormStyles.Form}>
                 {/* Close form icon */}
                 <div className={FormStyles.FormHeader}>
-                    <IoIosClose className={FormStyles.closeIcon} onClick={Cancel} />
+                    <IoIosClose className={FormStyles.CloseIcon} onClick={Cancel} />
                 </div>
 
                 <div className={FormStyles.FormContent}>
