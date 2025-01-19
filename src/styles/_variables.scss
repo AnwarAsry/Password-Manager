@@ -53,10 +53,6 @@ $headerBgc: #212226;
 $tagBgc: #2A2B2F;
 
 $formBgc: #212226;
-
-$inputBgc: #2A2B2F;
-$inputBgcOnFocus: #373743;
-$inputBoxShadow: #101828;
 $searchInpBgc: #2A2B2F;
 $searchResultBgc: #212226;
 $searchResultOnFocus: #2F3137;
@@ -77,3 +73,12 @@ $neutral-900: #111827;
 $tabletWidth: 1024px;
 $mobileLandscapeWidth: 768px;
 $mobilePortraitWidth: 480px;
+
+
+// INPUT
+$InputHeight: 42px;
+$InputBgc: transparent;
+$InputBgcOnFocus: #268AFF;
+$InputBgcOnValid: #37DC94;
+$InputBgcOnInvalid: #FA5C65;
+$InputBoxShadow: #101828;

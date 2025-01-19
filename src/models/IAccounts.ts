@@ -5,8 +5,9 @@ export type IAccounts = {
     id: string
     userID: string
     platform: string
+    linkUrl: string
     password?: string
-    username: string
+    email: string
     category?: string[]
     notes?: string
     createdAt: Date
@@ -19,8 +20,9 @@ type AccountsModel = Model<AccountsDocument>;
 export const AccountsSchema = new Schema<AccountsDocument, AccountsModel>({
     userID: { type: String, required: true },
     platform: { type: String, required: true },
+    linkUrl: { type: String, required: false },
     password: { type: String, required: false },
-    username: { type: String, required: true },
+    email: { type: String, required: true },
     category: { type: [String], default: [] },
     notes: { type: String, required: false },
     createdAt: { type: Date, required: true },

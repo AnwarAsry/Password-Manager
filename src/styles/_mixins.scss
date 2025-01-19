@@ -1,8 +1,9 @@
 @use "variables"as v;
+@use "FontSets"as text;
 
 @mixin InputBoxShadow() {
-    box-shadow: 0 8px 24px -3px rgba($color: v.$inputBoxShadow, $alpha: .05),
-        0 8px 24px -3px rgba($color: v.$inputBoxShadow, $alpha: .1);
+    box-shadow: 0 8px 24px -3px rgba($color: v.$InputBoxShadow, $alpha: .05),
+        0 8px 24px -3px rgba($color: v.$InputBoxShadow, $alpha: .1);
 }
 
 @mixin BackLink() {
@@ -11,6 +12,34 @@
     display: flex;
     align-items: center;
     gap: v.$spacing-xx-sm;
+}
+
+@mixin Input($height: v.$InputHeight) {
+    width: 100%;
+    height: $height;
+    // margin-top: .7rem;
+    padding: .4rem 1.2rem;
+    border: 1px solid v.$neutral-500;
+    border-radius: 8px;
+    outline: none;
+    background-color: v.$InputBgc;
+
+    @include text.InputText();
+
+    &:focus {
+        border-width: 2px;
+        border-color: #268AFF;
+    }
+
+    // &:valid {
+    //     border-width: 2px;
+    //     border-color: v.$InputBgcOnValid;
+    // }
+
+    &:invalid {
+        border-width: 2px;
+        border-color: v.$InputBgcOnInvalid;
+    }
 }
 
 
