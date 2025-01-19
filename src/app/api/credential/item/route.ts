@@ -24,10 +24,9 @@ export async function POST(req: Request) {
         const createObject = new IAccounts({
             userID: body.userID,
             platform: body.platform,
+            linkUrl: body.linkUrl,
             password: body.password,
-            username: body.username,
-            notes: body.notes,
-            category: body.category,
+            email: body.email,
             createdAt: new Date,
             updatedAt: new Date
         });
