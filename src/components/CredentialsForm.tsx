@@ -52,7 +52,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                     {/* Inputs */}
                     <FormInput label="Platform*" type="text" name="platform" placeholder="Enter the Platform name or website" />
                     <FormInput label="Url" type="text" name="linkUrl" placeholder="Enter link to the platform or website" />
-                    <FormInput label="Email Address*" type="email" name="email" placeholder="Enter your Email Address" />
+                    <FormInput label="Username*" type="text" name="username" placeholder="Enter your Email Address or Username" />
 
                     <FormInput label="Password" type="password" name="password" placeholder="Enter your Password" value={password} onChange={e => setPassword(e.target.value)} />
                     {/* When pressing this button it changes the value in the password input to the generated password */}

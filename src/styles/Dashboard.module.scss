@@ -1,65 +1,32 @@
 @use "variables"as v;
 @use "mixins"as mx;
 
-.Layout {
-    max-width: 100%;
-    height: 100vh;
+.Header {
     display: grid;
-    grid-template-columns: 300px 1fr;
-
-    @include mx.Tablet {
-        display: block;
-    }
+    grid-template-rows: 100px 1fr 110px;
+    background-color: v.$headerBgc;
 }
 
-.header {
-    display: grid;
-    grid-template-rows: 1fr 125px;
-    background-color: v.$headerBgc;
-
-    @include mx.Tablet {
-        width: 100%;
-        display: flex;
-        gap: v.$spacing-big;
-        justify-content: center;
-        position: fixed;
-        bottom: 0;
-        z-index: 10;
-    }
-
-    @include mx.MobilePortrait {
-        gap: 0;
-    }
+.LogoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .HeaderContent {
-    padding: v.$spacing-big v.$spacing-sm;
+    padding: 0 v.$spacing-sm v.$spacing-big;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-
-    @include mx.Tablet {
-        display: flex;
-        flex-direction: row-reverse;
-        gap: v.$spacing-big;
-    }
-
-    @include mx.MobilePortrait {
-        gap: 0;
-    }
 }
 
 .LineBreak {
     border: 1px solid #2A2B2F;
-
-    @include mx.Tablet {
-        display: none;
-    }
 }
 
 .main {
-    margin: v.$spacing-sm v.$spacing-big 0;
+    margin: v.$spacing-sm v.$spacing-xx-big 0;
     display: flex;
     flex-direction: column;
     gap: v.$spacing-big;
