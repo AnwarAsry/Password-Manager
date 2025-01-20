@@ -1,3 +1,4 @@
+import LayoutStyles from "@/styles/Layout.module.scss"
 import LandingStyles from "@/styles/LandingPage.module.scss"
 import { auth } from "@/auth"
 import { AuthButton } from "@/components/AuthButton.client"
@@ -14,7 +15,7 @@ export default async function Landing() {
 	}
 
 	return <>
-		<main className={LandingStyles.layout}>
+		<main className={LayoutStyles.LandingPageLayout}>
 			<h1 className={LandingStyles.IntroductionHeading}>Password Manager</h1>
 			<div className={LandingStyles.Content}>
 				<AuthButton />

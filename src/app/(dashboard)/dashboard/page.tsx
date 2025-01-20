@@ -35,7 +35,10 @@ const Dashboard = async () => {
                     {
                         res.data?.map(obj => {
                             return <tr key={obj.id} className={TableStyles.CredentialCard}>
-                                <td><Link href={`/view/${obj.id}`}>{obj.platform}</Link></td>
+                                <td>
+                                    <Link href={`/view/${obj.id}`}>{obj.platform}</Link>
+                                    <span><a href={obj.linkUrl} target="_blank">{obj.linkUrl}</a></span>
+                                </td>
                                 <td>{obj.username}</td>
                                 <td>{obj.password && "*".repeat(obj.password.length)}</td>
                             </tr>

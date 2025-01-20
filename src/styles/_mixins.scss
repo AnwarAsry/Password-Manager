@@ -14,16 +14,20 @@
     gap: v.$spacing-xx-sm;
 }
 
-@mixin Input($height: v.$InputHeight) {
+@mixin Input($border: false, $height: v.$InputHeight) {
     width: 100%;
     height: $height;
     // margin-top: .7rem;
     padding: .4rem 1.2rem;
-    border: 1px solid v.$neutral-500;
-    border-radius: 8px;
+    border: none;
     outline: none;
     background-color: v.$InputBgc;
-
+    
+    @if $border {
+        border: 1px solid v.$neutral-500;
+        border-radius: 8px;
+    }
+    
     @include text.InputText();
 
     &:focus {

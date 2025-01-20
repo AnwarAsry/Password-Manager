@@ -1,0 +1,27 @@
+@use "./variables"as v;
+@use "./mixins"as mx;
+
+.LandingPageLayout {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: v.$spacing-xxx-big;
+}
+
+.LoginLayout {
+    height: 100vh;
+    padding: v.$spacing-big;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.DashboardLayout {
+    max-width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+}

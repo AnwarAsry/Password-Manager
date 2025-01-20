@@ -1,3 +1,4 @@
+import LayoutStyles from "@/styles/Layout.module.scss"
 import DashboardStyles from "@/styles/Dashboard.module.scss"
 import { UserCard } from "@/components/UserCard"
 import { CredentialsAddBtn } from "@/components/CredentialsAddBtn"
@@ -9,13 +10,13 @@ export default function DashboardLayout({
     children: React.ReactNode
 }) {
     return (
-        <div className={DashboardStyles.Layout}>
-            <header className={DashboardStyles.header}>
+        <div className={LayoutStyles.DashboardLayout}>
+            <header className={DashboardStyles.Header}>
+                <div className={DashboardStyles.LogoContainer}>
+                    <h2>Password Manager</h2>
+                </div>
                 <div className={DashboardStyles.HeaderContent}>
-                    <div className={DashboardStyles.HeaderContent}>
-                        <h2>Password Manager</h2>
-                        <CredentialsAddBtn text="ADD PASSWORD" />
-                    </div>
+                    <CredentialsAddBtn text="ADD PASSWORD" />
                     <AuthButton />
                 </div>
                 <div>
