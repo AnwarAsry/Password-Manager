@@ -11,11 +11,12 @@ import { useEffect, useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { FormInput } from "@/components/FormInput";
 import { BackLink } from "@/components/BackLink";
+import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 
 const CredentialPage = () => {
+    // Check if there is a session and user
+    const { isLoading } = useAuthRedirect(); // use the isLoading for the data fetch
 
-    // loading state
-    const [loading, setLoading] = useState(false);
     // The object for this page state
     const [pageInfo, setPageInfo] = useState<IAccounts | null>();
     // State to enable changes to the object
@@ -63,7 +64,7 @@ const CredentialPage = () => {
 
     // Get the data for this page
     useEffect(() => {
-        if (loading) return
+        if (!isLoading) return
 
         const getData = async () => {
             // If parameter exist
@@ -77,14 +78,12 @@ const CredentialPage = () => {
                     }
                 } catch (error) {
                     console.log("Something went wrong with updating. Error message: ", error);
-                } finally {
-                    setLoading(true)
                 }
             }
         }
 
         getData();
-    }, [loading, params])
+    }, [isLoading, params])
 
     // handleDelete function when clicking the delete button
     const handleDelete = async (id: string) => {
@@ -173,8 +172,8 @@ const CredentialPage = () => {
 
     // If there is no object
     return <>
-        {!loading && <h1>Loading..</h1>}
-        {!pageInfo && loading && <h1>No Data Found</h1>}
+        {isLoading && <h1>Loading..</h1>}
+        {!pageInfo && !isLoading && <h1>No Data Found</h1>}
     </>
 }
 
