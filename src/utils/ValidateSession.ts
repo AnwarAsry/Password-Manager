@@ -8,7 +8,7 @@ export async function validateSession() {
 
     // If no session or session user
     if (!session || !session.user) {
-        redirect("/login");
+        redirect("/");
     }
     
     // Return the session if it's valid

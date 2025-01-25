@@ -1,5 +1,7 @@
 import LayoutStyles from "@/styles/Layout.module.scss"
 import DashboardStyles from "@/styles/Dashboard.module.scss"
+import WrapperStyles from "@/styles/Wrappers.module.scss"
+
 import { UserCard } from "@/components/UserCard"
 import { CredentialsAddBtn } from "@/components/CredentialsAddBtn"
 import { AuthButton } from "@/components/AuthButton.client"
@@ -12,7 +14,7 @@ export default function DashboardLayout({
     return (
         <div className={LayoutStyles.DashboardLayout}>
             <header className={DashboardStyles.Header}>
-                <div className={DashboardStyles.LogoContainer}>
+                <div className={WrapperStyles.LogoContainer}>
                     <h2>Password Manager</h2>
                 </div>
                 <div className={DashboardStyles.HeaderContent}>

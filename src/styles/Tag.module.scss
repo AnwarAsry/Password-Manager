@@ -38,3 +38,11 @@
 .tag {
     @include Tag();
 }
+
+.NumberOfRowSpan {
+    padding: v.$spacing-xx-sm v.$spacing-sm;
+    border-radius: 100px;
+    background-color: v.$tableRow;
+
+    @include text.TableLengthNumber();
+}
