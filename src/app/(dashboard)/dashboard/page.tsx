@@ -1,9 +1,9 @@
 import { getAllCredentialsForUser } from "@/actions/account";
-import TableStyles from "@/styles/CredentialsTable.module.scss"
 import { SearchBar } from "@/components/SearchBar";
-import Link from "next/link";
-import { CredentialsAddBtn } from "@/components/CredentialsAddBtn";
 import { validateSession } from "@/utils/ValidateSession";
+import { CredentialsTable } from "@/components/Table/CredentialsTable";
+import { CredentialsAddBtn } from "@/components/CredentialsAddBtn";
+import TableStyles from "@/styles/CredentialsTable.module.scss";
 
 const Dashboard = async () => {
     const session = await validateSession();
@@ -14,33 +14,14 @@ const Dashboard = async () => {
         <SearchBar />
         <section>
             <div className={TableStyles.TitleCallToAction}>
-                <h5 className={TableStyles.Title}>All passwords <span className={TableStyles.NumberOfRowSpan}>{res.data && res.data.length}</span></h5>
+                <h5 className={TableStyles.Title}>
+                    All passwords
+                    <span className={TableStyles.NumberOfRowSpan}>{res.data?.length}</span>
+                </h5>
                 <CredentialsAddBtn addIcon />
             </div>
-            <table className={TableStyles.tableCredentials}>
-                <thead>
-                    <tr>
-                        <th>Platform</th>
-                        <th>Username</th>
-                        <th>Password</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        res.data?.map(obj => {
-                            return <tr key={obj.id} className={TableStyles.CredentialCard}>
-                                <td>
-                                    <Link href={`/view/${obj.id}`}>{obj.platform}</Link>
-                                    <span><a href={obj.linkUrl} target="_blank">{obj.linkUrl}</a></span>
-                                </td>
-                                <td>{obj.username}</td>
-                                <td>{obj.password && "*".repeat(obj.password.length)}</td>
-                            </tr>
-                        })
-                    }
-                </tbody>
-            </table>
-        </section >
+            {res.data && <CredentialsTable entitys={res.data} />}
+        </section>
     </>
 }
 
