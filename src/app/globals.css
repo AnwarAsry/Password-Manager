@@ -45,6 +45,14 @@ img {
     display: block;
 }
 
+.BackLink {
+    cursor: pointer;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
 /* @media (prefers-color-scheme: dark) {
     :root {
         --bgc: #18191D;

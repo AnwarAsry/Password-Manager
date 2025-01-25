@@ -16,7 +16,8 @@
     @include mx.Input(true);
 }
 
-.Form, .FormLogin {
+.Form,
+.FormLogin {
     width: 100%;
     max-width: 460px;
     padding: v.$spacing-md;
@@ -73,13 +74,14 @@
 
 // Kanske behöver göra om
 .SearchContainer {
-    height: 70px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     z-index: 1;
 }
+
 .SearchForm {
     width: 100%;
     height: 48px;
@@ -89,14 +91,17 @@
     border-radius: 8px;
     background-color: v.$searchInpBgc;
 }
+
 .SearchIcon {
     width: 20px;
     height: 20px;
     color: v.$neutral-400;
 }
+
 .SearchInput {
     @include mx.Input();
 }
+
 .SearchResults {
     height: fit-content;
     padding: v.$spacing-big 0 v.$spacing-sm;
@@ -123,6 +128,7 @@
         }
     }
 }
+
 .Result {
     height: 34px;
     display: flex;

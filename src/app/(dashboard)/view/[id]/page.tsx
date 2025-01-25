@@ -1,6 +1,7 @@
 "use client"
 
 import CredentialPageStyles from "@/styles/CredentialPage.module.scss";
+import DashboardStyles from "@/styles/Dashboard.module.scss";
 
 import { deleteCredential, getCredential } from "@/actions/account";
 import { IAccounts } from "@/models/IAccounts";
@@ -63,7 +64,7 @@ const CredentialPage = () => {
     }
 
     return <>
-        <header className={CredentialPageStyles.header}>
+        <header className={DashboardStyles.HeaderInMain}>
             <BackLink hrefLink="/dashboard" text="Back to dashboard" />
         </header>
         <section className={CredentialPageStyles.Content}>
