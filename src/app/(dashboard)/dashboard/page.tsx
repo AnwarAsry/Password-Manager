@@ -1,18 +1,12 @@
 import { getAllCredentialsForUser } from "@/actions/account";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 import TableStyles from "@/styles/CredentialsTable.module.scss"
 import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
 import { CredentialsAddBtn } from "@/components/CredentialsAddBtn";
+import { validateSession } from "@/utils/ValidateSession";
 
 const Dashboard = async () => {
-    const session = await auth();
-
-    if (!session || !session.user) {
-        redirect("/")
-        return
-    }
+    const session = await validateSession();
 
     const res = await getAllCredentialsForUser(session.user.id)
 
