@@ -4,6 +4,7 @@ import { validateSession } from "@/utils/ValidateSession";
 import { CredentialsTable } from "@/components/Table/CredentialsTable";
 import { CredentialsAddBtn } from "@/components/CredentialsAddBtn";
 import TableStyles from "@/styles/CredentialsTable.module.scss";
+import TagStyles from "@/styles/Tag.module.scss";
 
 const Dashboard = async () => {
     const session = await validateSession();
@@ -16,7 +17,7 @@ const Dashboard = async () => {
             <div className={TableStyles.TitleCallToAction}>
                 <h5 className={TableStyles.Title}>
                     All passwords
-                    <span className={TableStyles.NumberOfRowSpan}>{res.data?.length}</span>
+                    <span className={TagStyles.NumberOfRowSpan}>{res.data?.length}</span>
                 </h5>
                 <CredentialsAddBtn addIcon />
             </div>

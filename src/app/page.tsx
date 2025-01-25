@@ -1,5 +1,6 @@
 import LayoutStyles from "@/styles/Layout.module.scss"
 import LandingStyles from "@/styles/LandingPage.module.scss"
+
 import { AuthButton } from "@/components/AuthButton.client"
 
 // Landing page, introduction for first time visitors

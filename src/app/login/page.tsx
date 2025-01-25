@@ -1,4 +1,5 @@
 import FormStyles from "@/styles/Form.module.scss"
+
 import { providerMap } from "@/auth";
 import { ProviderButton } from "@/components/ProviderButton";
 
