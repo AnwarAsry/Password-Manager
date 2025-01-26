@@ -2,21 +2,49 @@
 @use "variables"as v;
 @use "mixins"as mx;
 
+// DONT MOVE
+.Label {
+    margin-bottom: .3rem;
+    display: block;
+    opacity: .5;
+    @include text.LabelMedium();
+}
+
+// DONT MOVE
+.ViewOnlyInput {
+    min-height: 52px;
+    height: fit-content;
+    padding: .4rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: v.$spacing-x-sm;
+    border: 1px solid v.$neutral-500;
+    border-radius: 8px;
+
+    input {
+        flex-grow: 1;
+        height: 42px;
+        border: none;
+        outline: none;
+        background-color: transparent;
+
+        @include text.InputText();
+    }
+}
+
+
+
 
 .FormControl {
     width: 100%;
-}
-
-.Label {
-    margin-bottom: v.$spacing-x-sm;
-    display: block;
 }
 
 .Input {
     @include mx.Input(true);
 }
 
-.Form, .FormLogin {
+.Form,
+.FormLogin {
     width: 100%;
     max-width: 460px;
     padding: v.$spacing-md;
@@ -73,13 +101,14 @@
 
 // Kanske behöver göra om
 .SearchContainer {
-    height: 70px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     z-index: 1;
 }
+
 .SearchForm {
     width: 100%;
     height: 48px;
@@ -89,14 +118,17 @@
     border-radius: 8px;
     background-color: v.$searchInpBgc;
 }
+
 .SearchIcon {
     width: 20px;
     height: 20px;
     color: v.$neutral-400;
 }
+
 .SearchInput {
     @include mx.Input();
 }
+
 .SearchResults {
     height: fit-content;
     padding: v.$spacing-big 0 v.$spacing-sm;
@@ -123,6 +155,7 @@
         }
     }
 }
+
 .Result {
     height: 34px;
     display: flex;

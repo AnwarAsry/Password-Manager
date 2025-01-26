@@ -13,14 +13,14 @@ $fontSize-xx-lg: 2.5rem;
 $fontSize-xxx-lg: 2.75rem;
 $fontSize-huge: 3.25rem;
 
-//FONT WEIGHT
+// FONT WEIGHT
 $fontWeight-extrabold: 800;
 $fontWeight-bold: 700;
 $fontWeight-semibold: 600;
 $fontWeight-medium: 500;
 $fontWeight-normal: 400;
 
-//SPACING
+// SPACING
 $spacing-xx-sm: 4px;
 $spacing-x-sm: 8px;
 $spacing-sm: 12px;
@@ -37,6 +37,24 @@ $spacing-huge: 96px;
 $spacing-x-huge: 128px;
 $spacing-xx-huge: 160px;
 $spacing-xxx-huge: 192px;
+
+// BORDER RADIUS
+$BRadius-xx-sm: 4px;
+$BRadius-x-sm: 8px;
+$BRadius-sm: 12px;
+$BRadius-md: 16px;
+$BRadius-big: 20px;
+$BRadius-x-big: 24px;
+$BRadius-xx-big: 28px;
+$BRadius-xxx-big: 32px;
+$BRadius-lg: 40px;
+$BRadius-x-lg: 48px;
+$BRadius-xx-lg: 64px;
+$BRadius-xxx-lg: 80px;
+$BRadius-huge: 96px;
+$BRadius-x-huge: 128px;
+$BRadius-xx-huge: 160px;
+$BRadius-xxx-huge: 192px;
 
 // COLORS
 $primaryBtnColor: #2E54FF;
@@ -81,3 +99,8 @@ $InputBgcOnFocus: #268AFF;
 $InputBgcOnValid: #37DC94;
 $InputBgcOnInvalid: #FA5C65;
 $InputBoxShadow: #101828;
+
+// BUTTON
+$sizeSmallBtn: 32px;
+$sizeMediumBtn: 44px;
+$sizeLargeBtn: 52px;

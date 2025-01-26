@@ -54,10 +54,10 @@ export const EditableForm = ({ entityToEdit, abort, updatePageContent }: Editabl
             <FormInput name="username" label="Username/Email" type="text" defaultValue={entityToEdit.username} />
             <FormInput name="password" label="Password" type="password" defaultValue={entityToEdit.password} />
 
-            <label className={FormStyles.LabelTextareaContainer}>
-                Notes:
+            <div>
+                <label className={FormStyles.Label}>Notes</label>
                 <textarea name="notes" className={FormStyles.FormTextarea} defaultValue={entityToEdit.notes}></textarea>
-            </label>
+            </div>
 
             {/* The category field */}
             <FormInput label="Category" type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={e => addTag(e)} />

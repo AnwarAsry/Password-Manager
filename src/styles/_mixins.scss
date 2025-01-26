@@ -6,14 +6,6 @@
         0 8px 24px -3px rgba($color: v.$InputBoxShadow, $alpha: .1);
 }
 
-@mixin BackLink() {
-    cursor: pointer;
-    width: fit-content;
-    display: flex;
-    align-items: center;
-    gap: v.$spacing-xx-sm;
-}
-
 @mixin Input($border: false, $height: v.$InputHeight) {
     width: 100%;
     height: $height;
@@ -22,12 +14,12 @@
     border: none;
     outline: none;
     background-color: v.$InputBgc;
-    
+
     @if $border {
         border: 1px solid v.$neutral-500;
         border-radius: 8px;
     }
-    
+
     @include text.InputText();
 
     &:focus {
@@ -46,6 +38,49 @@
     }
 }
 
+@mixin Btn($bgc, $color, $size) {
+    cursor: pointer;
+
+    @if $size==small {
+        height: v.$sizeSmallBtn;
+        padding: 0 v.$spacing-md;
+        gap: v.$spacing-xx-sm;
+    }
+
+    @else if $size==medium {
+        height: v.$sizeMediumBtn;
+        padding: 0 v.$spacing-x-big;
+        gap: v.$spacing-x-sm;
+    }
+
+    @else if $size==large {
+        height: v.$sizeLargeBtn;
+        padding: 0 v.$spacing-xxx-big;
+        gap: v.$spacing-x-sm;
+
+    }
+
+    @else {
+        @error "Unkown button size: #{$size}";
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: v.$BRadius-sm;
+    outline: none;
+
+    font-weight: v.$fontWeight-semibold;
+
+    color: $color;
+    background-color: $bgc;
+
+    transition: all ease-in-out 200ms;
+
+    @include InputBoxShadow();
+    @include text.ButtonText($size);
+}
 
 @mixin Tablet {
     @media (max-width: #{v.$tabletWidth}) {

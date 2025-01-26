@@ -1,7 +1,7 @@
 import LayoutStyles from "@/styles/Layout.module.scss"
 import LandingStyles from "@/styles/LandingPage.module.scss"
 
-import { AuthButton } from "@/components/AuthButton.client"
+import { AuthButton } from "@/components/Login/AuthButton.client"
 
 // Landing page, introduction for first time visitors
 export default async function Landing() {

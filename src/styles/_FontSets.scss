@@ -42,10 +42,27 @@
     line-height: 24px;
 }
 
-@mixin ButtonText() {
-    font-size: v.$fontSize-md;
+@mixin ButtonText($size) {
     font-weight: v.$fontWeight-semibold;
-    line-height: 18px;
+
+    @if $size==small {
+        font-size: v.$fontSize-sm;
+        line-height: 16px;
+    }
+
+    @else if $size==medium {
+        font-size: v.$fontSize-md;
+        line-height: 18px;
+    }
+
+    @else if $size==large {
+        font-size: v.$fontSize-md;
+        line-height: 18px;
+    }
+
+    @else {
+        @error "Unkown button size: #{$size}";
+    }
 }
 
 @mixin TagText() {

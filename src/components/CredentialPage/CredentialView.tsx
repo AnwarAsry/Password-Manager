@@ -1,12 +1,11 @@
-import CredentialPageStyles from "@/styles/CredentialPage.module.scss";
 import ButtonStyles from "@/styles/Buttons.module.scss";
 import WrapperStyles from "@/styles/Wrappers.module.scss";
 
 import { IAccounts } from "@/models/IAccounts"
-import { Tag } from "../Tag"
-import { FormInput } from "../FormInput"
 
 import { FiEdit } from "react-icons/fi"
+import { MyIconTypes } from "@/models/Enums";
+import { ViewOnlyField } from "./ViewOnlyField";
 
 
 interface CredentialViewProps {
@@ -17,36 +16,46 @@ interface CredentialViewProps {
 
 export const CredentialView = ({ entity, edit, deleteFn }: CredentialViewProps) => {
     return <>
-        <h3 className={CredentialPageStyles.TitlePlatform}>{entity.platform}</h3>
+        <section className={WrapperStyles.PageInfoContainer}>
+            <h2>{entity.platform}</h2>
 
-        <FormInput viewOnly label="Username/Email" type="text" defaultValue={entity.username} />
-        <FormInput viewOnly label="Password" type="password" defaultValue={entity.password} />
+            <ViewOnlyField
+                label="Username/Email address:"
+                iconType={entity.username.includes("@") ? MyIconTypes.Email : MyIconTypes.User}
+                content={entity.username}
+            />
 
-        <label htmlFor="notes" className={CredentialPageStyles.ViewTextarea}>
-            Notes:
-            <textarea id="notes" disabled defaultValue={entity.notes}></textarea>
-        </label>
+            <ViewOnlyField
+                label="Password:"
+                iconType={MyIconTypes.Password}
+                content={entity.password || ""}
+            />
 
-        <div className={CredentialPageStyles.CategoriesSection}>
-            <label>Categories:</label>
-            <div className={CredentialPageStyles.Categories}>
-                {entity.category?.map((obj, i) => <Tag key={i} text={obj} />)}
+            <ViewOnlyField
+                label="Notes:"
+                content={entity.notes || ""}
+            />
+
+            <ViewOnlyField
+                label="Categories:"
+                content={entity.category || []}
+                isCategory
+            />
+
+            <div className={WrapperStyles.BtnsContainer}>
+                <button
+                    className={ButtonStyles.DeleteBtn}
+                    onClick={() => deleteFn(entity.id)}
+                >
+                    Delete
+                </button>
+                <button
+                    className={ButtonStyles.PrimaryBtn}
+                    onClick={edit}
+                >
+                    <FiEdit /> Edit
+                </button>
             </div>
-        </div>
-
-        <div className={WrapperStyles.BtnsContainer}>
-            <button
-                className={ButtonStyles.DeleteBtn}
-                onClick={() => deleteFn(entity.id)}
-            >
-                Delete
-            </button>
-            <button
-                className={ButtonStyles.PrimaryBtn}
-                onClick={edit}
-            >
-                <FiEdit /> Edit
-            </button>
-        </div>
+        </section>
     </>
 }
