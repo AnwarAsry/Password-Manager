@@ -1,7 +1,7 @@
 "use client"
 
-import CredentialPageStyles from "@/styles/CredentialPage.module.scss";
 import DashboardStyles from "@/styles/Dashboard.module.scss";
+import WrapperStyles from "@/styles/Wrappers.module.scss";
 
 import { deleteCredential, getCredential } from "@/actions/account";
 import { IAccounts } from "@/models/IAccounts";
@@ -67,7 +67,7 @@ const CredentialPage = () => {
         <header className={DashboardStyles.HeaderInMain}>
             <BackLink hrefLink="/dashboard" text="Back to dashboard" />
         </header>
-        <section className={CredentialPageStyles.Content}>
+        <main className={WrapperStyles.PageInfoMainContainer}>
             <Spinner loading={isLoading || isPageLoading} />
 
             {!isEditing && pageInfo && <CredentialView entity={pageInfo} edit={() => setIsEditing(true)} deleteFn={handleDelete} />}
@@ -75,7 +75,7 @@ const CredentialPage = () => {
             {isEditing && pageInfo && <EditableForm entityToEdit={pageInfo} abort={() => setIsEditing(false)} updatePageContent={setPageInfo} />}
 
             {!isPageLoading && !pageInfo && <h1>No Data Found</h1>}
-        </section >
+        </main >
     </>
 }
 

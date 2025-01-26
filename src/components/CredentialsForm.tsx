@@ -2,9 +2,11 @@
 
 import FormStyles from "@/styles/Form.module.scss"
 import ButtonStyles from "@/styles/Buttons.module.scss";
+
 import { FormInput } from "./FormInput"
-import { IoIosClose } from "react-icons/io"
 import { createCredential } from "@/actions/account"
+
+import { IoIosClose } from "react-icons/io"
 import { useActionState, useState } from "react"
 import { useSession } from "next-auth/react"
 import { randomBytes } from "crypto";
@@ -52,7 +54,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                     {/* Inputs */}
                     <FormInput label="Platform*" type="text" name="platform" placeholder="Enter the Platform name or website" />
                     <FormInput label="Url" type="text" name="linkUrl" placeholder="Enter link to the platform or website" />
-                    <FormInput label="Username*" type="text" name="username" placeholder="Enter your Email Address or Username" />
+                    <FormInput label="Username/Email address*" type="text" name="username" placeholder="Enter your Email Address or Username" />
 
                     <FormInput label="Password" type="password" name="password" placeholder="Enter your Password" value={password} onChange={e => setPassword(e.target.value)} />
                     {/* When pressing this button it changes the value in the password input to the generated password */}

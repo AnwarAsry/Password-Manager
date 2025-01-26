@@ -4,7 +4,7 @@ import WrapperStyles from "@/styles/Wrappers.module.scss"
 
 import { UserCard } from "@/components/UserCard"
 import { CredentialsAddBtn } from "@/components/CredentialsAddBtn"
-import { AuthButton } from "@/components/AuthButton.client"
+import { AuthButton } from "@/components/Login/AuthButton.client"
 
 export default function DashboardLayout({
     children

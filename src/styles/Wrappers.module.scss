@@ -17,3 +17,19 @@
     width: 100%;
     display: flex;
 }
+
+// DONT MOVE
+.PageInfoMainContainer {
+    display: flex;
+    justify-content: center;
+}
+
+// DONT MOVE
+.PageInfoContainer {
+    width: 100%;
+    max-width: 460px;
+    padding: v.$spacing-md;
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-x-big;
+}

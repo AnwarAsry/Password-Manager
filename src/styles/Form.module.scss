@@ -2,14 +2,41 @@
 @use "variables"as v;
 @use "mixins"as mx;
 
+// DONT MOVE
+.Label {
+    margin-bottom: .3rem;
+    display: block;
+    opacity: .5;
+    @include text.LabelMedium();
+}
+
+// DONT MOVE
+.ViewOnlyInput {
+    min-height: 52px;
+    height: fit-content;
+    padding: .4rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: v.$spacing-x-sm;
+    border: 1px solid v.$neutral-500;
+    border-radius: 8px;
+
+    input {
+        flex-grow: 1;
+        height: 42px;
+        border: none;
+        outline: none;
+        background-color: transparent;
+
+        @include text.InputText();
+    }
+}
+
+
+
 
 .FormControl {
     width: 100%;
-}
-
-.Label {
-    margin-bottom: v.$spacing-x-sm;
-    display: block;
 }
 
 .Input {

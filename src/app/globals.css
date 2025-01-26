@@ -53,6 +53,11 @@ img {
     gap: 4px;
 }
 
+.InputIcons {
+    width: 24px;
+    height: 24px;
+}
+
 /* @media (prefers-color-scheme: dark) {
     :root {
         --bgc: #18191D;
