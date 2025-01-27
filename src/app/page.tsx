@@ -9,9 +9,7 @@ export default async function Landing() {
 	return <>
 		<main className={LayoutStyles.LandingPageLayout}>
 			<h1 className={LandingStyles.IntroductionHeading}>Password Manager</h1>
-			<div className={LandingStyles.Content}>
-				<AuthButton />
-			</div>
+			<AuthButton />
 		</main>
 	</>
 }
