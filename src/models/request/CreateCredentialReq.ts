@@ -3,6 +3,6 @@ export type CreateCredentialReq = {
     platform: string
     linkUrl: string
     password: string
-    email: string
+    username: string
 };
   

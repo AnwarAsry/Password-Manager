@@ -26,7 +26,7 @@ export async function POST(req: Request) {
             platform: body.platform,
             linkUrl: body.linkUrl,
             password: body.password,
-            email: body.email,
+            username: body.username,
             createdAt: new Date,
             updatedAt: new Date
         });

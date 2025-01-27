@@ -10,6 +10,7 @@ import { IoIosClose } from "react-icons/io"
 import { useActionState, useState } from "react"
 import { useSession } from "next-auth/react"
 import { randomBytes } from "crypto";
+import { redirect } from "next/navigation";
 
 interface IFormProps {
     Cancel: () => void
@@ -20,6 +21,10 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
     const { data: session } = useSession();
 
     const [state, formAction, isPending] = useActionState(createCredential, null);
+
+    if (state?.success) {
+        redirect("/dashboard");
+    }
 
     // Password State
     const [password, setPassword] = useState<string>("");
