@@ -1,6 +1,6 @@
 import { updateCredential } from "@/actions/account";
-import { FormInput } from "./FormInput";
-import { Tag } from "./Tag";
+import { FormInput } from "@/components/Forms/FormInput";
+import { Tag } from "@/components/Tag";
 import { IAccounts } from "@/models/IAccounts";
 import { useState } from "react";
 import ButtonStyles from "@/styles/Buttons.module.scss"

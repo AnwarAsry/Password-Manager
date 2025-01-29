@@ -1,7 +1,7 @@
 import FormStyles from "@/styles/Form.module.scss"
 
 import { providerMap } from "@/auth";
-import { ProviderButton } from "@/components/ProviderButton";
+import { ProviderButton } from "@/components/Login/ProviderButton";
 
 // For future make input fields as credentials for login
 

@@ -1,0 +1,46 @@
+@use "variables"as v;
+@use "FontSets"as text;
+
+.ConfirmationModalBackgroundLayer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #1f29375f;
+}
+
+.ConfirmationModal {
+    width: 100%;
+    max-width: 500px;
+    // padding: v.$spacing-sm v.$spacing-big;
+
+    display: grid;
+    grid-template-rows: 40px auto 60px;
+
+    border-radius: 16px;
+    background-color: v.$neutral-600;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.ConfirmationModalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #9c9c9c;
+}
+
+.ConfirmationTitle {
+    @include text.UserCardTitle();
+}
+
+.CloseIcon {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+}

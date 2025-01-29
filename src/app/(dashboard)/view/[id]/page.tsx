@@ -8,11 +8,12 @@ import { IAccounts } from "@/models/IAccounts";
 import { BackLink } from "@/components/BackLink";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 import { Spinner } from "@/components/Spinner";
-import { EditableForm } from "@/components/EditableForm";
+import { EditableForm } from "@/components/Forms/EditableForm";
 import { CredentialView } from "@/components/CredentialPage/CredentialView";
 
 import { redirect, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ConfirmationModal } from "@/components/ConfirmationModal";
 
 const CredentialPage = () => {
     // Check if there is a session and user
@@ -24,6 +25,8 @@ const CredentialPage = () => {
     const [isPageLoading, setIsPageLoading] = useState<boolean>(true);
     // State to enable changes to the object
     const [isEditing, setIsEditing] = useState<boolean>(false);
+    // State to confirm
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     // Parameter for id
     const params = useParams<{ id: string }>();
@@ -54,9 +57,9 @@ const CredentialPage = () => {
     }, [isLoading, params])
 
     // handleDelete function when clicking the delete button
-    const handleDelete = async (id: string) => {
+    const handleDelete = async () => {
         // Delete object
-        const response = await deleteCredential(id)
+        const response = await deleteCredential(pageInfo!.id)
         // If successfull go back to dashboard
         if (response.success) {
             redirect("/dashboard")
@@ -70,12 +73,21 @@ const CredentialPage = () => {
         <main className={WrapperStyles.PageInfoMainContainer}>
             <Spinner loading={isLoading || isPageLoading} />
 
-            {!isEditing && pageInfo && <CredentialView entity={pageInfo} edit={() => setIsEditing(true)} deleteFn={handleDelete} />}
+            {!isEditing && pageInfo && <CredentialView entity={pageInfo} edit={() => setIsEditing(true)} deleteFn={() => setIsModalOpen(true)} />}
 
             {isEditing && pageInfo && <EditableForm entityToEdit={pageInfo} abort={() => setIsEditing(false)} updatePageContent={setPageInfo} />}
 
             {!isPageLoading && !pageInfo && <h1>No Data Found</h1>}
         </main >
+        <ConfirmationModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            onConfirm={handleDelete}
+            title="Delete Credential?"
+            message="This action is irreversible."
+            confirmText="Delete"
+            cancelText="Cancel"
+        />
     </>
 }
 

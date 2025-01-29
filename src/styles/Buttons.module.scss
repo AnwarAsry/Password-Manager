@@ -24,6 +24,17 @@
     }
 }
 
+.DeleteBtnPrimary {
+    border: none;
+
+    @include mx.Btn(v.$danger400, #fff, medium);
+
+    &:hover {
+        background-color: v.$danger400;
+    }
+
+}
+
 .DeleteBtn {
     border: 2px solid v.$danger600;
 
@@ -67,4 +78,9 @@
     &:hover {
         background-color: #86868638;
     }
+}
+
+.BtnsContainer {
+    display: flex;
+    justify-content: end;
 }
