@@ -1,0 +1,34 @@
+@use "variables"as v;
+@use "mixins"as mx;
+
+
+.Header {
+    display: grid;
+    grid-template-rows: 100px auto 120px;
+}
+
+.LogoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.HeaderContent {
+    padding: 0 v.$spacing-sm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.LineBreak {
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid #2a2b2f1a;
+}
+
+.HeaderInMain {
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
