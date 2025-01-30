@@ -27,22 +27,23 @@
 .DeleteBtnPrimary {
     border: none;
 
-    @include mx.Btn(v.$danger400, #fff, medium);
+    @include mx.Btn(v.$danger500, #fff, medium);
 
     &:hover {
-        background-color: v.$danger400;
+        background-color: v.$danger700;
     }
 
 }
 
 .DeleteBtn {
-    border: 2px solid v.$danger600;
+    border: 2px solid v.$danger400;
 
-    @include mx.Btn(transparent, v.$danger600, medium);
+    @include mx.Btn(transparent, v.$danger400, medium);
 
     &:hover {
         color: #f5f5f5;
-        background-color: v.$danger400;
+        border-color: v.$danger600;
+        background-color: v.$danger600;
     }
 }
 
@@ -80,7 +81,15 @@
     }
 }
 
+.Cancel {
+    border: 1px solid rgb(99, 99, 99);
+
+    @include mx.Btn(transparent, black, medium);
+}
+
 .BtnsContainer {
     display: flex;
     justify-content: end;
+    align-items: center;
+    gap: v.$spacing-sm;
 }

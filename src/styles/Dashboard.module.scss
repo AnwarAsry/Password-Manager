@@ -4,7 +4,8 @@
 .Header {
     display: grid;
     grid-template-rows: 100px 1fr 110px;
-    background-color: v.$headerBgc;
+    // background-color: v.$headerBgc;
+    background-color: #afafaf;
 }
 
 .HeaderContent {

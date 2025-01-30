@@ -16,27 +16,37 @@
 .ConfirmationModal {
     width: 100%;
     max-width: 500px;
-    // padding: v.$spacing-sm v.$spacing-big;
-
     display: grid;
-    grid-template-rows: 40px auto 60px;
-
+    grid-template-rows: auto auto auto;
     border-radius: 16px;
-    background-color: v.$neutral-600;
+    background-color: #fff;
     overflow: hidden;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
         0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .ConfirmationModalHeader {
+    padding: v.$spacing-md v.$spacing-big;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #9c9c9c;
+    background-color: #F6F4F7;
 }
 
 .ConfirmationTitle {
-    @include text.UserCardTitle();
+    font-size: v.$fontSize-x-big;
+    line-height: 28px;
+    // font-weight: v.$fontWeight-semibold;
+}
+
+.ConfirmationMessage {
+    padding: v.$spacing-md v.$spacing-big;
+    color: rgb(85, 85, 85);
+}
+
+.ConfirmationFooter {
+    padding: v.$spacing-md v.$spacing-big;
+    border-top: 1px solid rgb(204, 204, 204);
 }
 
 .CloseIcon {

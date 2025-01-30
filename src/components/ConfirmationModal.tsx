@@ -1,8 +1,7 @@
 "use client";
 
 import ModalStyles from "@/styles/ConfirmationModal.module.scss";
-// import ButtonStyles from "@/styles/Buttons.module.scss";
-// import FormStyles from "@/styles/Form.module.scss";
+import ButtonStyles from "@/styles/Buttons.module.scss";
 
 import { useEffect, useRef } from "react";
 import { IoIosClose } from "react-icons/io";
@@ -10,22 +9,22 @@ import { IoIosClose } from "react-icons/io";
 
 interface ConfirmationModalProps {
     isOpen: boolean;
-    onClose: () => void;
-    onConfirm: () => void;
     title?: string;
     message?: string;
     confirmText?: string;
+    onConfirm: () => void;
     cancelText?: string;
+    onClose: () => void;
 }
 
 export const ConfirmationModal = ({
     isOpen,
     onClose,
-    // onConfirm,
+    onConfirm,
     title = "Are you sure?",
-    // message = "This action cannot be undone.",
-    // confirmText = "Confirm",
-    // cancelText = "Cancel",
+    message = "This action cannot be undone.",
+    confirmText = "Confirm",
+    cancelText = "Cancel",
 }: ConfirmationModalProps) => {
     const modalRef = useRef<HTMLDivElement>(null);
 
@@ -50,13 +49,16 @@ export const ConfirmationModal = ({
         <div className={ModalStyles.ConfirmationModalBackgroundLayer}>
             <div ref={modalRef} className={ModalStyles.ConfirmationModal}>
                 <div className={ModalStyles.ConfirmationModalHeader}>
-                    <h2 className={ModalStyles.ConfirmationTitle}>{title}</h2>
+                    <h3 className={ModalStyles.ConfirmationTitle}>{title}</h3>
                     <IoIosClose className={ModalStyles.CloseIcon} onClick={onClose} />
                 </div>
-                {/* <p>{message}</p>
+                <p className={ModalStyles.ConfirmationMessage}>{message}</p>
 
-                <div className={ButtonStyles.BtnsContainer}>
-                    <button onClick={onClose}>
+                <div className={`${ButtonStyles.BtnsContainer} ${ModalStyles.ConfirmationFooter}`}>
+                    <button
+                        className={ButtonStyles.Cancel}
+                        onClick={onClose}
+                    >
                         {cancelText}
                     </button>
                     <button
@@ -65,7 +67,7 @@ export const ConfirmationModal = ({
                     >
                         {confirmText}
                     </button>
-                </div> */}
+                </div>
             </div>
         </div>
     );
