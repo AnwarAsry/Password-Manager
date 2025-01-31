@@ -1,6 +1,8 @@
+import TableStyles from "@/styles/CredentialsTable.module.scss"
+
 import { IAccounts } from "@/models/IAccounts";
 import Link from "next/link";
-import TableStyles from "@/styles/CredentialsTable.module.scss"
+
 
 interface TableRowProps {
     entity: IAccounts
@@ -8,13 +10,13 @@ interface TableRowProps {
 
 export const TableRow = ({ entity }: TableRowProps) => {
     return <>
-        <tr className={TableStyles.CredentialCard}>
-            <td>
+        <div className={TableStyles.TableRow}>
+            <div className={TableStyles.TableRowFirstColumn}>
                 <Link href={`/view/${entity.id}`}>{entity.platform}</Link>
                 <span><a href={entity.linkUrl} target="_blank">{entity.linkUrl}</a></span>
-            </td>
-            <td>{entity.username}</td>
-            <td>{entity.password && "*".repeat(entity.password.length)}</td>
-        </tr>
+            </div>
+            <p>{entity.username}</p>
+            <div>{entity.password && "*".repeat(entity.password.length)}</div>
+        </div>
     </>
 };

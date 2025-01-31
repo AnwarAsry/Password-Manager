@@ -22,10 +22,10 @@ const Dashboard = async () => {
         <section>
             <div className={TableStyles.TitleCallToAction}>
                 <h5 className={TableStyles.Title}>
-                    All passwords
+                    Passwords
                     <span className={TagStyles.NumberOfRowSpan}>{res.data?.length}</span>
                 </h5>
-                <CredentialsAddBtn addIcon />
+                <CredentialsAddBtn addIcon text="New Item" />
             </div>
             {res.data && <CredentialsTable entitys={res.data} />}
         </section>

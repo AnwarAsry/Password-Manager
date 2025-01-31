@@ -1,6 +1,8 @@
+import TableStyles from "@/styles/CredentialsTable.module.scss"
+
 import { IAccounts } from "@/models/IAccounts";
 import { TableRow } from "./TableRow";
-import TableStyles from "@/styles/CredentialsTable.module.scss"
+
 
 interface CredentialsTableProps {
     entitys: IAccounts[]
@@ -8,17 +10,16 @@ interface CredentialsTableProps {
 
 export const CredentialsTable = ({ entitys }: CredentialsTableProps) => {
     return <>
-        <table className={TableStyles.tableCredentials}>
-            <thead>
-                <tr>
-                    <th>Platform</th>
-                    <th>Username</th>
-                    <th>Password</th>
-                </tr>
-            </thead>
-            <tbody>
-                {entitys.map(item => <TableRow key={item.id} entity={item} />)}
-            </tbody>
-        </table>
+
+        <section className={TableStyles.Table}>
+            <div className={TableStyles.TableHead}>
+                <p>Platform</p>
+                <p>Username</p>
+                <p>Password</p>
+            </div>
+            {
+                entitys.map(item => <TableRow key={item.id} entity={item} />)
+            }
+        </section>
     </>
 };

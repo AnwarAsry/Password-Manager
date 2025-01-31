@@ -78,7 +78,6 @@
 
     transition: all ease-in-out 200ms;
 
-    @include InputBoxShadow();
     @include text.ButtonText($size);
 }
 
