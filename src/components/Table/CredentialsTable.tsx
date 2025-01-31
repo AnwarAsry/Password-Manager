@@ -10,7 +10,6 @@ interface CredentialsTableProps {
 
 export const CredentialsTable = ({ entitys }: CredentialsTableProps) => {
     return <>
-
         <section className={TableStyles.Table}>
             <div className={TableStyles.TableHead}>
                 <p>Platform</p>
