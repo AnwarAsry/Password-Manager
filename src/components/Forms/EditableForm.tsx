@@ -18,7 +18,7 @@ interface EditableFormProps {
 
 export const EditableForm = ({ entityToEdit, abort, updatePageContent }: EditableFormProps) => {
     // State to handle what tags user has labeld
-    const [categories, setCategories] = useState<string[]>([]);
+    const [categories, setCategories] = useState<string[]>(entityToEdit.category!);
     // Handle the value of the input
     const [tagInput, setTagInput] = useState<string>("");
 
