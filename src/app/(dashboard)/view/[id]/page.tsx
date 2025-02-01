@@ -12,7 +12,7 @@ import { EditableForm } from "@/components/Forms/EditableForm";
 import { CredentialView } from "@/components/CredentialPage/CredentialView";
 
 import { redirect, useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ConfirmationModal } from "@/components/ConfirmationModal";
 
 
@@ -31,6 +31,8 @@ const CredentialPage = () => {
 
     // Parameter for id
     const params = useParams<{ id: string }>();
+
+    // const 
 
     // Get the data for this page
     useEffect(() => {
@@ -58,14 +60,15 @@ const CredentialPage = () => {
     }, [isLoading, params])
 
     // handleDelete function when clicking the delete button
-    const handleDelete = async () => {
+    const handleDelete = useCallback(async () => {
+        if (!pageInfo) return;
         // Delete object
         const response = await deleteCredential(pageInfo!.id)
         // If successfull go back to dashboard
         if (response.success) {
             redirect("/dashboard")
         }
-    }
+    }, [pageInfo])
 
     return <>
         <header className={HeaderStyles.HeaderInMain}>
