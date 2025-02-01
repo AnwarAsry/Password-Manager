@@ -1,5 +1,7 @@
-import Link from "next/link"
 import { IoArrowBackOutline } from "react-icons/io5"
+
+import Link from "next/link"
+
 
 interface IBackLinkProps {
     hrefLink: string

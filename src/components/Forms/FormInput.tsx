@@ -1,5 +1,6 @@
 import FormStyles from "@/styles/Form.module.scss"
 
+
 interface IFormInputProps {
     label?: string
     type: string

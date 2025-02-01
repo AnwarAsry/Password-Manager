@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react"
 import { randomBytes } from "crypto";
 import { redirect } from "next/navigation";
 
+
 interface IFormProps {
     Cancel: () => void
 }
@@ -48,7 +49,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
     }
 
     return <>
-        <div className={FormStyles.FormBackground}  >
+        <div className={FormStyles.FormBackgroundLayer}  >
             <form action={formAction} className={FormStyles.Form}>
                 {/* Close form icon */}
                 <div className={FormStyles.FormHeader}>

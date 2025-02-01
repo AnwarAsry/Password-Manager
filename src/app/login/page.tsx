@@ -7,7 +7,7 @@ import { ProviderButton } from "@/components/Login/ProviderButton";
 
 const LoginPage = () => {
     return <>
-        <form className={FormStyles.FormLogin}>
+        <form className={FormStyles.LoginForm}>
             <div className={FormStyles.FormContent}>
                 {
                     Object.values(providerMap).map(provider => <ProviderButton provider={provider} key={provider.id} />)

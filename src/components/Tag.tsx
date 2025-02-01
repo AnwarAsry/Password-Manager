@@ -1,6 +1,7 @@
 import TagStyles from "@/styles/Tag.module.scss"
 import { CgClose } from "react-icons/cg"
 
+
 interface ITagProps {
     text: string
     Remove?: () => void

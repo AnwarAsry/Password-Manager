@@ -1,6 +1,6 @@
 "use client"
 
-import DashboardStyles from "@/styles/Dashboard.module.scss";
+import HeaderStyles from "@/styles/Header.module.scss";
 import WrapperStyles from "@/styles/Wrappers.module.scss";
 
 import { deleteCredential, getCredential } from "@/actions/account";
@@ -15,17 +15,18 @@ import { redirect, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ConfirmationModal } from "@/components/ConfirmationModal";
 
+
 const CredentialPage = () => {
     // Check if there is a session and user
     const { isLoading } = useAuthRedirect(); // use the isLoading for the data fetch
 
     // The object for this page state
-    const [pageInfo, setPageInfo] = useState<IAccounts | null>();
+    const [pageInfo, setPageInfo] = useState<IAccounts | null>(null);
     // State for if page is fetching data
     const [isPageLoading, setIsPageLoading] = useState<boolean>(true);
     // State to enable changes to the object
     const [isEditing, setIsEditing] = useState<boolean>(false);
-    // State to confirm
+    // State for show confirmation
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     // Parameter for id
@@ -67,7 +68,7 @@ const CredentialPage = () => {
     }
 
     return <>
-        <header className={DashboardStyles.HeaderInMain}>
+        <header className={HeaderStyles.HeaderInMain}>
             <BackLink hrefLink="/dashboard" text="Back to dashboard" />
         </header>
         <main className={WrapperStyles.PageInfoMainContainer}>
