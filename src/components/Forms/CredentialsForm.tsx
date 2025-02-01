@@ -49,7 +49,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
     }
 
     return <>
-        <div className={FormStyles.FormBackgroundLayer}  >
+        <div className={FormStyles.FormBackgroundLayer}>
             <form action={formAction} className={FormStyles.Form}>
                 {/* Close form icon */}
                 <div className={FormStyles.FormHeader}>
