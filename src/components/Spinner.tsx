@@ -1,5 +1,6 @@
 import { ClipLoader } from "react-spinners"
 
+
 interface SpinnerProps {
     loading: boolean
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import DashboardStyles from "@/styles/Dashboard.module.scss";
+import HeaderStyles from "@/styles/Header.module.scss";
 import WrapperStyles from "@/styles/Wrappers.module.scss";
 
 import { deleteCredential, getCredential } from "@/actions/account";
@@ -12,62 +12,62 @@ import { EditableForm } from "@/components/Forms/EditableForm";
 import { CredentialView } from "@/components/CredentialPage/CredentialView";
 
 import { redirect, useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ConfirmationModal } from "@/components/ConfirmationModal";
+
 
 const CredentialPage = () => {
     // Check if there is a session and user
     const { isLoading } = useAuthRedirect(); // use the isLoading for the data fetch
 
     // The object for this page state
-    const [pageInfo, setPageInfo] = useState<IAccounts | null>();
+    const [pageInfo, setPageInfo] = useState<IAccounts | null>(null);
     // State for if page is fetching data
     const [isPageLoading, setIsPageLoading] = useState<boolean>(true);
     // State to enable changes to the object
     const [isEditing, setIsEditing] = useState<boolean>(false);
-    // State to confirm
+    // State for show confirmation
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     // Parameter for id
-    const params = useParams<{ id: string }>();
+    const { id } = useParams<{ id: string }>();
 
-    // Get the data for this page
-    useEffect(() => {
-        if (!isLoading) return
+    const fetchData = useCallback(async () => {
+        if (!id || !isLoading) return;
 
-        const getData = async () => {
+        try {
             setIsPageLoading(true);
-            // If parameter exist
-            if (params.id) {
-                try {
-                    const response = await getCredential(params.id)
+            const response = await getCredential(id);
 
-                    if (response.success && response.data) {
-                        setPageInfo(response.data)
-                    }
-                } catch (error) {
-                    console.log("Something went wrong with updating. Error message: ", error);
-                } finally {
-                    setIsPageLoading(false);
-                }
+            if (response.success && response.data) {
+                setPageInfo(response.data);
+            } else {
+                setPageInfo(null);
             }
+        } catch (error) {
+            console.error("Error fetching credential:", error);
+        } finally {
+            setIsPageLoading(false);
         }
+    }, [id, isLoading]);
 
-        getData();
-    }, [isLoading, params])
+    useEffect(() => {
+        fetchData();
+    }, [fetchData])
 
     // handleDelete function when clicking the delete button
-    const handleDelete = async () => {
+    const handleDelete = useCallback(async () => {
+        if (!pageInfo) return;
         // Delete object
         const response = await deleteCredential(pageInfo!.id)
         // If successfull go back to dashboard
         if (response.success) {
             redirect("/dashboard")
         }
-    }
+    }, [pageInfo])
 
     return <>
-        <header className={DashboardStyles.HeaderInMain}>
+        <header className={HeaderStyles.HeaderInMain}>
             <BackLink hrefLink="/dashboard" text="Back to dashboard" />
         </header>
         <main className={WrapperStyles.PageInfoMainContainer}>

@@ -14,6 +14,17 @@ export type IAccounts = {
     updatedAt: Date
 };
 
+export const dummyData: IAccounts = {
+    id: "1231",
+    userID: "h45749dj",
+    platform: "Google",
+    linkUrl: "https://www.google.com",
+    password: "odsifdosdf",
+    username: "anwartest@test.com",
+    createdAt: new Date,
+    updatedAt: new Date,
+};
+
 type AccountsDocument = Document & IAccounts;
 type AccountsModel = Model<AccountsDocument>;
 

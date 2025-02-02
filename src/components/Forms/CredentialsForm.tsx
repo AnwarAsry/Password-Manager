@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react"
 import { randomBytes } from "crypto";
 import { redirect } from "next/navigation";
 
+
 interface IFormProps {
     Cancel: () => void
 }
@@ -48,28 +49,55 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
     }
 
     return <>
-        <div className={FormStyles.FormBackground}  >
+        <div className={FormStyles.FormBackgroundLayer}>
             <form action={formAction} className={FormStyles.Form}>
                 {/* Close form icon */}
                 <div className={FormStyles.FormHeader}>
+                    <h1>Add new credential to save</h1>
                     <IoIosClose className={FormStyles.CloseIcon} onClick={Cancel} />
                 </div>
 
                 <div className={FormStyles.FormContent}>
                     {/* Inputs */}
-                    <FormInput label="Platform*" type="text" name="platform" placeholder="Enter the Platform name or website" />
-                    <FormInput label="Url" type="text" name="linkUrl" placeholder="Enter link to the platform or website" />
-                    <FormInput label="Username/Email address*" type="text" name="username" placeholder="Enter your Email Address or Username" />
+                    <FormInput
+                        label="Platform*"
+                        type="text"
+                        name="platform"
+                        placeholder="Enter the Platform name or website"
+                    />
 
-                    <FormInput label="Password" type="password" name="password" placeholder="Enter your Password" value={password} onChange={e => setPassword(e.target.value)} />
-                    {/* When pressing this button it changes the value in the password input to the generated password */}
-                    <button className={ButtonStyles.PrimaryBtn} type="button" onClick={generatePassword} disabled={isPending}>Generate password</button>
+                    <FormInput
+                        label="Website URL"
+                        type="url"
+                        name="linkUrl"
+                        placeholder="Enter link to the platform or website"
+                    />
+
+                    <FormInput
+                        label="Username/Email address*"
+                        type="text"
+                        name="username"
+                        placeholder="Enter your Email Address or Username"
+                    />
+
+                    <FormInput
+                        label="Password"
+                        type="password"
+                        name="password"
+                        placeholder="Enter your Password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        showButton
+                        buttonText="Generate password"
+                        btnAction={generatePassword}
+                    />
+
                     <input type="hidden" name="userID" value={session?.user.id} />
                 </div>
-                <hr />
+
                 <div className={FormStyles.FormFooter}>
                     <button className={ButtonStyles.SecondaryBtn} type="button" onClick={Cancel} disabled={isPending}>Cancel</button>
-                    <button className={ButtonStyles.PrimaryBtn} type="submit" disabled={isPending}>Add</button>
+                    <button className={ButtonStyles.PrimaryBtn} type="submit" disabled={isPending}>Save credential</button>
                 </div>
             </form>
         </div>

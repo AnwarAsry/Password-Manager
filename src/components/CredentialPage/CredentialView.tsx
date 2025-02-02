@@ -42,7 +42,7 @@ export const CredentialView = ({ entity, edit, deleteFn }: CredentialViewProps) 
                 isCategory
             />
 
-            <div className={WrapperStyles.BtnsContainer}>
+            <div className={ButtonStyles.BtnsContainer}>
                 <button
                     className={ButtonStyles.DeleteBtn}
                     onClick={() => deleteFn(entity.id)}

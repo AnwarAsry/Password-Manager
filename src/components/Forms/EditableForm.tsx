@@ -1,11 +1,14 @@
+import ButtonStyles from "@/styles/Buttons.module.scss"
+import FormStyles from "@/styles/Form.module.scss"
+import WrapperStyles from "@/styles/Wrappers.module.scss"
+
 import { updateCredential } from "@/actions/account";
 import { FormInput } from "@/components/Forms/FormInput";
 import { Tag } from "@/components/Tag";
 import { IAccounts } from "@/models/IAccounts";
+
 import { useState } from "react";
-import ButtonStyles from "@/styles/Buttons.module.scss"
-import FormStyles from "@/styles/Form.module.scss"
-import WrapperStyles from "@/styles/Wrappers.module.scss"
+
 
 interface EditableFormProps {
     entityToEdit: IAccounts
@@ -15,7 +18,7 @@ interface EditableFormProps {
 
 export const EditableForm = ({ entityToEdit, abort, updatePageContent }: EditableFormProps) => {
     // State to handle what tags user has labeld
-    const [categories, setCategories] = useState<string[]>([]);
+    const [categories, setCategories] = useState<string[]>(entityToEdit.category!);
     // Handle the value of the input
     const [tagInput, setTagInput] = useState<string>("");
 
@@ -49,14 +52,14 @@ export const EditableForm = ({ entityToEdit, abort, updatePageContent }: Editabl
     };
 
     return <>
-        <form onSubmit={handleUpdate} className={FormStyles.SubmitFormAlt}>
+        <form onSubmit={handleUpdate} className={FormStyles.UpdateCredentialForm}>
             <FormInput name="platform" label="Platform" type="text" defaultValue={entityToEdit.platform} />
             <FormInput name="username" label="Username/Email" type="text" defaultValue={entityToEdit.username} />
             <FormInput name="password" label="Password" type="password" defaultValue={entityToEdit.password} />
 
             <div>
                 <label className={FormStyles.Label}>Notes</label>
-                <textarea name="notes" className={FormStyles.FormTextarea} defaultValue={entityToEdit.notes}></textarea>
+                <textarea name="notes" className={FormStyles.Input} defaultValue={entityToEdit.notes}></textarea>
             </div>
 
             {/* The category field */}
@@ -68,11 +71,10 @@ export const EditableForm = ({ entityToEdit, abort, updatePageContent }: Editabl
                 }
             </div>
 
-            <hr />
-            <div className={FormStyles.BtnsContainer}>
+            <div className={ButtonStyles.BtnsContainer}>
                 <button className={ButtonStyles.SecondaryBtn} type="button" onClick={abort}>Cancel</button>
                 <button className={ButtonStyles.PrimaryBtn} type="submit">Save</button>
             </div>
-        </form>
+        </form >
     </>
 }

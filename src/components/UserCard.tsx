@@ -1,7 +1,10 @@
 import UserCardStyles from "@/styles/UserCard.module.scss"
+
 import { auth } from "@/auth";
-import Image from "next/image";
 import avatar from "@/public/avatar.png"
+
+import Image from "next/image";
+
 
 export const UserCard = async () => {
     const session = await auth();

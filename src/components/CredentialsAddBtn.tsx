@@ -1,9 +1,12 @@
 "use client"
 
-import { useState } from "react";
-import { CredentialsForm } from "./Forms/CredentialsForm";
 import ButtonStyles from "@/styles/Buttons.module.scss";
+
+import { CredentialsForm } from "./Forms/CredentialsForm";
+
 import { HiPlus } from "react-icons/hi";
+import { useState } from "react";
+
 
 interface ICredentialsAddBtnProps {
     text?: string
