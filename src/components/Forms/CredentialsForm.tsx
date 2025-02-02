@@ -53,6 +53,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
             <form action={formAction} className={FormStyles.Form}>
                 {/* Close form icon */}
                 <div className={FormStyles.FormHeader}>
+                    <h1>Add new credential to save</h1>
                     <IoIosClose className={FormStyles.CloseIcon} onClick={Cancel} />
                 </div>
 
@@ -66,8 +67,8 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                     />
 
                     <FormInput
-                        label="Url"
-                        type="text"
+                        label="Website URL"
+                        type="url"
                         name="linkUrl"
                         placeholder="Enter link to the platform or website"
                     />
@@ -91,13 +92,12 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                         btnAction={generatePassword}
                     />
 
-                    {/* When pressing this button it changes the value in the password input to the generated password */}
                     <input type="hidden" name="userID" value={session?.user.id} />
                 </div>
 
                 <div className={FormStyles.FormFooter}>
                     <button className={ButtonStyles.SecondaryBtn} type="button" onClick={Cancel} disabled={isPending}>Cancel</button>
-                    <button className={ButtonStyles.PrimaryBtn} type="submit" disabled={isPending}>Add</button>
+                    <button className={ButtonStyles.PrimaryBtn} type="submit" disabled={isPending}>Save credential</button>
                 </div>
             </form>
         </div>

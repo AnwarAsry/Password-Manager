@@ -3,7 +3,6 @@
 @use "mixins"as mx;
 
 
-// DONT MOVE
 .ViewOnlyInput {
     min-height: 52px;
     height: fit-content;
@@ -11,7 +10,6 @@
     display: flex;
     align-items: center;
     gap: v.$spacing-x-sm;
-    // border: 1px solid v.$borderColor;
     border-radius: 8px;
     // box-shadow: 0 0px 4px rgb(0 0 0 / 0.1);
     background-color: #F1EFEE;
@@ -21,7 +19,6 @@
     }
 }
 
-// DONT MOVE
 .UpdateCredentialForm {
     width: 100%;
     max-width: 460px;
@@ -31,20 +28,18 @@
     gap: v.$spacing-x-big;
 }
 
-// DONT MOVE
 .FormControl {
     width: 100%;
 }
 
-// DONT MOVE
 .Label {
     margin-bottom: .3rem;
     display: block;
-    color: #747474;
+    // Change font weight (reminder)
     @include text.LabelMedium();
+    font-weight: 700;
 }
 
-// DONT MOVE
 .Input {
     width: 100%;
     height: inherit;
@@ -66,73 +61,14 @@
     }
 }
 
-// DONT MOVE
 .LoginForm {
     width: 100%;
     max-width: 360px;
 }
 
-// DONT MOVE
 .InputButtonContainer {
     height: v.$InputHeight;
     display: flex;
-    gap: v.$spacing-x-sm;
-}
-
-
-
-
-
-
-
-.Form {
-    width: 100%;
-    max-width: 460px;
-    padding: v.$spacing-md;
-    border-radius: 16px;
-    background-color: #fff;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.FormHeader {
-    margin-bottom: v.$spacing-sm;
-    display: flex;
-    align-items: center;
-}
-
-.FormContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: v.$spacing-x-big;
-}
-
-.FormFooter {
-    margin-top: 30px;
-    display: flex;
-    justify-content: flex-end;
     gap: v.$spacing-x-sm;
 }
 
@@ -144,4 +80,34 @@
     cursor: pointer;
     width: 32px;
     height: 32px;
+    border-radius: 100%;
+    background-color: #ECEEF0;
+}
+
+.Form {
+    width: 100%;
+    max-width: 800px;
+    padding: v.$spacing-lg;
+    border-radius: 16px;
+    background-color: #fff;
+}
+
+.FormHeader {
+    margin-bottom: v.$spacing-lg;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.FormContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: v.$spacing-x-big;
+}
+
+.FormFooter {
+    margin-top: v.$spacing-lg;
+    display: flex;
+    justify-content: flex-end;
+    gap: v.$spacing-x-sm;
 }
