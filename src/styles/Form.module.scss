@@ -2,13 +2,6 @@
 @use "variables"as v;
 @use "mixins"as mx;
 
-// DONT MOVE
-.Label {
-    margin-bottom: .3rem;
-    display: block;
-    color: #747474;
-    @include text.LabelMedium();
-}
 
 // DONT MOVE
 .ViewOnlyInput {
@@ -39,12 +32,22 @@
 }
 
 // DONT MOVE
-.Input {
-    // @include mx.Input(true);
-    // min-height: v.$InputHeight;
-    // height: fit-content;
+.FormControl {
     width: 100%;
-    height: v.$InputHeight;
+}
+
+// DONT MOVE
+.Label {
+    margin-bottom: .3rem;
+    display: block;
+    color: #747474;
+    @include text.LabelMedium();
+}
+
+// DONT MOVE
+.Input {
+    width: 100%;
+    height: inherit;
     padding: .4rem 1.2rem;
     outline: none;
     border: 2px solid v.$borderColor;
@@ -69,33 +72,48 @@
     max-width: 360px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-.FormControl {
-    width: 100%;
+// DONT MOVE
+.InputButtonContainer {
+    height: v.$InputHeight;
+    display: flex;
+    gap: v.$spacing-x-sm;
 }
+
+
+
+
+
+
 
 .Form {
     width: 100%;
     max-width: 460px;
     padding: v.$spacing-md;
-    border: 1px solid v.$borderColor;
     border-radius: 16px;
-
-    hr {
-        margin: v.$spacing-md 0;
-        border: 1px solid grey;
-    }
+    background-color: #fff;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .FormHeader {
@@ -112,6 +130,7 @@
 }
 
 .FormFooter {
+    margin-top: 30px;
     display: flex;
     justify-content: flex-end;
     gap: v.$spacing-x-sm;

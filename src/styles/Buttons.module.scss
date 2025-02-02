@@ -92,3 +92,23 @@
     align-items: center;
     gap: v.$spacing-sm;
 }
+
+.InputBtn {
+    cursor: pointer;
+    height: 100%;
+    padding: 0 v.$spacing-md;
+    border: none;
+    border-radius: v.$BRadius-x-sm;
+    outline: none;
+    color: #fff;
+    background-color: v.$primaryBtnColor;
+    transition: all ease-in-out 200ms;
+
+    @include text.ButtonText(small);
+    font-weight: 500;
+    letter-spacing: .1rem;
+
+    &:hover {
+        background-color: v.$primaryBtnColorHover;
+    }
+}

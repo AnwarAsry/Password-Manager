@@ -30,34 +30,30 @@ const CredentialPage = () => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     // Parameter for id
-    const params = useParams<{ id: string }>();
+    const { id } = useParams<{ id: string }>();
 
-    // const 
+    const fetchData = useCallback(async () => {
+        if (!id || !isLoading) return;
 
-    // Get the data for this page
-    useEffect(() => {
-        if (!isLoading) return
-
-        const getData = async () => {
+        try {
             setIsPageLoading(true);
-            // If parameter exist
-            if (params.id) {
-                try {
-                    const response = await getCredential(params.id)
+            const response = await getCredential(id);
 
-                    if (response.success && response.data) {
-                        setPageInfo(response.data)
-                    }
-                } catch (error) {
-                    console.log("Something went wrong with updating. Error message: ", error);
-                } finally {
-                    setIsPageLoading(false);
-                }
+            if (response.success && response.data) {
+                setPageInfo(response.data);
+            } else {
+                setPageInfo(null);
             }
+        } catch (error) {
+            console.error("Error fetching credential:", error);
+        } finally {
+            setIsPageLoading(false);
         }
+    }, [id, isLoading]);
 
-        getData();
-    }, [isLoading, params])
+    useEffect(() => {
+        fetchData();
+    }, [fetchData])
 
     // handleDelete function when clicking the delete button
     const handleDelete = useCallback(async () => {

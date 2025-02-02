@@ -58,16 +58,43 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
 
                 <div className={FormStyles.FormContent}>
                     {/* Inputs */}
-                    <FormInput label="Platform*" type="text" name="platform" placeholder="Enter the Platform name or website" />
-                    <FormInput label="Url" type="text" name="linkUrl" placeholder="Enter link to the platform or website" />
-                    <FormInput label="Username/Email address*" type="text" name="username" placeholder="Enter your Email Address or Username" />
+                    <FormInput
+                        label="Platform*"
+                        type="text"
+                        name="platform"
+                        placeholder="Enter the Platform name or website"
+                    />
 
-                    <FormInput label="Password" type="password" name="password" placeholder="Enter your Password" value={password} onChange={e => setPassword(e.target.value)} />
+                    <FormInput
+                        label="Url"
+                        type="text"
+                        name="linkUrl"
+                        placeholder="Enter link to the platform or website"
+                    />
+
+                    <FormInput
+                        label="Username/Email address*"
+                        type="text"
+                        name="username"
+                        placeholder="Enter your Email Address or Username"
+                    />
+
+                    <FormInput
+                        label="Password"
+                        type="password"
+                        name="password"
+                        placeholder="Enter your Password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        showButton
+                        buttonText="Generate password"
+                        btnAction={generatePassword}
+                    />
+
                     {/* When pressing this button it changes the value in the password input to the generated password */}
-                    <button className={ButtonStyles.PrimaryBtn} type="button" onClick={generatePassword} disabled={isPending}>Generate password</button>
                     <input type="hidden" name="userID" value={session?.user.id} />
                 </div>
-                <hr />
+
                 <div className={FormStyles.FormFooter}>
                     <button className={ButtonStyles.SecondaryBtn} type="button" onClick={Cancel} disabled={isPending}>Cancel</button>
                     <button className={ButtonStyles.PrimaryBtn} type="submit" disabled={isPending}>Add</button>
