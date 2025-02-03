@@ -27,6 +27,7 @@ export async function POST(req: Request) {
             linkUrl: body.linkUrl,
             password: body.password,
             username: body.username,
+            notes: body.notes,
             createdAt: new Date,
             updatedAt: new Date
         });

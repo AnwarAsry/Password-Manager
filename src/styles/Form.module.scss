@@ -30,6 +30,29 @@
 
 .FormControl {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.InputSpan {
+    grid-column: span 2;
+}
+
+.TextAreaInput {
+    width: 100%;
+    height: 150px;
+    padding: .7rem 1rem;
+    outline: none;
+    border: 2px solid v.$borderColor;
+    border-radius: 8px;
+    background-color: v.$InputBgc;
+
+    font-family: inherit;
+    @include text.InputText();
+
+    &:focus {
+        border-color: #268AFF;
+    }
 }
 
 .Label {
