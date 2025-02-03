@@ -57,9 +57,9 @@ export const EditableForm = ({ entityToEdit, abort, updatePageContent }: Editabl
             <FormInput name="username" label="Username/Email" type="text" defaultValue={entityToEdit.username} />
             <FormInput name="password" label="Password" type="password" defaultValue={entityToEdit.password} />
 
-            <div>
+            <div className={FormStyles.FormControl}>
                 <label className={FormStyles.Label}>Notes</label>
-                <textarea name="notes" className={FormStyles.Input} defaultValue={entityToEdit.notes}></textarea>
+                <textarea name="notes" className={FormStyles.TextAreaInput} defaultValue={entityToEdit.notes}></textarea>
             </div>
 
             {/* The category field */}

@@ -23,7 +23,7 @@ export const getAllCredentialsForUser = async (userId: string): Promise<ServerAc
 };
 
 // When you want a credentials saved call this function that takes form entries as argument
-export const createCredential = async (currentState: unknown, formData: FormData): Promise<ServerAction> => {
+export const createCredential = async (formData: FormData): Promise<ServerAction> => {
     try {
         // Payload
         const payload = Object.fromEntries(formData);

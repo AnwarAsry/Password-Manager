@@ -7,10 +7,10 @@ import { FormInput } from "./FormInput"
 import { createCredential } from "@/actions/account"
 
 import { IoIosClose } from "react-icons/io"
-import { useActionState, useState } from "react"
+import { useState } from "react"
 import { useSession } from "next-auth/react"
 import { randomBytes } from "crypto";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 
 interface IFormProps {
@@ -18,14 +18,11 @@ interface IFormProps {
 }
 
 export const CredentialsForm = ({ Cancel }: IFormProps) => {
+    const router = useRouter();
+
     // Get the id of the current user in the session
     const { data: session } = useSession();
-
-    const [state, formAction, isPending] = useActionState(createCredential, null);
-
-    if (state?.success) {
-        redirect("/dashboard");
-    }
+    const [isPending, setIsPending] = useState<boolean>(false);
 
     // Password State
     const [password, setPassword] = useState<string>("");
@@ -48,9 +45,35 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
         setPassword(pass)
     }
 
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            setIsPending(true);
+
+            if (session?.user) {
+                const formData = new FormData(e.currentTarget as HTMLFormElement);
+
+                formData.append("userID", session.user.id)
+
+                const response = await createCredential(formData)
+
+                if (response.success) {
+                    router.refresh();
+                    Cancel();
+                }
+            }
+
+            console.error("No session id");
+        } catch (err) {
+            console.log("FAILED TO ADD NEW CREDENTIAL", err);
+        } finally {
+            setIsPending(false);
+        }
+    }
+
     return <>
         <div className={FormStyles.FormBackgroundLayer}>
-            <form action={formAction} className={FormStyles.Form}>
+            <form onSubmit={handleSubmit} className={FormStyles.Form}>
                 {/* Close form icon */}
                 <div className={FormStyles.FormHeader}>
                     <h1>Add new credential to save</h1>
@@ -92,7 +115,10 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                         btnAction={generatePassword}
                     />
 
-                    <input type="hidden" name="userID" value={session?.user.id} />
+                    <div className={`${FormStyles.FormControl} ${FormStyles.InputSpan}`}>
+                        <label className={FormStyles.Label}>Note</label>
+                        <textarea className={FormStyles.TextAreaInput} name="notes"></textarea>
+                    </div>
                 </div>
 
                 <div className={FormStyles.FormFooter}>

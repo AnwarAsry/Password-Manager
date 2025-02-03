@@ -4,5 +4,6 @@ export type CreateCredentialReq = {
     linkUrl: string
     password: string
     username: string
+    notes: string
 };
   
