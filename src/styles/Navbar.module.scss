@@ -1,0 +1,12 @@
+@use "variables" as v;
+@use "mixins" as mx;
+@use "FontSets" as text;
+
+
+.Navbar {
+    width: 100%;
+}
+
+.NavList {
+    list-style: none;
+}
