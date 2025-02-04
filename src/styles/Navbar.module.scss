@@ -1,6 +1,6 @@
-@use "variables" as v;
-@use "mixins" as mx;
-@use "FontSets" as text;
+@use "variables"as v;
+@use "mixins"as mx;
+@use "FontSets"as text;
 
 
 .Navbar {
@@ -8,5 +8,17 @@
 }
 
 .NavList {
-    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-xx-sm;
+}
+
+.NavItem {
+    cursor: pointer;
+    padding: v.$spacing-x-sm;
+    border-radius: v.$BRadius-x-sm;
+
+    &:hover {
+        background-color: #ececec;
+    }
 }
