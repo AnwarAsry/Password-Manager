@@ -9,12 +9,20 @@
 .NavList {
     display: flex;
     flex-direction: column;
-    gap: v.$spacing-xx-sm;
+    gap: v.$spacing-sm;
+}
+
+.NavIcons {
+    width: 24px;
+    height: 24px;
 }
 
 .NavItem {
     cursor: pointer;
     padding: v.$spacing-x-sm;
+    display: flex;
+    align-items: center;
+    gap: v.$spacing-x-sm;
     border-radius: v.$BRadius-x-sm;
 
     &:hover {
