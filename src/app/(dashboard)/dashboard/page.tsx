@@ -8,6 +8,7 @@ import { validateSession } from "@/utils/ValidateSession";
 import { SearchBar } from "@/components/Search/SearchBar";
 import { CredentialsTable } from "@/components/Table/CredentialsTable";
 import { CredentialsAddBtn } from "@/components/CredentialsAddBtn";
+import { TableRow } from "@/components/Table/TableRow";
 
 
 const Dashboard = async () => {
@@ -27,7 +28,10 @@ const Dashboard = async () => {
                 </h5>
                 <CredentialsAddBtn addIcon text="New Item" />
             </div>
-            {res.data && <CredentialsTable entitys={res.data} />}
+
+            <CredentialsTable>
+                {res.data?.map(item => <TableRow key={item.id} entity={item} />)}
+            </CredentialsTable>
         </section>
     </>
 }
