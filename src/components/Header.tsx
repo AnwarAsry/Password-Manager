@@ -2,6 +2,7 @@ import HeaderStyles from "@/styles/Header.module.scss"
 
 import { AuthButton } from "./Login/AuthButton.client"
 import { UserCard } from "./UserCard"
+import { Navbar } from "./Navbar/Navbar"
 
 
 export const Header = () => {
@@ -11,6 +12,7 @@ export const Header = () => {
                 <h2>Password Manager</h2>
             </div>
             <div className={HeaderStyles.HeaderContent}>
+                <Navbar />
                 <AuthButton />
             </div>
             <div>
