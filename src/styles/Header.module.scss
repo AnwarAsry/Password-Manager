@@ -3,14 +3,26 @@
 
 
 .Header {
-    padding: v.$spacing-big;
+    padding: 0 v.$spacing-big;
     display: flex;
-    flex-direction: column;
-
+    grid-area: header;
+    justify-content: space-between;
+    align-items: center;
+    
     @include mx.Tablet() {
-        padding: 0 v.$spacing-big;
-        flex-direction: row;
+        gap: v.$spacing-lg;
     }
+}
+.MenuContainer {
+    flex-basis: calc(300px - v.$spacing-big);
+    
+    @include mx.Tablet() {
+        flex-basis: 0;
+        width: fit-content;
+    }
+}
+.SearchContainer {
+    flex: 1;
 }
 
 .Divider {
@@ -23,8 +35,8 @@
     }
 }
 
-.HeaderInMain {
-    height: 70px;
-    display: flex;
-    align-items: center;
-}
+// .HeaderInMain {
+//     height: 70px;
+//     display: flex;
+//     align-items: center;
+// }

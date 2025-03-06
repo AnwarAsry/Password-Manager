@@ -1,4 +1,5 @@
 @use "variables"as v;
+@use "mixins"as mx;
 
 
 .TagsContainer {
@@ -8,13 +9,23 @@
     gap: v.$spacing-xx-sm;
 }
 
-// DONT MOVE
+.SideMenuWrapper {
+    padding: 0 v.$spacing-big v.$spacing-big;
+    grid-area: menu;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include mx.Tablet() {
+        display: none;
+    }
+}
+
 .PageInfoMainContainer {
     display: flex;
     justify-content: center;
 }
 
-// DONT MOVE
 .PageInfoContainer {
     width: 100%;
     max-width: 460px;
