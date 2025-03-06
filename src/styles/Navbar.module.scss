@@ -10,6 +10,31 @@
     display: flex;
     flex-direction: column;
     gap: v.$spacing-sm;
+
+    @include mx.Tablet() {
+        width: 300px;
+        position: absolute;
+        top: 0;
+        right: -300px;
+        bottom: 0;
+        background-color: #ff8a8a;
+    }
+}
+
+.MenuIconCont {
+    display: none;
+
+    @include mx.Tablet() {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}
+
+.MenuIcon {
+    width: 32px;
+    height: 32px;
 }
 
 .NavIcons {

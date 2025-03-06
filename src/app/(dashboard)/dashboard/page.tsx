@@ -17,7 +17,7 @@ const Dashboard = async () => {
     const res = await getAllCredentialsForUser(session.user.id)
 
     return <>
-        <header className={HeaderStyles.HeaderInMain}>
+        {/* <header className={HeaderStyles.HeaderInMain}>
             <SearchBar />
         </header>
         <section>
@@ -32,7 +32,7 @@ const Dashboard = async () => {
             <CredentialsTable>
                 {res.data?.map(item => <TableRow key={item.id} entity={item} />)}
             </CredentialsTable>
-        </section>
+        </section> */}
     </>
 }
 

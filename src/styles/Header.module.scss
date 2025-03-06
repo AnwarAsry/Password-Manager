@@ -3,28 +3,24 @@
 
 
 .Header {
-    display: grid;
-    grid-template-rows: 100px auto 120px;
-}
-
-.LogoContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.HeaderContent {
-    padding: 0 v.$spacing-big;
+    padding: v.$spacing-big;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+
+    @include mx.Tablet() {
+        padding: 0 v.$spacing-big;
+        flex-direction: row;
+    }
 }
 
-.LineBreak {
-    width: 90%;
-    margin: 0 auto;
+.Divider {
+    width: 100%;
+    margin: 8px auto;
     border: 1px solid #2a2b2f1a;
+
+    @include mx.Tablet() {
+        display: none;
+    }
 }
 
 .HeaderInMain {

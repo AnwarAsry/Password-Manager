@@ -1,25 +1,33 @@
+"use client"
+
 import NavbarStyles from "@/styles/Navbar.module.scss"
 
-import Link from "next/link"
-import { IoBookmarkOutline, IoHomeOutline, IoSettingsOutline } from "react-icons/io5"
+import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
+import { IoMenu } from "react-icons/io5"
+import { NavItems } from "./NavItems"
 
 
 export const Navbar = () => {
+
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const pathname = usePathname();
+
+    const toggleNavbar = () => {
+        setIsOpen(!isOpen);
+    };
+
+    useEffect(() => {
+        setIsOpen(false);
+    }, [pathname]);
+
     return <>
         <nav className={NavbarStyles.Navbar}>
             <div className={NavbarStyles.NavList}>
-                <Link href="/dashboard" className={NavbarStyles.NavItem}>
-                    <IoHomeOutline className={NavbarStyles.NavIcons} />
-                    Home
-                </Link>
-                <Link href="/bookmark" className={NavbarStyles.NavItem}>
-                    <IoBookmarkOutline className={NavbarStyles.NavIcons} />
-                    Bookmark
-                </Link>
-                <Link href="/settings" className={NavbarStyles.NavItem}>
-                    <IoSettingsOutline className={NavbarStyles.NavIcons} />
-                    Settings
-                </Link>
+                <NavItems />
+            </div>
+            <div className={NavbarStyles.MenuIconCont}>
+                <IoMenu className={NavbarStyles.MenuIcon} onClick={toggleNavbar} />
             </div>
         </nav>
     </>

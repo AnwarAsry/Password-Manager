@@ -36,6 +36,10 @@
 
 .InputSpan {
     grid-column: span 2;
+
+    @include mx.Tablet() {
+        grid-column: auto;
+    }
 }
 
 .TextAreaInput {
@@ -126,6 +130,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: v.$spacing-x-big;
+
+    @include mx.Tablet() {
+        grid-template-columns: 1fr;
+    }
 }
 
 .FormFooter {
