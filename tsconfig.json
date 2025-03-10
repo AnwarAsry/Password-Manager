@@ -28,6 +28,7 @@
       "@/serviceBase": ["./src/serviceBase.ts"],
       "@/actions/*": ["./src/actions/*"],
       "@/hooks/*": ["./src/hooks/*"],
+      "@/contexts/*": ["./src/contexts/*"],
       "@/utils/*": ["./src/utils/*"],
       "@/auth": ["./src/auth.ts"],
     }
