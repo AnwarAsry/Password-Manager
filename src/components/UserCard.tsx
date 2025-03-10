@@ -13,8 +13,11 @@ export const UserCard = async () => {
     if (session?.user) {
         return <>
             <div className={UserCardStyles.UserCard}>
-                <Image className={UserCardStyles.profilePic} src={session.user.image!} alt="hej" width={48} height={48} />
-                <h1 className={UserCardStyles.UserCardTitle}>{session.user.name}</h1>
+                <Image className={UserCardStyles.ProfilePic} src={session.user.image!} alt="hej" width={48} height={48} />
+                <div className={UserCardStyles.UserCardLeftSide}>
+                    <p className={UserCardStyles.UserCardTitle}>{session.user.name}</p>
+                    <p className={UserCardStyles.UserCardEmail}>{session.user.email}</p>
+                </div>
             </div>
         </>
     }

@@ -7,13 +7,23 @@
     height: 70px;
     display: flex;
     align-items: center;
-    gap: v.$spacing-x-sm;
+    gap: v.$spacing-sm;
 }
 
-.profilePic {
+.ProfilePic {
     border-radius: 12px;
 }
 
+.UserCardLeftSide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+}
 .UserCardTitle {
     @include text.UserCardTitle();
+}
+.UserCardEmail {
+    @include text.LabelMedium();
+    color: #737373;
 }

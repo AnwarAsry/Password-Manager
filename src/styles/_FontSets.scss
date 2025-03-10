@@ -13,9 +13,9 @@
 }
 
 @mixin UserCardTitle() {
-    font-size: v.$fontSize-x-big;
-    font-weight: v.$fontWeight-semibold;
-    line-height: 28px;
+    font-size: v.$fontSize-md;
+    font-weight: v.$fontWeight-bold;
+    line-height: 18px;
 }
 
 @mixin TableHeaderText() {
