@@ -28,6 +28,8 @@
       "@/serviceBase": ["./src/serviceBase.ts"],
       "@/actions/*": ["./src/actions/*"],
       "@/hooks/*": ["./src/hooks/*"],
+      "@/contexts/*": ["./src/contexts/*"],
+      "@/providers/*": ["./src/providers/*"],
       "@/utils/*": ["./src/utils/*"],
       "@/auth": ["./src/auth.ts"],
     }

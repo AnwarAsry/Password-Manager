@@ -1,23 +1,23 @@
+"use client"
 import HeaderStyles from "@/styles/Header.module.scss"
+import NavbarStyles from "@/styles/Navbar.module.scss"
 
-import { AuthButton } from "./Login/AuthButton.client"
-import { UserCard } from "./UserCard"
-import { Navbar } from "./Navbar/Navbar"
+import { IoMenu } from "react-icons/io5"
+import { SearchBar } from "./Search/SearchBar"
+import { useSidebar } from "@/hooks/useSidebar"
 
 
 export const Header = () => {
+
+    const { toggleSidebar } = useSidebar();
+
     return <>
         <header className={HeaderStyles.Header}>
-            <div className={HeaderStyles.LogoContainer}>
-                <h2>Password Manager</h2>
+            <div className={HeaderStyles.MenuContainer}>
+                <IoMenu className={NavbarStyles.MenuIcon} onClick={toggleSidebar} />
             </div>
-            <div className={HeaderStyles.HeaderContent}>
-                <Navbar />
-                <AuthButton />
-            </div>
-            <div>
-                <hr className={HeaderStyles.LineBreak} />
-                <UserCard />
+            <div className={HeaderStyles.SearchContainer}>
+                <SearchBar />
             </div>
         </header >
     </>

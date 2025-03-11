@@ -3,32 +3,24 @@
 
 
 .Header {
-    display: grid;
-    grid-template-rows: 100px auto 120px;
-}
-
-.LogoContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.HeaderContent {
     padding: 0 v.$spacing-big;
     display: flex;
-    flex-direction: column;
+    grid-area: header;
     justify-content: space-between;
     align-items: center;
+    
+    @include mx.Tablet() {
+        gap: v.$spacing-lg;
+    }
 }
-
-.LineBreak {
-    width: 90%;
-    margin: 0 auto;
-    border: 1px solid #2a2b2f1a;
+.MenuContainer {
+    flex-basis: calc(270px - v.$spacing-big);
+    
+    @include mx.Tablet() {
+        flex-basis: 0;
+        width: fit-content;
+    }
 }
-
-.HeaderInMain {
-    height: 70px;
-    display: flex;
-    align-items: center;
+.SearchContainer {
+    flex: 1;
 }

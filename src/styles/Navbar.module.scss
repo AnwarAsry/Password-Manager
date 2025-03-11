@@ -3,7 +3,7 @@
 
 
 .Navbar {
-    width: 100%;
+    flex-basis: 100%;
 }
 
 .NavList {
@@ -12,9 +12,10 @@
     gap: v.$spacing-sm;
 }
 
-.NavIcons {
-    width: 24px;
-    height: 24px;
+.MenuIcon {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
 }
 
 .NavItem {
@@ -23,9 +24,52 @@
     display: flex;
     align-items: center;
     gap: v.$spacing-x-sm;
+    position: relative;
     border-radius: v.$BRadius-x-sm;
 
     &:hover {
         background-color: #ececec;
     }
+
+    &:hover .NavItemTextHover {
+        visibility: visible;
+        opacity: 1;
+        translate: 0;
+    }
+}
+.NavItemIcon {
+    width: 24px;
+    height: 24px;
+}
+.NavItemText {
+    width: 100%;
+    overflow: hidden;
+    transition: all 200ms ease-in-out;
+}
+.NavItemTextHover {
+    margin-left: v.$spacing-x-big;
+    padding: v.$spacing-xx-sm v.$spacing-x-sm;
+    position: absolute;
+    left: 100%;
+    border-radius: v.$BRadius-x-sm;
+    visibility: hidden;
+    opacity: .2;
+    color: #fff;
+    background-color: v.$primaryBtnColor;
+    translate: -0.75rem;
+    transition: all 100ms ease-in-out;
+}
+
+.Divider {
+    width: 100%;
+    margin: 8px auto;
+    border: 1px solid #2a2b2f1a;
+
+    @include mx.Tablet() {
+        display: none;
+    }
+}
+
+.Collapsed {
+    width: 0% !important;
 }
