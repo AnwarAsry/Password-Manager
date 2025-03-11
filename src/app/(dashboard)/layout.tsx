@@ -3,9 +3,10 @@ import HeaderStyles from "@/styles/Header.module.scss"
 import DashboardStyles from "@/styles/Dashboard.module.scss"
 
 import { Header } from "@/components/Header"
-import { Navbar } from "@/components/Navbar/Navbar"
+import { Sidebar } from "@/components/Navbar/Sidebar"
 import { SideMenuWrapper } from "@/components/Navbar/SideMenuWrapper"
 import { UserCard } from "@/components/UserCard"
+import { SidebarProvider } from "@/providers/SidebarProvider"
 
 
 export default function DashboardLayout({
@@ -15,12 +16,15 @@ export default function DashboardLayout({
 }) {
     return (
         <div className={LayoutStyles.DashboardLayout}>
-            <Header />
-            <SideMenuWrapper>
-                <Navbar />
-                <hr className={HeaderStyles.Divider} />
-                <UserCard />
-            </SideMenuWrapper>
+            <SidebarProvider>
+                <Header />
+                <SideMenuWrapper>
+                    <Sidebar />
+                    <hr className={HeaderStyles.Divider} />
+                    <UserCard />
+                </SideMenuWrapper>
+            </SidebarProvider>
+
             <main className={DashboardStyles.main}>
                 {children}
             </main>

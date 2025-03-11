@@ -7,7 +7,7 @@ import { NavItems } from "./NavItems"
 import { usePathname } from "next/navigation"
 
 
-export const Navbar = () => {
+export const Sidebar = () => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const pathname = usePathname()
