@@ -14,7 +14,7 @@
     }
 }
 .MenuContainer {
-    flex-basis: calc(300px - v.$spacing-big);
+    flex-basis: calc(270px - v.$spacing-big);
     
     @include mx.Tablet() {
         flex-basis: 0;
@@ -24,19 +24,3 @@
 .SearchContainer {
     flex: 1;
 }
-
-.Divider {
-    width: 100%;
-    margin: 8px auto;
-    border: 1px solid #2a2b2f1a;
-
-    @include mx.Tablet() {
-        display: none;
-    }
-}
-
-// .HeaderInMain {
-//     height: 70px;
-//     display: flex;
-//     align-items: center;
-// }

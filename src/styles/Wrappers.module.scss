@@ -10,7 +10,8 @@
 }
 
 .SideMenuWrapper {
-    padding: 0 v.$spacing-big v.$spacing-big;
+    width: fit-content;
+    padding: 0 v.$spacing-sm v.$spacing-big;
     grid-area: menu;
     display: flex;
     flex-direction: column;

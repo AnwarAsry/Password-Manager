@@ -1,5 +1,5 @@
 import LayoutStyles from "@/styles/Layout.module.scss"
-import HeaderStyles from "@/styles/Header.module.scss"
+import NavbarStyles from "@/styles/Navbar.module.scss"
 import DashboardStyles from "@/styles/Dashboard.module.scss"
 
 import { Header } from "@/components/Header"
@@ -19,8 +19,8 @@ export default function DashboardLayout({
             <SidebarProvider>
                 <Header />
                 <SideMenuWrapper>
-                    <Sidebar />
-                    <hr className={HeaderStyles.Divider} />
+                    {/* <Sidebar /> */}
+                    <hr className={NavbarStyles.Divider} />
                     <UserCard />
                 </SideMenuWrapper>
             </SidebarProvider>

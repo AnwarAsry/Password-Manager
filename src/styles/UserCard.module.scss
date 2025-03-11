@@ -15,10 +15,14 @@
 }
 
 .UserCardLeftSide {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 4px;
+    overflow: hidden;
+    transition: all 200ms ease-in-out;
 }
 .UserCardTitle {
     @include text.UserCardTitle();
