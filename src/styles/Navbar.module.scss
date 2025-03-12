@@ -21,6 +21,7 @@
     width: 32px;
     height: 32px;
     border-radius: v.$BRadius-x-sm;
+    transition: all 100ms ease-in-out;
 
     &:hover {
         background-color: rgba(136, 136, 136, 0.307);
@@ -41,7 +42,6 @@
     gap: v.$spacing-x-sm;
     position: relative;
     border-radius: v.$BRadius-x-sm;
-    // @include mx.SidebarTransition();
     transition: all 100ms ease-in-out;
 
     &:hover {

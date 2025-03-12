@@ -21,7 +21,6 @@
     flex-direction: column;
     justify-content: center;
     gap: 4px;
-    @include mx.SidebarTransition();
 }
 .UserCardTitle {
     @include text.UserCardTitle();
