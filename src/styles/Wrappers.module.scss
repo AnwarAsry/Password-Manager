@@ -10,16 +10,23 @@
 }
 
 .SideMenuWrapper {
-    width: fit-content;
+    width: 100%;
+    max-width: 270px;
     padding: 0 v.$spacing-sm v.$spacing-big;
     grid-area: menu;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @include mx.SidebarTransition();
+
+    border-right: 1px solid black;
 
     @include mx.Tablet() {
         display: none;
     }
+}
+.SideMenuWrapperColapsed {
+    width: fit-content;
 }
 
 .PageInfoMainContainer {

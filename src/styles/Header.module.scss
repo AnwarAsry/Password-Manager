@@ -13,14 +13,6 @@
         gap: v.$spacing-lg;
     }
 }
-.MenuContainer {
-    flex-basis: calc(270px - v.$spacing-big);
-    
-    @include mx.Tablet() {
-        flex-basis: 0;
-        width: fit-content;
-    }
-}
 .SearchContainer {
     flex: 1;
 }

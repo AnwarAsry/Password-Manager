@@ -6,16 +6,31 @@
     flex-basis: 100%;
 }
 
-.NavList {
+.MenuContainer {
+    margin: v.$spacing-big 0 v.$spacing-sm;
     display: flex;
-    flex-direction: column;
-    gap: v.$spacing-sm;
+    align-items: center;
+    justify-content: flex-end;
+    @include mx.SidebarTransition();
 }
-
+.MenuContainerCollapsed {
+    justify-content: center;
+}
 .MenuIcon {
     cursor: pointer;
     width: 32px;
     height: 32px;
+    border-radius: v.$BRadius-x-sm;
+
+    &:hover {
+        background-color: rgba(136, 136, 136, 0.307);
+    }
+}
+
+.NavList {
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-sm;
 }
 
 .NavItem {
@@ -26,6 +41,8 @@
     gap: v.$spacing-x-sm;
     position: relative;
     border-radius: v.$BRadius-x-sm;
+    // @include mx.SidebarTransition();
+    transition: all 100ms ease-in-out;
 
     &:hover {
         background-color: #ececec;
@@ -36,6 +53,10 @@
         opacity: 1;
         translate: 0;
     }
+
+    &.NavItemCollapsed {
+        justify-content: center;
+    }
 }
 .NavItemIcon {
     width: 24px;
@@ -43,8 +64,6 @@
 }
 .NavItemText {
     width: 100%;
-    overflow: hidden;
-    transition: all 200ms ease-in-out;
 }
 .NavItemTextHover {
     margin-left: v.$spacing-x-big;
@@ -71,5 +90,6 @@
 }
 
 .Collapsed {
-    width: 0% !important;
+    // width: 0% !important;
+    display: none !important;
 }

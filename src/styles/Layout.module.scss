@@ -20,18 +20,23 @@
 
 .DashboardLayout {
     height: 100vh;
-    display: grid;
-    grid-template-rows: 70px 1fr;
-    grid-template-columns: fit-content(270px) 1fr;
-    grid-template-areas: 
-        "header header"
-        "menu content";
+    display: flex;
 
-    @include mx.Tablet() {
-        grid-template-rows: 70px 1fr;
-        grid-template-columns: 1fr;
-        grid-template-areas: 
-            "header"
-            "content";
+    main {
+        flex-grow: 1;
     }
+    // display: grid;
+    // grid-template-rows: 70px 1fr;
+    // grid-template-columns: fit-content(270px) 1fr;
+    // grid-template-areas: 
+    //     "header header"
+    //     "menu content";
+
+    // @include mx.Tablet() {
+    //     grid-template-rows: 70px 1fr;
+    //     grid-template-columns: 1fr;
+    //     grid-template-areas: 
+    //         "header"
+    //         "content";
+    // }
 }

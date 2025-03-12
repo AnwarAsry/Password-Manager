@@ -1,5 +1,5 @@
 "use client"
-import { SidebarContext, SidebarContextType } from "@/contexts/SideContext";
+import { SidebarContext, SidebarContextType } from "@/contexts/SidebarContext";
 import { useContext } from "react";
 
 // Hook for checking collapsed or not
