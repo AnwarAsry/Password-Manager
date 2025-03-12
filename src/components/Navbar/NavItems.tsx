@@ -10,7 +10,7 @@ import { IoBookmarkOutline, IoHomeOutline, IoSettingsOutline } from "react-icons
 export const NavItems = () => {
     const { isCollapsed } = useSidebar();
     return <>
-        <Link href="/dashboard" className={NavbarStyles.NavItem}>
+        <Link href="/dashboard" className={`${NavbarStyles.NavItem} ${isCollapsed ? NavbarStyles.NavItemCollapsed : ""}`}>
             <IoHomeOutline className={NavbarStyles.NavItemIcon} />
             <span className={`${NavbarStyles.NavItemText} ${isCollapsed ? NavbarStyles.Collapsed : ""}`}>Home</span>
             {isCollapsed && (
@@ -19,7 +19,7 @@ export const NavItems = () => {
                 </div>
             )}
         </Link>
-        <Link href="/bookmark" className={NavbarStyles.NavItem}>
+        <Link href="/bookmark" className={`${NavbarStyles.NavItem} ${isCollapsed ? NavbarStyles.NavItemCollapsed : ""}`}>
             <IoBookmarkOutline className={NavbarStyles.NavItemIcon} />
             <span className={`${NavbarStyles.NavItemText} ${isCollapsed ? NavbarStyles.Collapsed : ""}`}>Bookmark</span>
             {isCollapsed && (
@@ -28,7 +28,7 @@ export const NavItems = () => {
                 </div>
             )}
         </Link>
-        <Link href="/settings" className={NavbarStyles.NavItem}>
+        <Link href="/settings" className={`${NavbarStyles.NavItem} ${isCollapsed ? NavbarStyles.NavItemCollapsed : ""}`}>
             <IoSettingsOutline className={NavbarStyles.NavItemIcon} />
             <span className={`${NavbarStyles.NavItemText} ${isCollapsed ? NavbarStyles.Collapsed : ""}`}>Settings</span>
             {isCollapsed && (

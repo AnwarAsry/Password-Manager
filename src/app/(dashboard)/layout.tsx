@@ -7,6 +7,7 @@ import { Sidebar } from "@/components/Navbar/Sidebar"
 import { SideMenuWrapper } from "@/components/Navbar/SideMenuWrapper"
 import { UserCard } from "@/components/UserCard"
 import { SidebarProvider } from "@/providers/SidebarProvider"
+import { RetractSidebarBtn } from "@/components/Navbar/RetractSidebarBtn"
 
 
 export default function DashboardLayout({
@@ -17,15 +18,16 @@ export default function DashboardLayout({
     return (
         <div className={LayoutStyles.DashboardLayout}>
             <SidebarProvider>
-                <Header />
                 <SideMenuWrapper>
-                    {/* <Sidebar /> */}
+                    <RetractSidebarBtn />
+                    <hr className={NavbarStyles.Divider} />
+                    <Sidebar />
                     <hr className={NavbarStyles.Divider} />
                     <UserCard />
                 </SideMenuWrapper>
             </SidebarProvider>
-
             <main className={DashboardStyles.main}>
+                <Header />
                 {children}
             </main>
         </div>

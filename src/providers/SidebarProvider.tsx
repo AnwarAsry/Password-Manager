@@ -1,6 +1,6 @@
 "use client";
 
-import { SidebarContext } from "@/contexts/SideContext";
+import { SidebarContext } from "@/contexts/SidebarContext";
 
 import { useState } from "react";
 

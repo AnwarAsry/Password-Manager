@@ -111,3 +111,7 @@
     right: 0;
     background-color: #1f29375f;
 }
+
+@mixin SidebarTransition() {
+    transition: all 300ms ease-in-out;
+}

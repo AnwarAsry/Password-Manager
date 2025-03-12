@@ -3,7 +3,7 @@
 @use "mixins"as mx;
 
 .UserCard {
-    width: 100%;
+    width: fit-content;
     height: 70px;
     display: flex;
     align-items: center;
@@ -21,8 +21,6 @@
     flex-direction: column;
     justify-content: center;
     gap: 4px;
-    overflow: hidden;
-    transition: all 200ms ease-in-out;
 }
 .UserCardTitle {
     @include text.UserCardTitle();
