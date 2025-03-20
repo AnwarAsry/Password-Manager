@@ -1,6 +1,6 @@
 "use client"
 import UserCardStyles from "@/styles/UserCard.module.scss"
-import NavbarStyles from "@/styles/Navbar.module.scss"
+import NavbarStyles from "@/styles/Menu/Navbar.module.scss"
 
 import avatar from "@/public/avatar.png"
 import { useSidebar } from "@/hooks/useSidebar";
@@ -16,11 +16,13 @@ export const UserCard = () => {
     // Checks if there is a session and has a user
     if (session?.user) {
         return <>
-            <div className={UserCardStyles.UserCard}>
-                <Image className={UserCardStyles.ProfilePic} src={session.user.image!} alt="hej" width={48} height={48} />
-                <div className={`${UserCardStyles.UserCardLeftSide} ${isCollapsed ? NavbarStyles.Collapsed : ""}`}>
-                    <p className={UserCardStyles.UserCardTitle}>{session.user.name}</p>
-                    <p className={UserCardStyles.UserCardEmail}>{session.user.email}</p>
+            <div className={UserCardStyles.UserCardContainer}>
+                <div className={UserCardStyles.UserCard}>
+                    <Image className={UserCardStyles.ProfilePic} src={session.user.image!} alt="Profile" width={48} height={48} />
+                    <div className={`${UserCardStyles.UserCardRightSide} ${isCollapsed ? UserCardStyles.UserCardRightSideCollapsed : ""}`}>
+                        <p className={UserCardStyles.UserCardTitle}>{session.user.name}</p>
+                        <p className={UserCardStyles.UserCardEmail}>{session.user.email}</p>
+                    </div>
                 </div>
             </div>
         </>

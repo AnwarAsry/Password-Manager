@@ -1,0 +1,60 @@
+@use "../variables" as v;
+@use "../mixins" as mx;
+
+.SidebarWrapper {
+    width: 100%;
+    max-width: 17rem;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: v.$neutral-900;
+    @include mx.SidebarTransition();
+
+    @include mx.Tablet() {
+        display: none;
+    }
+
+    &.SidebarWrapperColapsed {
+        width: 5rem;
+    }
+}
+.TopContainer {
+    padding: v.$spacing-md;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include mx.SidebarTransition();
+
+    &.TopContainerCollapsed {
+        justify-content: center;
+    }
+}
+.LogoName {
+    font-size: 1.25rem;
+    font-weight: v.$fontWeight-bold;
+}
+.LogoNameHide {
+    display: none;
+}
+.SidebarBtn {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: v.$BRadius-x-sm;
+    outline: none;
+    background-color: transparent;
+    transition: all 100ms ease-in-out;
+
+    &:hover {
+        background-color: rgba(136, 136, 136, 0.307);
+    }
+}
+.SidebarBtnIcon {
+    width: 24px;
+    height: 24px;
+    color: white;
+}

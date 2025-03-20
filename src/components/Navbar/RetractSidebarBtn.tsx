@@ -1,16 +1,21 @@
 "use client"
 
 import { useSidebar } from "@/hooks/useSidebar"
-import NavbarStyles from "@/styles/Navbar.module.scss"
+import SidebarStyles from "@/styles/Menu/Sidebar.module.scss"
 
-import { CgPushChevronLeft, CgPushChevronRight } from "react-icons/cg"
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 
 
 export const RetractSidebarBtn = () => {
     const { toggleSidebar, isCollapsed } = useSidebar();
     return <>
-        <div className={`${NavbarStyles.MenuContainer} ${isCollapsed ? NavbarStyles.MenuContainerCollapsed : ""}`}>
-            {isCollapsed ? <CgPushChevronRight className={NavbarStyles.MenuIcon} onClick={toggleSidebar} /> : <CgPushChevronLeft className={NavbarStyles.MenuIcon} onClick={toggleSidebar} />}
+        <div className={`${SidebarStyles.TopContainer} ${isCollapsed ? SidebarStyles.TopContainerCollapsed : ""}`}>
+            <p className={`${SidebarStyles.LogoName} ${isCollapsed ? SidebarStyles.LogoNameHide : ""}`}>PasswordManager</p>
+            <button className={SidebarStyles.SidebarBtn} onClick={toggleSidebar}>
+                {
+                    isCollapsed ? <IoIosArrowForward className={SidebarStyles.SidebarBtnIcon} /> : <IoIosArrowBack className={SidebarStyles.SidebarBtnIcon} />
+                }
+            </button>
         </div>
     </>
 }

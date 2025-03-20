@@ -3,7 +3,9 @@
 
 
 .main {
-    margin: v.$spacing-sm v.$spacing-xx-big 0;
+    flex: 1;
+
+    padding: 0 v.$spacing-x-big;
     display: flex;
     flex-direction: column;
     gap: v.$spacing-big;
