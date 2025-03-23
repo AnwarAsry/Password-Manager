@@ -1,17 +1,9 @@
 @use "variables"as v;
 @use "mixins"as mx;
 
-
 .Header {
-    padding: 0 v.$spacing-big;
+    padding: v.$spacing-md 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
-    @include mx.Tablet() {
-        gap: v.$spacing-lg;
-    }
-}
-.SearchContainer {
-    flex: 1;
 }

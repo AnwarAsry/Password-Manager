@@ -43,7 +43,7 @@
 }
 
 @mixin ButtonText($size) {
-    font-weight: v.$fontWeight-semibold;
+    // font-weight: v.$fontWeight-semibold;
 
     @if $size==small {
         font-size: v.$fontSize-sm;

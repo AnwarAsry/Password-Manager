@@ -4,9 +4,9 @@
 
 .main {
     flex: 1;
-
     padding: 0 v.$spacing-x-big;
-    display: flex;
-    flex-direction: column;
-    gap: v.$spacing-big;
+}
+
+.AllCredentialsSection {
+    margin-top: v.$spacing-big;
 }

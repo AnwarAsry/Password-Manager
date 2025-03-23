@@ -1,7 +1,7 @@
 import SearchBarStyles from "@/styles/SearchBar.module.scss"
 
 import { useRef, useEffect } from "react";
-import { CiSearch } from "react-icons/ci"
+import { IoSearch } from "react-icons/io5";
 
 
 interface SearchInputProps {
@@ -35,12 +35,12 @@ export const SearchInput = ({ onSearch }: SearchInputProps) => {
 
     return <>
         <form className={SearchBarStyles.SearchForm}>
-            <CiSearch className={SearchBarStyles.SearchIcon} />
+            <IoSearch className={SearchBarStyles.SearchIcon} />
             <input
                 className={SearchBarStyles.SearchInput}
                 type="text"
                 name="searchQuery"
-                placeholder="Search for platform"
+                placeholder="Search credentials..."
                 onChange={handleSearchOnChange}
                 autoComplete="off"
             />
