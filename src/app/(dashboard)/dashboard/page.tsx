@@ -15,12 +15,10 @@ const Dashboard = async () => {
 
     return <>
         <section className={DashboardStyles.AllCredentialsSection}>
-            <div className={TableStyles.TitleCallToAction}>
-                <h5 className={TableStyles.Title}>
-                    Passwords
-                    <span className={TagStyles.NumberOfRowSpan}>{res.data?.length}</span>
-                </h5>
-            </div>
+            <h5 className={TableStyles.Title}>
+                Passwords
+                <span className={TagStyles.NumberOfRowSpan}>{res.data?.length}</span>
+            </h5>
 
             <CredentialsTable>
                 {res.data?.map(item => <TableRow key={item.id} entity={item} />)}
