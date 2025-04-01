@@ -7,6 +7,7 @@ import { validateSession } from "@/utils/ValidateSession";
 
 import { CredentialsTable } from "@/components/Table/CredentialsTable";
 import { TableRow } from "@/components/Table/TableRow";
+import { FilterBtn } from "@/components/Buttons/FilterBtn";
 
 const Dashboard = async () => {
     const session = await validateSession();
@@ -15,10 +16,13 @@ const Dashboard = async () => {
 
     return <>
         <section className={DashboardStyles.AllCredentialsSection}>
-            <h5 className={TableStyles.Title}>
-                Passwords
-                <span className={TagStyles.NumberOfRowSpan}>{res.data?.length}</span>
-            </h5>
+            <div className={TableStyles.TitleAndFilter}>
+                <h5 className={TableStyles.Title}>
+                    Passwords
+                    <span className={TagStyles.NumberOfRowSpan}>{res.data?.length}</span>
+                </h5>
+                <FilterBtn />
+            </div>
 
             <CredentialsTable>
                 {res.data?.map(item => <TableRow key={item.id} entity={item} />)}
