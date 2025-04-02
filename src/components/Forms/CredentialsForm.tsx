@@ -3,7 +3,6 @@
 import FormStyles from "@/styles/Form.module.scss"
 import ButtonStyles from "@/styles/Buttons.module.scss";
 
-import { FormInput } from "./FormInput"
 import { createCredential } from "@/actions/account"
 
 import { IoIosClose } from "react-icons/io"
@@ -14,7 +13,7 @@ import { useRouter } from "next/navigation";
 
 
 interface IFormProps {
-    Cancel: () => void
+    Cancel?: () => void
 }
 
 export const CredentialsForm = ({ Cancel }: IFormProps) => {
@@ -59,7 +58,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
 
                 if (response.success) {
                     router.refresh();
-                    Cancel();
+                    if (Cancel) Cancel();
                 }
             }
 
@@ -75,49 +74,61 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
         <div className={FormStyles.FormBackgroundLayer}>
             <form onSubmit={handleSubmit} className={FormStyles.Form}>
                 {/* Close form icon */}
-                <div className={FormStyles.FormHeader}>
-                    <h1>Add new credential to save</h1>
-                    <IoIosClose className={FormStyles.CloseIcon} onClick={Cancel} />
-                </div>
+                <div>
 
-                <div className={FormStyles.FormContent}>
-                    {/* Inputs */}
-                    <FormInput
-                        label="Platform*"
-                        type="text"
-                        name="platform"
-                        placeholder="Enter the Platform name or website"
-                    />
+                    <div className={FormStyles.FormHeader}>
+                        <div>
+                            <input type="file" name="image" accept="image/*" />
+                            <input type="text" name="platform" placeholder="Name of the credential" required />
+                        </div>
+                        <IoIosClose className={FormStyles.CloseIcon} onClick={Cancel} />
+                    </div>
 
-                    <FormInput
-                        label="Website URL"
-                        type="url"
-                        name="linkUrl"
-                        placeholder="Enter link to the platform or website"
-                    />
+                    <div className={FormStyles.FormContent}>
+                        {/* Inputs */}
+                        <div>
+                            <label className={FormStyles.Label}>Email</label>
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="something@some.com"
+                                className={FormStyles.Input}
+                            />
+                        </div>
+                        <div>
+                            <label className={FormStyles.Label}>Username</label>
+                            <input
+                                type="text"
+                                name="username"
+                                placeholder="Enter your username"
+                                className={FormStyles.Input}
+                            />
+                        </div>
+                        <div>
+                            <label className={FormStyles.Label}>Password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                                placeholder="Enter your Password"
+                                className={FormStyles.Input}
+                            />
+                        </div>
+                        <div>
+                            <label className={FormStyles.Label}>Website</label>
+                            <input
+                                type="url"
+                                name="linkUrl"
+                                placeholder="Enter link to the platform or website"
+                                className={FormStyles.Input}
+                            />
+                        </div>
 
-                    <FormInput
-                        label="Username/Email address*"
-                        type="text"
-                        name="username"
-                        placeholder="Enter your Email Address or Username"
-                    />
-
-                    <FormInput
-                        label="Password"
-                        type="password"
-                        name="password"
-                        placeholder="Enter your Password"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        showButton
-                        buttonText="Generate password"
-                        btnAction={generatePassword}
-                    />
-
-                    <div className={`${FormStyles.FormControl} ${FormStyles.InputSpan}`}>
-                        <label className={FormStyles.Label}>Note</label>
-                        <textarea className={FormStyles.TextAreaInput} name="notes"></textarea>
+                        <div className={`${FormStyles.FormControl} ${FormStyles.InputSpan}`}>
+                            <label className={FormStyles.Label}>Note</label>
+                            <textarea className={FormStyles.TextAreaInput} name="notes"></textarea>
+                        </div>
                     </div>
                 </div>
 

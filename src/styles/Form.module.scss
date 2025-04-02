@@ -2,6 +2,72 @@
 @use "variables"as v;
 @use "mixins"as mx;
 
+.Form {
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    max-height: 700px;
+    padding: v.$spacing-xxx-big;
+    // display: grid;
+    // grid-template-rows: 1fr auto;
+    border-radius: v.$BRadius-sm;
+    background-color: #fff;
+}
+.FormContent {
+    // overflow-y: scroll;
+    // padding: v.$spacing-big;
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-big;
+    // border: 1px solid v.$borderColor;
+    // border-radius: 8px;
+    // box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+.Label {
+    margin-bottom: .25rem;
+    display: block;
+    color: v.$neutral-600;
+    @include text.LabelMedium();
+}
+.Input {
+    width: 100%;
+    height: 42px;
+    padding: v.$spacing-x-sm v.$spacing-sm;
+    outline: none;
+    border: 1px solid v.$borderColor;
+    border-radius: v.$BRadius-x-sm;
+    @include text.InputText();
+    &:focus {
+        border-color: #268AFF;
+    }
+    &:invalid {
+        border-width: 2px;
+        border-color: v.$InputBgcOnInvalid;
+    }
+}
+
+
+
+
+
+.FormHeader {
+    margin-bottom: v.$spacing-lg;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.FormFooter {
+    margin-top: v.$spacing-lg;
+    display: flex;
+    justify-content: flex-end;
+    gap: v.$spacing-x-sm;
+    border-top: 1px solid black;
+}
+
+
+
+
 
 .ViewOnlyInput {
     min-height: 52px;
@@ -47,7 +113,7 @@
     height: 150px;
     padding: .7rem 1rem;
     outline: none;
-    border: 2px solid v.$borderColor;
+    border: 1px solid v.$borderColor;
     border-radius: 8px;
     background-color: v.$InputBgc;
 
@@ -56,35 +122,6 @@
 
     &:focus {
         border-color: #268AFF;
-    }
-}
-
-.Label {
-    margin-bottom: .3rem;
-    display: block;
-    // Change font weight (reminder)
-    @include text.LabelMedium();
-    font-weight: 700;
-}
-
-.Input {
-    width: 100%;
-    height: inherit;
-    padding: .4rem 1.2rem;
-    outline: none;
-    border: 2px solid v.$borderColor;
-    border-radius: 8px;
-    background-color: v.$InputBgc;
-
-    @include text.InputText();
-
-    &:focus {
-        border-color: #268AFF;
-    }
-
-    &:invalid {
-        border-width: 2px;
-        border-color: v.$InputBgcOnInvalid;
     }
 }
 
@@ -109,36 +146,4 @@
     height: 32px;
     border-radius: 100%;
     background-color: #ECEEF0;
-}
-
-.Form {
-    width: 100%;
-    max-width: 800px;
-    padding: v.$spacing-lg;
-    border-radius: 16px;
-    background-color: #fff;
-}
-
-.FormHeader {
-    margin-bottom: v.$spacing-lg;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.FormContent {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: v.$spacing-x-big;
-
-    @include mx.Tablet() {
-        grid-template-columns: 1fr;
-    }
-}
-
-.FormFooter {
-    margin-top: v.$spacing-lg;
-    display: flex;
-    justify-content: flex-end;
-    gap: v.$spacing-x-sm;
 }

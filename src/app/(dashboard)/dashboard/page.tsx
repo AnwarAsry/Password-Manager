@@ -8,6 +8,7 @@ import { validateSession } from "@/utils/ValidateSession";
 import { CredentialsTable } from "@/components/Table/CredentialsTable";
 import { TableRow } from "@/components/Table/TableRow";
 import { FilterBtn } from "@/components/Buttons/FilterBtn";
+import { CredentialsForm } from "@/components/Forms/CredentialsForm";
 
 const Dashboard = async () => {
     const session = await validateSession();
@@ -28,6 +29,8 @@ const Dashboard = async () => {
                 {res.data?.map(item => <TableRow key={item.id} entity={item} />)}
             </CredentialsTable>
         </section>
+
+        <CredentialsForm />
     </>
 }
 
