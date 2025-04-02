@@ -3,8 +3,10 @@
 
 
 .main {
-    margin: v.$spacing-sm v.$spacing-xx-big 0;
-    display: flex;
-    flex-direction: column;
-    gap: v.$spacing-big;
+    flex: 1;
+    padding: 0 v.$spacing-x-big;
+}
+
+.AllCredentialsSection {
+    margin-top: v.$spacing-big;
 }

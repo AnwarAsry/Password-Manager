@@ -2,25 +2,29 @@
 @use "FontSets"as text;
 @use "mixins"as mx;
 
+.UserCardContainer {
+    padding: v.$spacing-md;
+    border-top: #e7e5e51a 2px solid;
+}
 .UserCard {
-    width: fit-content;
-    height: 70px;
     display: flex;
     align-items: center;
     gap: v.$spacing-sm;
 }
-
-.ProfilePic {
-    border-radius: 12px;
-}
-
-.UserCardLeftSide {
+.UserCardRightSide {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 4px;
+
+    &.UserCardRightSideCollapsed {
+        display: none
+    }
+}
+.ProfilePic {
+    border-radius: 12px;
 }
 .UserCardTitle {
     @include text.UserCardTitle();

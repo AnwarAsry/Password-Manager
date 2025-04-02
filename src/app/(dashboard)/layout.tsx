@@ -1,13 +1,15 @@
 import LayoutStyles from "@/styles/Layout.module.scss"
-import NavbarStyles from "@/styles/Navbar.module.scss"
 import DashboardStyles from "@/styles/Dashboard.module.scss"
+import NavbarStyles from "@/styles/Menu/Navbar.module.scss"
+import HeaderStyles from "@/styles/Header.module.scss"
 
-import { Header } from "@/components/Header"
-import { Sidebar } from "@/components/Navbar/Sidebar"
-import { SideMenuWrapper } from "@/components/Navbar/SideMenuWrapper"
+import { SideNav } from "@/components/Navbar/SideNav"
+import { SidebarWrapper } from "@/components/Navbar/SidebarWrapper"
 import { UserCard } from "@/components/UserCard"
 import { SidebarProvider } from "@/providers/SidebarProvider"
 import { RetractSidebarBtn } from "@/components/Navbar/RetractSidebarBtn"
+import { SearchBar } from "@/components/Search/SearchBar"
+import { CredentialsAddBtn } from "@/components/CredentialsAddBtn"
 
 
 export default function DashboardLayout({
@@ -18,16 +20,20 @@ export default function DashboardLayout({
     return (
         <div className={LayoutStyles.DashboardLayout}>
             <SidebarProvider>
-                <SideMenuWrapper>
+                <SidebarWrapper>
                     <RetractSidebarBtn />
                     <hr className={NavbarStyles.Divider} />
-                    <Sidebar />
-                    <hr className={NavbarStyles.Divider} />
+                    <SideNav />
                     <UserCard />
-                </SideMenuWrapper>
+                </SidebarWrapper>
             </SidebarProvider>
             <main className={DashboardStyles.main}>
-                <Header />
+                <header className={HeaderStyles.Header}>
+                    <SearchBar />
+                    <div>
+                        <CredentialsAddBtn text="Add new entry" addIcon />
+                    </div>
+                </header >
                 {children}
             </main>
         </div>

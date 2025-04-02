@@ -4,12 +4,75 @@
 
 
 .PrimaryBtn {
+    cursor: pointer;
+    padding: v.$spacing-sm v.$spacing-md;
+    display: flex;
+    align-items: center;
+    gap: v.$spacing-xx-sm;
+    outline: none;
     border: none;
+    border-radius: v.$BRadius-x-sm;    
+    font-weight: v.$fontWeight-medium;
+    color: #fff;
+    background-color: v.$primaryBtnColor;
+    transition: all ease-in-out 200ms;
+    
+    @include text.ButtonText(small);
 
-    @include mx.Btn(v.$primaryBtnColor, #fff, medium);
+    & .BtnIcon {
+        width: 16px;
+        height: 16px;
+    }
 
     &:hover {
         background-color: rgb(79, 111, 255);
+    }
+}
+.CopyBtn, .EyeBtn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    color: #909090;
+    background-color: transparent;
+
+    & .BtnIcon {
+        width: 16px;
+        height: 16px;
+    }
+
+    &:hover {
+        color: rgb(103, 103, 103);
+    }
+}
+.Filter {
+    padding: v.$spacing-x-sm v.$spacing-sm;
+    outline: none;
+    border: 1px solid v.$borderColor;
+    border-radius: v.$BRadius-sm;
+    font-size: v.$fontSize-sm;
+
+    &:focus {
+        border: 2px solid v.$primaryBtnColor;
+    }
+}
+.ProviderLogin {
+    cursor: pointer;
+    width: 100%;
+    padding: v.$spacing-md v.$spacing-sm;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: v.$spacing-xx-sm;
+    border: 1px solid v.$borderColor;
+    border-radius: 8px;
+    outline: none;
+    background-color: v.$InputBgc;
+    transition: all ease-in-out 100ms;
+
+    @include text.ButtonText(medium);
+
+    &:hover {
+        background-color: #86868638;
     }
 }
 
@@ -57,27 +120,6 @@
     background-color: transparent;
 
     @include text.ButtonText(medium);
-}
-
-.ProviderLogin {
-    cursor: pointer;
-    width: 100%;
-    padding: v.$spacing-md v.$spacing-sm;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: v.$spacing-xx-sm;
-    border: 1px solid v.$borderColor;
-    border-radius: 8px;
-    outline: none;
-    background-color: v.$InputBgc;
-    transition: all ease-in-out 100ms;
-
-    @include text.ButtonText(medium);
-
-    &:hover {
-        background-color: #86868638;
-    }
 }
 
 .Cancel {

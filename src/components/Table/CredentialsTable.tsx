@@ -7,13 +7,17 @@ export const CredentialsTable = ({
     children: React.ReactNode
 }) => {
     return <>
-        <section className={TableStyles.Table}>
-            <div className={TableStyles.TableHead}>
-                <p>Platform</p>
-                <p>Username</p>
-                <p>Password</p>
-            </div>
-            {children}
-        </section>
+        <table className={TableStyles.Table}>
+            <thead className={TableStyles.TableHead}>
+                <tr>
+                    <th>Platform</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody className={TableStyles.TableBody}>
+                {children}
+            </tbody>
+        </table>
     </>
 };
