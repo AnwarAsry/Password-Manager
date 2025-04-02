@@ -8,7 +8,7 @@ export const SideNav = () => {
             <NavItem href={"/dashboard"} label="Home" >
                 <IoHomeOutline className={NavbarStyles.NavItemIcon} />
             </NavItem>
-            <NavItem href={"/bookmarks"} label="Bookmarks" >
+            <NavItem href={"/bookmark"} label="Bookmarks" >
                 <IoBookmarkOutline className={NavbarStyles.NavItemIcon} />
             </NavItem>
             <NavItem href={"/settings"} label="Settings" >
