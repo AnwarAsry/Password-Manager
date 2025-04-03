@@ -10,6 +10,10 @@ import { useState } from "react"
 import { useSession } from "next-auth/react"
 import { randomBytes } from "crypto";
 import { useRouter } from "next/navigation";
+import { MdOutlineLockReset } from "react-icons/md";
+import { CopyBtn } from "../Buttons/CopyBtn";
+import { GeneratePasswordBtn } from "../Buttons/GeneratePasswordBtn";
+import { EyeBtn } from "../Buttons/EyeBtn";
 
 
 interface IFormProps {
@@ -74,7 +78,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
         <div className={FormStyles.FormBackgroundLayer}>
             <form onSubmit={handleSubmit} className={FormStyles.Form}>
                 {/* Close form icon */}
-                <div>
+                <div className={FormStyles.FormContent}>
 
                     <div className={FormStyles.FormHeader}>
                         <div>
@@ -84,8 +88,8 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                         <IoIosClose className={FormStyles.CloseIcon} onClick={Cancel} />
                     </div>
 
-                    <div className={FormStyles.FormContent}>
-                        {/* Inputs */}
+                    <div className={FormStyles.InputsContainer}>
+                        {/* Email */}
                         <div>
                             <label className={FormStyles.Label}>Email</label>
                             <input
@@ -95,6 +99,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                                 className={FormStyles.Input}
                             />
                         </div>
+                        {/* Username */}
                         <div>
                             <label className={FormStyles.Label}>Username</label>
                             <input
@@ -102,19 +107,28 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                                 name="username"
                                 placeholder="Enter your username"
                                 className={FormStyles.Input}
+                                autoComplete="off"
                             />
                         </div>
+                        {/* Password */}
                         <div>
                             <label className={FormStyles.Label}>Password</label>
-                            <input
-                                type="password"
-                                name="password"
-                                value={password}
-                                onChange={e => setPassword(e.target.value)}
-                                placeholder="Enter your Password"
-                                className={FormStyles.Input}
-                            />
+                            <div className={FormStyles.InputButtonContainer}>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    value={password}
+                                    onChange={e => setPassword(e.target.value)}
+                                    placeholder="Enter your Password"
+                                    className={FormStyles.Input}
+                                    autoComplete="off"
+                                />
+                                <CopyBtn value={password} />
+                                <EyeBtn />
+                                <GeneratePasswordBtn assignToInput={setPassword} />
+                            </div>
                         </div>
+                        {/* Website Link */}
                         <div>
                             <label className={FormStyles.Label}>Website</label>
                             <input
@@ -122,9 +136,10 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                                 name="linkUrl"
                                 placeholder="Enter link to the platform or website"
                                 className={FormStyles.Input}
+                                autoComplete="off"
                             />
                         </div>
-
+                        {/* Notes */}
                         <div className={`${FormStyles.FormControl} ${FormStyles.InputSpan}`}>
                             <label className={FormStyles.Label}>Note</label>
                             <textarea className={FormStyles.TextAreaInput} name="notes"></textarea>

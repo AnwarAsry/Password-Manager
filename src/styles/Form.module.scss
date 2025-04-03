@@ -7,21 +7,33 @@
     max-width: 600px;
     height: 100%;
     max-height: 700px;
-    padding: v.$spacing-xxx-big;
-    // display: grid;
-    // grid-template-rows: 1fr auto;
+    display: grid;
+    grid-template-rows: 1fr auto;
     border-radius: v.$BRadius-sm;
     background-color: #fff;
 }
+.FormHeader {
+    margin-bottom: v.$spacing-lg;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .FormContent {
-    // overflow-y: scroll;
-    // padding: v.$spacing-big;
+    padding: v.$spacing-xxx-big;
+    overflow-y: scroll;
+}
+.FormFooter {
+    padding: v.$spacing-md v.$spacing-xxx-big;
+    display: flex;
+    justify-content: flex-end;
+    gap: v.$spacing-x-sm;
+    border-top: 1px solid v.$borderColor;
+    box-shadow: 0 -1px 2px 0 rgb(0 0 0 / 0.05);
+}
+.InputsContainer {
     display: flex;
     flex-direction: column;
     gap: v.$spacing-big;
-    // border: 1px solid v.$borderColor;
-    // border-radius: 8px;
-    // box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 }
 .Label {
     margin-bottom: .25rem;
@@ -48,21 +60,10 @@
 
 
 
-
-
-.FormHeader {
-    margin-bottom: v.$spacing-lg;
+.InputButtonContainer {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-}
-
-.FormFooter {
-    margin-top: v.$spacing-lg;
-    display: flex;
-    justify-content: flex-end;
     gap: v.$spacing-x-sm;
-    border-top: 1px solid black;
 }
 
 
@@ -130,11 +131,11 @@
     max-width: 360px;
 }
 
-.InputButtonContainer {
-    height: v.$InputHeight;
-    display: flex;
-    gap: v.$spacing-x-sm;
-}
+// .InputButtonContainer {
+//     height: v.$InputHeight;
+//     display: flex;
+//     gap: v.$spacing-x-sm;
+// }
 
 .FormBackgroundLayer {
     @include mx.LayerCoverBackground();

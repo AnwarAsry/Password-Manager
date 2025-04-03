@@ -28,7 +28,7 @@
         background-color: rgb(79, 111, 255);
     }
 }
-.CopyBtn, .EyeBtn {
+.CopyBtn, .EyeBtn, .GeneratePass {
     cursor: pointer;
     outline: none;
     border: none;
@@ -75,6 +75,16 @@
         background-color: #86868638;
     }
 }
+.GeneratePass {
+    & .BtnIcon {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+
+
+
 
 .SecondaryBtn {
     border: 2px solid v.$primaryBtnColor;
