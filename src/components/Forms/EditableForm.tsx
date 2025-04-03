@@ -3,7 +3,7 @@ import FormStyles from "@/styles/Form.module.scss"
 import WrapperStyles from "@/styles/Wrappers.module.scss"
 
 import { updateCredential } from "@/actions/account";
-import { FormInput } from "@/components/Forms/FormInput";
+import { FormInput } from "@/components/Forms/Inputs";
 import { Tag } from "@/components/Tag";
 import { IAccounts } from "@/models/IAccounts";
 

@@ -2,34 +2,7 @@
 @use "variables"as v;
 @use "mixins"as mx;
 
-.Form {
-    width: 100%;
-    max-width: 600px;
-    height: 100%;
-    max-height: 700px;
-    display: grid;
-    grid-template-rows: 1fr auto;
-    border-radius: v.$BRadius-sm;
-    background-color: #fff;
-}
-.FormHeader {
-    margin-bottom: v.$spacing-lg;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.FormContent {
-    padding: v.$spacing-xxx-big;
-    overflow-y: scroll;
-}
-.FormFooter {
-    padding: v.$spacing-md v.$spacing-xxx-big;
-    display: flex;
-    justify-content: flex-end;
-    gap: v.$spacing-x-sm;
-    border-top: 1px solid v.$borderColor;
-    box-shadow: 0 -1px 2px 0 rgb(0 0 0 / 0.05);
-}
+
 .InputsContainer {
     display: flex;
     flex-direction: column;
@@ -41,6 +14,31 @@
     align-items: center;
     gap: v.$spacing-big;
 }
+.Label {
+    margin-bottom: .25rem;
+    display: block;
+    color: v.$neutral-600;
+    @include text.LabelMedium();
+}
+.Input {
+    width: 100%;
+    height: 42px;
+    padding: v.$spacing-x-sm v.$spacing-sm;
+    outline: none;
+    border: 1px solid v.$borderColor;
+    border-radius: v.$BRadius-x-sm;
+    @include text.InputText();
+    &:focus {
+        border-color: #268AFF;
+    }
+    &:invalid {
+        border-width: 2px;
+        border-color: v.$InputBgcOnInvalid;
+    }
+}
+
+
+
 
 
 .ImageUploadInput {
@@ -88,14 +86,7 @@
     }
 }
 
-.UpdateCredentialForm {
-    width: 100%;
-    max-width: 460px;
-    padding: v.$spacing-md;
-    display: flex;
-    flex-direction: column;
-    gap: v.$spacing-x-big;
-}
+
 
 .TextAreaInput {
     width: 100%;
@@ -114,25 +105,8 @@
     }
 }
 
-.LoginForm {
-    width: 100%;
-    max-width: 360px;
-}
-
 // .InputButtonContainer {
 //     height: v.$InputHeight;
 //     display: flex;
 //     gap: v.$spacing-x-sm;
 // }
-
-.FormBackgroundLayer {
-    @include mx.LayerCoverBackground();
-}
-
-.CloseIcon {
-    cursor: pointer;
-    width: 32px;
-    height: 32px;
-    border-radius: 100%;
-    background-color: #ECEEF0;
-}

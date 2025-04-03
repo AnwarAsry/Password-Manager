@@ -1,19 +1,18 @@
 "use client"
 
 import FormStyles from "@/styles/Form.module.scss"
-import ButtonStyles from "@/styles/Buttons.module.scss";
 
 import { createCredential } from "@/actions/account"
 
 import { IoIosClose } from "react-icons/io"
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import { useSession } from "next-auth/react"
-import { randomBytes } from "crypto";
+
 import { useRouter } from "next/navigation";
-import { MdOutlineLockReset } from "react-icons/md";
-import { CopyBtn } from "../Buttons/CopyBtn";
-import { GeneratePasswordBtn } from "../Buttons/GeneratePasswordBtn";
-import { EyeBtn } from "../Buttons/EyeBtn";
+import { UploadImage } from "./UploadImage";
+import { FormInput } from "../Inputs/FormInput";
+import { PasswordInput } from "../Inputs/PasswordInput";
+import { FormFooter } from "./FormFooter";
 
 
 interface IFormProps {
@@ -27,130 +26,81 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
     const { data: session } = useSession();
     const [isPending, setIsPending] = useState<boolean>(false);
 
-    // Password State
-    const [password, setPassword] = useState<string>("");
-    // Password generate
-    const generatePassword = () => {
-        // A string of characters to use in the password
-        const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789£€?!@#$%&()";
-        // Generate random bytes equal to the password length
-        const bytes = randomBytes(16);
-        // An array to store characters
-        const chars = [];
-        // Map each byte to a character from the charset
-        for (let i = 0; i < bytes.length; i++) {
-            // Modulo ensure the byte maps to a valid index in the charset
-            chars.push(charset[bytes[i] % charset.length]);
-        }
-        // Join characters to form the password
-        const pass = chars.join('');
-        // Set the value to the password state
-        setPassword(pass)
-    }
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!session?.user) return console.error("No session ID");
+
+        setIsPending(true);
         try {
-            setIsPending(true);
+            const formData = new FormData(e.currentTarget as HTMLFormElement);
+            formData.append("userID", session.user.id);
 
-            if (session?.user) {
-                const formData = new FormData(e.currentTarget as HTMLFormElement);
-
-                formData.append("userID", session.user.id)
-
-                const response = await createCredential(formData)
-
-                if (response.success) {
-                    router.refresh();
-                    if (Cancel) Cancel();
-                }
+            const response = await createCredential(formData);
+            if (response.success) {
+                router.refresh();
+                if (Cancel) Cancel();
             }
-
-            console.error("No session id");
         } catch (err) {
-            console.log("FAILED TO ADD NEW CREDENTIAL", err);
+            console.error("FAILED TO ADD NEW CREDENTIAL", err);
         } finally {
             setIsPending(false);
         }
-    }
+    }, [session, Cancel, router]);
 
     return <>
         <div className={FormStyles.FormBackgroundLayer}>
             <form onSubmit={handleSubmit} className={FormStyles.Form}>
                 {/* Close form icon */}
                 <div className={FormStyles.FormContent}>
-
                     <div className={FormStyles.FormHeader}>
-                        <div>
-                            <input type="file" name="image" accept="image/*" />
-                            <input type="text" name="platform" placeholder="Name of the credential" required />
+                        {/* Image and name of platform */}
+                        <div className={FormStyles.InputsContainerAlt}>
+                            <UploadImage />
+                            {/* Have Platform and link showcase */}
                         </div>
                         <IoIosClose className={FormStyles.CloseIcon} onClick={Cancel} />
                     </div>
 
                     <div className={FormStyles.InputsContainer}>
+                        {/* Platform */}
+                        <FormInput
+                            label="Platform"
+                            name="platform"
+                            placeholder="Platform"
+                        />
                         {/* Email */}
-                        <div>
-                            <label className={FormStyles.Label}>Email</label>
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="something@some.com"
-                                className={FormStyles.Input}
-                            />
-                        </div>
+                        <FormInput
+                            label="Email"
+                            type="email"
+                            name="email"
+                            placeholder="something@some.com"
+                        />
                         {/* Username */}
-                        <div>
-                            <label className={FormStyles.Label}>Username</label>
-                            <input
-                                type="text"
-                                name="username"
-                                placeholder="Enter your username"
-                                className={FormStyles.Input}
-                                autoComplete="off"
-                            />
-                        </div>
+                        <FormInput
+                            label="Username"
+                            name="username"
+                            placeholder="Enter your username"
+                        />
                         {/* Password */}
-                        <div>
-                            <label className={FormStyles.Label}>Password</label>
-                            <div className={FormStyles.InputButtonContainer}>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    value={password}
-                                    onChange={e => setPassword(e.target.value)}
-                                    placeholder="Enter your Password"
-                                    className={FormStyles.Input}
-                                    autoComplete="off"
-                                />
-                                <CopyBtn value={password} />
-                                <EyeBtn />
-                                <GeneratePasswordBtn assignToInput={setPassword} />
-                            </div>
-                        </div>
+                        <PasswordInput />
                         {/* Website Link */}
-                        <div>
-                            <label className={FormStyles.Label}>Website</label>
-                            <input
-                                type="url"
-                                name="linkUrl"
-                                placeholder="Enter link to the platform or website"
-                                className={FormStyles.Input}
-                                autoComplete="off"
-                            />
-                        </div>
+                        <FormInput
+                            label="Website"
+                            type="url"
+                            name="linkUrl"
+                            placeholder="Enter link to the platform or website"
+                            hasExternalLink
+                        />
                         {/* Notes */}
-                        <div className={`${FormStyles.FormControl} ${FormStyles.InputSpan}`}>
+                        <div>
                             <label className={FormStyles.Label}>Note</label>
                             <textarea className={FormStyles.TextAreaInput} name="notes"></textarea>
                         </div>
                     </div>
                 </div>
 
-                <div className={FormStyles.FormFooter}>
-                    <button className={ButtonStyles.SecondaryBtn} type="button" onClick={Cancel} disabled={isPending}>Cancel</button>
-                    <button className={ButtonStyles.PrimaryBtn} type="submit" disabled={isPending}>Save credential</button>
-                </div>
+                <FormFooter isLoading={isPending} onCancel={Cancel} />
             </form>
         </div>
     </>
