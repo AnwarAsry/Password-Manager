@@ -4,10 +4,12 @@ import createModel from "@/lib/createModel";
 export type IAccounts = {
     id: string
     userID: string
+    image?: string
     platform: string
     linkUrl: string
     password?: string
-    username: string
+    email?: string
+    username?: string
     category?: string[]
     notes?: string
     createdAt: Date
@@ -30,10 +32,12 @@ type AccountsModel = Model<AccountsDocument>;
 
 export const AccountsSchema = new Schema<AccountsDocument, AccountsModel>({
     userID: { type: String, required: true },
+    image: { type: String, required: false },
     platform: { type: String, required: true },
     linkUrl: { type: String, required: false },
     password: { type: String, required: false },
-    username: { type: String, required: true },
+    email: { type: String, required: false },
+    username: { type: String, required: false },
     category: { type: [String], default: [] },
     notes: { type: String, required: false },
     createdAt: { type: Date, required: true },

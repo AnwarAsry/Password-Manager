@@ -11,6 +11,7 @@ export const CopyBtn = ({ value }: { value: string }) => {
 
     return <>
         <button
+            type="button"
             className={ButtonStyles.CopyBtn}
             onClick={() => copyToClipboard()}
         >
