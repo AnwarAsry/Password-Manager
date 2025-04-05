@@ -89,7 +89,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                             label="Website"
                             type="url"
                             name="linkUrl"
-                            placeholder="Enter link to the platform or website"
+                            placeholder="https://www.example.com"
                             hasExternalLink
                         />
                         {/* Notes */}
