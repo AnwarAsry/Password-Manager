@@ -1,6 +1,6 @@
 import crypto from "crypto";
 
-const ENCRYPTION_KEY = Buffer.from(process.env.SECRET_KEY!, 'hex');
+const ENCRYPTION_KEY = crypto.createHash("sha256").update(process.env.SECRET_KEY!).digest();
 const IV_LENGTH = parseInt(process.env.IV_LENGTH!);
 
 export function encrypt(text: string): string {
