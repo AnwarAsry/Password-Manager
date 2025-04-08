@@ -1,6 +1,6 @@
+import { decrypt } from "@/actions/ServerActions";
 import dbConnect from "@/lib/dbConnect";
 import IAccounts from "@/models/IAccounts";
-import CryptoJS from "crypto-js";
 
 type Params = Promise<{ userId: string }>
 
@@ -29,7 +29,7 @@ export async function GET(req: Request, { params }: { params: Params}) {
         const formatedCredentials = dbSavedCredentials.map(obj => {
             if (obj.password) {
                 try {
-                    const decrypted = CryptoJS.AES.decrypt(obj.password, secretKey).toString(CryptoJS.enc.Utf8);
+                    const decrypted = decrypt(obj.password);
 
                     if (!decrypted) {
                         console.log("Decryption failed on:", obj);
