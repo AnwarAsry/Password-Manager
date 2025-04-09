@@ -5,7 +5,7 @@ import FormStyles from "@/styles/Form.module.scss"
 import { createCredential } from "@/actions/account"
 
 import { IoIosClose } from "react-icons/io"
-import { useCallback, useState } from "react"
+import { useCallback, useRef, useState } from "react"
 import { useSession } from "next-auth/react"
 
 import { useRouter } from "next/navigation";
@@ -21,23 +21,60 @@ interface IFormProps {
 
 export const CredentialsForm = ({ Cancel }: IFormProps) => {
     const router = useRouter();
+    const formRef = useRef<HTMLFormElement>(null);
+
+    const [errors, setErrors] = useState<Record<string, string>>({});
 
     // Get the id of the current user in the session
     const { data: session } = useSession();
     const [isPending, setIsPending] = useState<boolean>(false);
 
+    const [password, setPassword] = useState<string>("");
 
     const handleSubmit = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
+
         if (!session?.user) return console.error("No session ID");
 
+        const form = e.currentTarget as HTMLFormElement;
+        const formData = new FormData(form);
+
+        const platform = formData.get("platform")?.toString().trim();
+        const email = formData.get("email")?.toString().trim();
+        const password = formData.get("password")?.toString().trim();
+
+        const newErrors: Record<string, string> = {};
+
+        // Platform required
+        if (!platform) newErrors.platform = "Platform is required";
+
+        // Email validation
+        if (!email) {
+            newErrors.email = "Email is required";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            newErrors.email = "Please enter a valid email";
+        }
+
+        // Password required
+        if (!password) newErrors.password = "Password is required";
+
+        // If there are errors, stop the form and display them
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
+
+        setErrors({});
         setIsPending(true);
+
         try {
-            const formData = new FormData(e.currentTarget as HTMLFormElement);
             formData.append("userID", session.user.id);
 
             const response = await createCredential(formData);
+
             if (response.success) {
+                formRef.current?.reset();
+                setPassword("");
                 router.refresh();
                 if (Cancel) Cancel();
             }
@@ -50,7 +87,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
 
     return <>
         <div className={FormStyles.FormBackgroundLayer}>
-            <form onSubmit={handleSubmit} className={FormStyles.Form}>
+            <form ref={formRef} onSubmit={handleSubmit} className={FormStyles.Form}>
                 {/* Close form icon */}
                 <div className={FormStyles.FormContent}>
                     <div className={FormStyles.FormHeader}>
@@ -68,6 +105,8 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                             label="Platform"
                             name="platform"
                             placeholder="Platform"
+                            required
+                            error={errors.platform}
                         />
                         {/* Email */}
                         <FormInput
@@ -75,6 +114,8 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                             type="email"
                             name="email"
                             placeholder="something@some.com"
+                            required
+                            error={errors.email}
                         />
                         {/* Username */}
                         <FormInput
@@ -83,7 +124,11 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                             placeholder="Enter your username"
                         />
                         {/* Password */}
-                        <PasswordInput />
+                        <PasswordInput
+                            value={password}
+                            setValue={setPassword}
+                            error={errors.password}
+                        />
                         {/* Website Link */}
                         <FormInput
                             label="Website"
