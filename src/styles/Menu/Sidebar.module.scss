@@ -6,8 +6,6 @@
     max-width: 17rem;
     display: flex;
     flex-direction: column;
-    color: white;
-    background-color: v.$neutral-900;
     @include mx.SidebarTransition();
 
     @include mx.Tablet() {
@@ -56,5 +54,4 @@
 .SidebarBtnIcon {
     width: 24px;
     height: 24px;
-    color: white;
 }

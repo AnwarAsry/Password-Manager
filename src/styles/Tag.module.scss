@@ -41,7 +41,7 @@
 
 .NumberOfRowSpan {
     padding: v.$spacing-xx-sm v.$spacing-sm;
-    border: 1px solid black;
+    border: 1px solid v.$borderColor;
     border-radius: 100px;
 
     @include text.TableLengthNumber();

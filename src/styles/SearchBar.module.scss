@@ -44,10 +44,6 @@
     border-radius: v.$BRadius-x-sm;
     font-size: 0.875rem;
     line-height: 1.25rem;
-
-    &:focus {
-        border: 2px solid v.$danger400;
-    }
 }
 
 // .SearchResults {
