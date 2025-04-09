@@ -31,13 +31,15 @@
     &:focus {
         border-color: #268AFF;
     }
-    &:invalid {
-        border-width: 2px;
-        border-color: v.$InputBgcOnInvalid;
-    }
 }
 
-
+.ErrorText {
+    margin-top: v.$spacing-sm;
+    padding: v.$spacing-x-sm v.$spacing-sm;
+    border-radius: v.$BRadius-xx-sm;
+    color: v.$danger700;
+    background-color: v.$danger200;
+}
 
 
 
