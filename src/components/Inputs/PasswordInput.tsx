@@ -11,12 +11,14 @@ interface IPasswordInputProps {
 }
 
 export const PasswordInput = ({ value, setValue, error }: IPasswordInputProps) => {
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
     return (
         <div>
             <label className={InputStyles.Label}>Password</label>
             <div className={InputStyles.InputButtonContainer}>
                 <input
-                    type="password"
+                    type={isPasswordVisible ? "text" : "password"}
                     name="password"
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
@@ -26,7 +28,7 @@ export const PasswordInput = ({ value, setValue, error }: IPasswordInputProps) =
                     required
                 />
                 <CopyBtn value={value} />
-                <EyeBtn />
+                <EyeBtn showValueAction={() => setIsPasswordVisible(prev => !prev)} showValue={isPasswordVisible} />
                 <GeneratePasswordBtn assignToInput={setValue} />
             </div>
             {error && <p className={InputStyles.ErrorText}>{error}</p>}

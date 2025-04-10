@@ -1,16 +1,20 @@
-"use client"
-
 import ButtonStyles from "@/styles/Buttons.module.scss"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6"
 
-export const EyeBtn = () => {
+interface IEyeBtnProps {
+    showValueAction: () => void
+    showValue: boolean
+}
+
+export const EyeBtn = ({ showValueAction, showValue }: IEyeBtnProps) => {
     return <>
         <button
             type="button"
             className={ButtonStyles.EyeBtn}
+            onClick={showValueAction}
+            aria-label={showValue ? "Hide password" : "Show password"}
         >
-            <FaRegEye className={ButtonStyles.BtnIcon} />
-            <FaRegEyeSlash className={ButtonStyles.BtnIcon} />
+            {showValue ? <FaRegEyeSlash className={ButtonStyles.BtnIcon} /> : <FaRegEye className={ButtonStyles.BtnIcon} />}
         </button>
     </>
 }
