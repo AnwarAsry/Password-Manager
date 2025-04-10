@@ -1,3 +1,5 @@
+"use client"
+
 import TableStyles from "@/styles/CredentialsTable.module.scss"
 
 import { IAccounts } from "@/models/IAccounts";
@@ -6,6 +8,7 @@ import { EyeBtn } from "../Buttons/EyeBtn";
 
 import imgBils from "@/public/placeholder.png";
 import Image from "next/image";
+import { useState } from "react";
 
 
 interface TableRowProps {
@@ -13,6 +16,7 @@ interface TableRowProps {
 }
 
 export const TableRow = ({ entity }: TableRowProps) => {
+    const [showPassword, setShowPassword] = useState(false);
     return <>
         <tr className={TableStyles.TableRow}>
             <td>
@@ -27,15 +31,18 @@ export const TableRow = ({ entity }: TableRowProps) => {
             </td>
             <td>
                 <div className={TableStyles.TableRowColumn}>
-                    <span>{entity.username}</span>
-                    <CopyBtn value={entity.username} />
+                    <span>{entity.email}</span>
+                    <CopyBtn value={entity.email} />
                 </div>
             </td>
             <td>
                 <div className={TableStyles.TableRowColumn}>
-                    <span>{entity.password}</span>
+                    <span>{showPassword ? entity.password : "••••••••"}</span>
                     {entity.password && <>
-                        <EyeBtn />
+                        <EyeBtn
+                            showValue={showPassword}
+                            showValueAction={() => setShowPassword(prev => !prev)}
+                        />
                         <CopyBtn value={entity.password} />
                     </>}
                 </div>

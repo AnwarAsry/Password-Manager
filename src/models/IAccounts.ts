@@ -6,25 +6,14 @@ export type IAccounts = {
     userID: string
     image?: string
     platform: string
-    linkUrl: string
+    linkUrl?: string
     password?: string
-    email?: string
+    email: string
     username?: string
     category?: string[]
     notes?: string
     createdAt: Date
     updatedAt: Date
-};
-
-export const dummyData: IAccounts = {
-    id: "1231",
-    userID: "h45749dj",
-    platform: "Google",
-    linkUrl: "https://www.google.com",
-    password: "odsifdosdf",
-    username: "anwartest@test.com",
-    createdAt: new Date,
-    updatedAt: new Date,
 };
 
 type AccountsDocument = Document & IAccounts;
