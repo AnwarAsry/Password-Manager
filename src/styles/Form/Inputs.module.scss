@@ -40,15 +40,15 @@
     background-color: v.$danger200;
 }
 .ViewOnlyInput {
-    height: 48px;
-    padding: v.$spacing-sm v.$spacing-sm;
+    min-height: 48px;
+    padding: v.$spacing-sm v.$spacing-md;
     display: flex;
     align-items: center;
     gap: v.$spacing-x-sm;
     border-radius: 8px;
     background-color: #F1EFEE;
 
-    p {
+    a {
         font-weight: 600;
         color: v.$neutral-600;
     }
