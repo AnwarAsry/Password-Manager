@@ -9,6 +9,7 @@ import { EyeBtn } from "../Buttons/EyeBtn";
 import imgBils from "@/public/placeholder.png";
 import Image from "next/image";
 import { useState } from "react";
+import { redirect } from "next/navigation";
 
 
 interface TableRowProps {
@@ -24,7 +25,7 @@ export const TableRow = ({ entity }: TableRowProps) => {
                     <Image src={imgBils} alt="Logo" />
 
                     <p>
-                        <span>{entity.platform}</span>
+                        <span onClick={() => redirect(`/view/${entity.id}`)}>{entity.platform}</span>
                         <span><a href={entity.linkUrl} target="_blank">{entity.linkUrl}</a></span>
                     </p>
                 </div>
