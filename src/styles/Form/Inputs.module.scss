@@ -32,7 +32,6 @@
         border-color: #268AFF;
     }
 }
-
 .ErrorText {
     margin-top: v.$spacing-sm;
     padding: v.$spacing-x-sm v.$spacing-sm;
@@ -40,6 +39,26 @@
     color: v.$danger700;
     background-color: v.$danger200;
 }
+.ViewOnlyInput {
+    min-height: 48px;
+    padding: v.$spacing-sm v.$spacing-md;
+    display: flex;
+    align-items: center;
+    gap: v.$spacing-x-sm;
+    border-radius: 8px;
+    background-color: #F1EFEE;
+
+    a {
+        font-weight: 600;
+        color: v.$neutral-600;
+    }
+}
+
+
+
+
+
+
 
 
 
@@ -67,27 +86,6 @@
     align-items: center;
     gap: v.$spacing-x-sm;
 }
-
-
-
-
-
-.ViewOnlyInput {
-    min-height: 52px;
-    height: fit-content;
-    padding: .4rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: v.$spacing-x-sm;
-    border-radius: 8px;
-    // box-shadow: 0 0px 4px rgb(0 0 0 / 0.1);
-    background-color: #F1EFEE;
-
-    p {
-        font-weight: 700;
-    }
-}
-
 
 
 .TextAreaInput {

@@ -22,9 +22,11 @@ export async function POST(req: Request) {
         // Create a new Credential to save
         const createObject = new IAccounts({
             userID: body.userID,
+            image: body.image,
             platform: body.platform,
             linkUrl: body.linkUrl,
             password: body.password,
+            email: body.email,
             username: body.username,
             notes: body.notes,
             createdAt: new Date,

@@ -17,17 +17,28 @@ interface CredentialViewProps {
 export const CredentialView = ({ entity, edit, deleteFn }: CredentialViewProps) => {
     return <>
         <section className={WrapperStyles.PageInfoContainer}>
-            <h2>{entity.platform}</h2>
+            <div className={WrapperStyles.PageInfoHeader}>
+                <img
+                    className={WrapperStyles.PageInfoImage}
+                    src={entity.image}
+                    alt={entity.platform}
+                />
+                <h2>{entity.platform}</h2>
+                <a href={entity.linkUrl}>{entity.linkUrl}</a>
+            </div>
 
             <ViewOnlyField
-                label="Username/Email address:"
-                iconType={entity.username.includes("@") ? MyIconTypes.Email : MyIconTypes.User}
-                content={entity.username}
+                label="Username:"
+                content={entity.username || ""}
+            />
+
+            <ViewOnlyField
+                label="Email address:"
+                content={entity.email}
             />
 
             <ViewOnlyField
                 label="Password:"
-                iconType={MyIconTypes.Password}
                 content={entity.password || ""}
             />
 

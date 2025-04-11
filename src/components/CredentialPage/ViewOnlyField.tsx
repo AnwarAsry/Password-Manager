@@ -1,4 +1,4 @@
-import FormStyles from "@/styles/Form.module.scss";
+import InputStyles from "@/styles/Form/Inputs.module.scss";
 
 import { Icons } from "@/components/Icons";
 import { Tag } from "@/components/Tag";
@@ -15,8 +15,8 @@ interface ViewOnlyFieldProps {
 export const ViewOnlyField = ({ label, iconType, content, isCategory }: ViewOnlyFieldProps) => {
     return <>
         <div>
-            <label className={FormStyles.Label}>{label}</label>
-            <div className={FormStyles.ViewOnlyInput}>
+            <label className={InputStyles.Label}>{label}</label>
+            <div className={InputStyles.ViewOnlyInput}>
                 {iconType && <Icons type={iconType} />}
                 {
                     isCategory && Array.isArray(content)
