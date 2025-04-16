@@ -4,7 +4,6 @@ import WrapperStyles from "@/styles/Wrappers.module.scss";
 import { IAccounts } from "@/models/IAccounts"
 
 import { FiEdit } from "react-icons/fi"
-import { MyIconTypes } from "@/models/Enums";
 import { ViewOnlyField } from "./ViewOnlyField";
 
 
@@ -45,12 +44,6 @@ export const CredentialView = ({ entity, edit, deleteFn }: CredentialViewProps) 
             <ViewOnlyField
                 label="Notes:"
                 content={entity.notes || ""}
-            />
-
-            <ViewOnlyField
-                label="Categories:"
-                content={entity.category || []}
-                isCategory
             />
 
             <div className={ButtonStyles.BtnsContainer}>

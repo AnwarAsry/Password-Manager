@@ -1,10 +1,8 @@
 import ButtonStyles from "@/styles/Buttons.module.scss"
 import FormStyles from "@/styles/Form.module.scss"
-import WrapperStyles from "@/styles/Wrappers.module.scss"
 
 import { updateCredential } from "@/actions/account";
-import { FormInput } from "@/components/Forms/Inputs";
-import { Tag } from "@/components/Tag";
+import { FormInput } from "../Inputs/FormInput";
 import { IAccounts } from "@/models/IAccounts";
 
 import { useState } from "react";
@@ -17,16 +15,12 @@ interface EditableFormProps {
 }
 
 export const EditableForm = ({ entityToEdit, abort, updatePageContent }: EditableFormProps) => {
-    // State to handle what tags user has labeld
-    const [categories, setCategories] = useState<string[]>(entityToEdit.category!);
     // Handle the value of the input
     const [tagInput, setTagInput] = useState<string>("");
 
     const handleUpdate = async (e: React.FormEvent) => {
         try {
             const formData = new FormData(e.currentTarget as HTMLFormElement);
-            // Append the array as a single field
-            formData.append("category", JSON.stringify(categories));
 
             const response = await updateCredential(entityToEdit.id, formData)
 
@@ -38,37 +32,17 @@ export const EditableForm = ({ entityToEdit, abort, updatePageContent }: Editabl
         }
     }
 
-    // Handle adding a new tag
-    const addTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
-            e.preventDefault(); // Prevent form submission
-            setCategories([...categories, tagInput.trim()]); // Add tag
-            setTagInput(""); // Clear input
-        }
-    };
-    // Handle removing a tag
-    const removeTag = (index: number) => {
-        setCategories(categories.filter((tag, i) => i !== index));
-    };
-
     return <>
         <form onSubmit={handleUpdate} className={FormStyles.UpdateCredentialForm}>
-            <FormInput name="platform" label="Platform" type="text" defaultValue={entityToEdit.platform} />
-            <FormInput name="username" label="Username/Email" type="text" defaultValue={entityToEdit.username} />
-            <FormInput name="password" label="Password" type="password" defaultValue={entityToEdit.password} />
+            <FormInput name="platform" label="Platform" type="text" value={entityToEdit.platform} />
+            <FormInput name="linkUrl" label="Website" type="url" value={entityToEdit.linkUrl} />
+            <FormInput name="username" label="Username" type="text" value={entityToEdit.username} />
+            <FormInput name="email" label="Email" type="email" value={entityToEdit.email} />
+            <FormInput name="password" label="Password" type="password" value={entityToEdit.password} />
 
             <div className={FormStyles.FormControl}>
                 <label className={FormStyles.Label}>Notes</label>
                 <textarea name="notes" className={FormStyles.TextAreaInput} defaultValue={entityToEdit.notes}></textarea>
-            </div>
-
-            {/* The category field */}
-            <FormInput label="Category" type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={e => addTag(e)} />
-            {/* Display the categories */}
-            <div className={WrapperStyles.TagsContainer}>
-                {
-                    categories?.map((tag, i) => <Tag text={tag} key={i} Remove={() => removeTag(i)} />)
-                }
             </div>
 
             <div className={ButtonStyles.BtnsContainer}>

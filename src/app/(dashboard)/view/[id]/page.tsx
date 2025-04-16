@@ -76,7 +76,6 @@ const CredentialPage = () => {
             {!isEditing && pageInfo && <CredentialView entity={pageInfo} edit={() => setIsEditing(true)} deleteFn={() => setIsModalOpen(true)} />}
 
             {isEditing && pageInfo && <EditableForm entityToEdit={pageInfo} abort={() => setIsEditing(false)} updatePageContent={setPageInfo} />}
-            {/* {isEditing && pageInfo && <CredentialsForm Cancel={() => setIsEditing(false)} updateEntity={pageInfo} />} */}
 
             {!isPageLoading && !pageInfo && <h1>No Data Found</h1>}
         </main >

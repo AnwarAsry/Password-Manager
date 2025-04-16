@@ -2,56 +2,78 @@
 @use "../mixins" as mx;
 
 .SidebarWrapper {
-    width: 100%;
-    max-width: 17rem;
-    display: flex;
-    flex-direction: column;
-    @include mx.SidebarTransition();
-
-    @include mx.Tablet() {
-        display: none;
-    }
-
-    &.SidebarWrapperColapsed {
-        width: 5rem;
-    }
-}
-.TopContainer {
     padding: v.$spacing-md;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    @include mx.SidebarTransition();
-
-    &.TopContainerCollapsed {
-        justify-content: center;
-    }
+    flex-direction: column;
+    border-right: 1px solid v.$borderColor;
 }
-.LogoName {
-    font-size: 1.25rem;
-    font-weight: v.$fontWeight-bold;
-}
-.LogoNameHide {
-    display: none;
-}
-.SidebarBtn {
-    cursor: pointer;
-    width: 32px;
-    height: 32px;
+.TopContainer {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    border-radius: v.$BRadius-x-sm;
-    outline: none;
-    background-color: transparent;
-    transition: all 100ms ease-in-out;
-
-    &:hover {
-        background-color: rgba(136, 136, 136, 0.307);
-    }
+    justify-content: flex-end;
 }
-.SidebarBtnIcon {
+.SidebarIcons {
     width: 24px;
     height: 24px;
+}
+.Divider {
+    margin: v.$spacing-sm 0;
+    border: 1px solid #6b6b6b1a;
+}
+.NavList {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    // gap: v.$spacing-x-sm;
+}
+.SidebarBtn, .NavItem {
+    cursor: pointer;
+    padding: v.$spacing-x-sm v.$spacing-x-sm;
+    display: flex;
+    align-items: center;
+    border-radius: v.$BRadius-x-sm;
+    transition: all 100ms ease-in-out;
+    &:hover {
+        background-color: #96969635;
+    }
+}
+.SidebarBtn {
+    justify-content: center;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+// Work on this
+.NavItem {
+    position: relative;
+    gap: v.$spacing-sm;
+
+    &:hover .NavItemTextHover {
+        visibility: visible;
+        opacity: 1;
+        translate: 0;
+    }
+
+    // The Text squahes the icon
+    & .NavItemText {
+        width: 100%;
+        overflow: hidden;
+        @include mx.SidebarTransition();
+    }
+    & .NavItemTextCollapsed {
+        width: 0;
+        @include mx.SidebarTransition();
+    }
+}
+.NavItemTextHover {
+    margin-left: v.$spacing-x-big;
+    padding: v.$spacing-xx-sm v.$spacing-x-sm;
+    position: absolute;
+    left: 100%;
+    border-radius: v.$BRadius-x-sm;
+    visibility: hidden;
+    opacity: .2;
+    color: #fff;
+    background-color: v.$primaryBtnColor;
+    translate: -0.75rem;
+    transition: all 100ms ease-in-out;
 }

@@ -16,7 +16,18 @@
     justify-content: center;
     align-items: center;
 }
-.DashboardLayout {
-    height: 100vh;
-    display: flex;
+
+
+
+// Never Touch
+.DashboardLayoutExpanded, .DashboardLayoutCollapsed {
+    height: calc(100vh - v.$HeaderHeight);
+    display: grid;
+    @include mx.SidebarTransition();
+}
+.DashboardLayoutExpanded {
+    grid-template-columns: v.$SideNavWidth 1fr;
+}
+.DashboardLayoutCollapsed {
+    grid-template-columns: v.$SideNavWidthCollapsed 1fr;
 }
