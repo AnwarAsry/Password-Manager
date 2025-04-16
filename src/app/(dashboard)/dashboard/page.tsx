@@ -1,5 +1,4 @@
 import TableStyles from "@/styles/CredentialsTable.module.scss";
-import DashboardStyles from "@/styles/Dashboard.module.scss";
 import TagStyles from "@/styles/Tag.module.scss";
 
 import { getAllCredentialsForUser } from "@/actions/account";
@@ -15,7 +14,7 @@ const Dashboard = async () => {
     const res = await getAllCredentialsForUser(session.user.id)
 
     return <>
-        <section className={DashboardStyles.AllCredentialsSection}>
+        <section>
             <div className={TableStyles.TitleAndFilter}>
                 <h5 className={TableStyles.Title}>
                     Passwords

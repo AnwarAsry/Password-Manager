@@ -37,6 +37,7 @@
     transform: translateY(calc(1/2 * -100%));
 }
 .SearchInput {
+    height: 40px;
     width: 24rem;
     padding: v.$spacing-x-sm v.$spacing-md v.$spacing-x-sm v.$spacing-lg;
     outline: none;

@@ -1,6 +1,4 @@
 import InputStyles from "@/styles/Form/Inputs.module.scss";
-import ButtonStyles from "@/styles/Buttons.module.scss";
-import { FiExternalLink } from "react-icons/fi";
 import { LinkBtn } from "../Buttons/LinkBtn";
 
 interface IFormInputProps {

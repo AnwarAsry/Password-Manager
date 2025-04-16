@@ -9,11 +9,10 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 export const RetractSidebarBtn = () => {
     const { toggleSidebar, isCollapsed } = useSidebar();
     return <>
-        <div className={`${SidebarStyles.TopContainer} ${isCollapsed ? SidebarStyles.TopContainerCollapsed : ""}`}>
-            <p className={`${SidebarStyles.LogoName} ${isCollapsed ? SidebarStyles.LogoNameHide : ""}`}>PasswordManager</p>
+        <div className={SidebarStyles.TopContainer}>
             <button className={SidebarStyles.SidebarBtn} onClick={toggleSidebar}>
                 {
-                    isCollapsed ? <IoIosArrowForward className={SidebarStyles.SidebarBtnIcon} /> : <IoIosArrowBack className={SidebarStyles.SidebarBtnIcon} />
+                    isCollapsed ? <IoIosArrowForward className={SidebarStyles.SidebarIcons} /> : <IoIosArrowBack className={SidebarStyles.SidebarIcons} />
                 }
             </button>
         </div>

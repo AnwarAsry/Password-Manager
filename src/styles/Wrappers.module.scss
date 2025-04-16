@@ -1,6 +1,15 @@
 @use "variables"as v;
 @use "mixins"as mx;
 
+.DashboardContent {
+    padding: v.$spacing-big v.$spacing-x-big 0;
+    overflow-y: auto;
+}
+
+
+
+
+
 .TagsContainer {
     width: 100%;
     display: flex;
