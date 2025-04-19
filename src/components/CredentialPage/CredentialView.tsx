@@ -17,11 +17,6 @@ export const CredentialView = ({ entity, edit, deleteFn }: CredentialViewProps) 
     return <>
         <section className={WrapperStyles.PageInfoContainer}>
             <div className={WrapperStyles.PageInfoHeader}>
-                <img
-                    className={WrapperStyles.PageInfoImage}
-                    src={entity.image}
-                    alt={entity.platform}
-                />
                 <h2>{entity.platform}</h2>
                 <a href={entity.linkUrl}>{entity.linkUrl}</a>
             </div>

@@ -91,11 +91,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                 {/* Close form icon */}
                 <div className={FormStyles.FormContent}>
                     <div className={FormStyles.FormHeader}>
-                        {/* Image and name of platform */}
-                        <div className={FormStyles.InputsContainerAlt}>
-                            <UploadImage />
-                            {/* Have Platform and link showcase */}
-                        </div>
+                        <h2>Add new entry</h2>
                         <IoIosClose className={FormStyles.CloseIcon} onClick={Cancel} />
                     </div>
 
