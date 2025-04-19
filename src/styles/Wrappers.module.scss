@@ -2,7 +2,10 @@
 @use "mixins"as mx;
 
 .DashboardContent {
-    padding: v.$spacing-big v.$spacing-x-big 0;
+    width: 100%;
+    max-width: 1064px;
+    margin: 0 auto;
+    padding: v.$spacing-big v.$spacing-x-big v.$spacing-lg;
     overflow-y: auto;
 }
 
