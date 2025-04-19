@@ -20,7 +20,6 @@ const Dashboard = async () => {
                     Passwords
                     <span className={TagStyles.NumberOfRowSpan}>{res.data?.length}</span>
                 </h5>
-                <FilterBtn />
             </div>
 
             <CredentialsTable>

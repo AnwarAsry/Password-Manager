@@ -27,7 +27,6 @@ export default function DashboardLayout({
                 <DashboardGridLayout>
                     <aside className={SidebarStyles.SidebarWrapper}>
                         <RetractSidebarBtn />
-                        <hr className={SidebarStyles.Divider} />
                         <SideNav />
                         <hr className={SidebarStyles.Divider} />
                         <UserCard />

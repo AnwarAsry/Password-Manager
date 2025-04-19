@@ -3,13 +3,10 @@
 
 .SidebarWrapper {
     padding: v.$spacing-md;
+    position: relative;
     display: flex;
     flex-direction: column;
     border-right: 1px solid v.$borderColor;
-}
-.TopContainer {
-    display: flex;
-    justify-content: flex-end;
 }
 .SidebarIcons {
     width: 24px;
@@ -23,27 +20,34 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    // gap: v.$spacing-x-sm;
+    @include mx.SidebarTransition();
+    &.NavListCollapsed {
+        margin-top: 48px;
+    }
 }
 .SidebarBtn, .NavItem {
     cursor: pointer;
-    padding: v.$spacing-x-sm v.$spacing-x-sm;
     display: flex;
     align-items: center;
     border-radius: v.$BRadius-x-sm;
     transition: all 100ms ease-in-out;
     &:hover {
-        background-color: #96969635;
+        background-color: #ededed;
     }
 }
 .SidebarBtn {
+    padding: v.$spacing-xx-sm;
+    position: absolute;
+    right: -17px;
     justify-content: center;
-    border: none;
+    border: 1px solid v.$borderColor;
     outline: none;
-    background-color: transparent;
+    background-color: white;
+    z-index: 10;
 }
 // Work on this
 .NavItem {
+    padding: v.$spacing-x-sm;
     position: relative;
     gap: v.$spacing-sm;
 
