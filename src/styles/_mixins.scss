@@ -1,18 +1,85 @@
 @use "variables"as v;
+@use "FontSets"as text;
 
 @mixin InputBoxShadow() {
-    box-shadow: 0 8px 24px -3px rgba($color: v.$inputBoxShadow, $alpha: .05),
-        0 8px 24px -3px rgba($color: v.$inputBoxShadow, $alpha: .1);
+    box-shadow: 0 8px 24px -3px rgba($color: v.$InputBoxShadow, $alpha: .05),
+        0 8px 24px -3px rgba($color: v.$InputBoxShadow, $alpha: .1);
 }
 
-@mixin BackLink() {
+@mixin Input($border: false, $height: v.$InputHeight) {
+    width: 100%;
+    height: $height;
+    // margin-top: .7rem;
+    padding: .4rem 1.2rem;
+    border: none;
+    outline: none;
+    background-color: v.$InputBgc;
+
+    @if $border {
+        border: 1px solid v.$neutral-500;
+        border-radius: 8px;
+    }
+
+    @include text.InputText();
+
+    &:focus {
+        border-width: 2px;
+        border-color: #268AFF;
+    }
+
+    // &:valid {
+    //     border-width: 2px;
+    //     border-color: v.$InputBgcOnValid;
+    // }
+
+    &:invalid {
+        border-width: 2px;
+        border-color: v.$InputBgcOnInvalid;
+    }
+}
+
+@mixin Btn($bgc, $color, $size) {
     cursor: pointer;
-    width: fit-content;
-    display: flex;
-    align-items: center;
-    gap: v.$spacing-xx-sm;
-}
 
+    @if $size==small {
+        height: v.$sizeSmallBtn;
+        padding: 0 v.$spacing-md;
+        gap: v.$spacing-xx-sm;
+    }
+
+    @else if $size==medium {
+        height: v.$sizeMediumBtn;
+        padding: 0 v.$spacing-x-big;
+        gap: v.$spacing-x-sm;
+    }
+
+    @else if $size==large {
+        height: v.$sizeLargeBtn;
+        padding: 0 v.$spacing-xxx-big;
+        gap: v.$spacing-x-sm;
+
+    }
+
+    @else {
+        @error "Unkown button size: #{$size}";
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: v.$BRadius-sm;
+    outline: none;
+
+    font-weight: v.$fontWeight-semibold;
+
+    color: $color;
+    background-color: $bgc;
+
+    transition: all ease-in-out 200ms;
+
+    @include text.ButtonText($size);
+}
 
 @mixin Tablet {
     @media (max-width: #{v.$tabletWidth}) {
@@ -30,4 +97,21 @@
     @media (max-width: #{v.$mobilePortraitWidth}) {
         @content;
     }
+}
+
+@mixin LayerCoverBackground() {
+    padding: 0 v.$spacing-big;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #1f29375f;
+}
+
+@mixin SidebarTransition() {
+    transition: all 200ms ease-in-out;
 }

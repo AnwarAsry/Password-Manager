@@ -1,6 +1,7 @@
-import Link from "next/link"
-import LinksStyles from "@/styles/Links.module.scss"
 import { IoArrowBackOutline } from "react-icons/io5"
+
+import Link from "next/link"
+
 
 interface IBackLinkProps {
     hrefLink: string
@@ -10,7 +11,7 @@ interface IBackLinkProps {
 export const BackLink = ({ hrefLink, text }: IBackLinkProps) => {
 
     return <>
-        <div className={LinksStyles.BackLink}>
+        <div className="BackLink">
             <IoArrowBackOutline className="icon" />
             <Link href={hrefLink}>{text}</Link>
         </div>

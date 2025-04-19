@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react";
-import { CredentialsForm } from "./CredentialsForm";
 import ButtonStyles from "@/styles/Buttons.module.scss";
 import { HiPlus } from "react-icons/hi";
+import { CredentialsForm } from "./Forms/CredentialsForm";
+import { useState } from "react";
 
 interface ICredentialsAddBtnProps {
     text?: string
@@ -16,9 +16,9 @@ export const CredentialsAddBtn = ({ text, addIcon }: ICredentialsAddBtnProps) =>
 
     return <>
         <button className={ButtonStyles.PrimaryBtn} onClick={() => setShowForm(true)}>
-            {addIcon && <HiPlus />} {text}
+            {addIcon && <HiPlus className={ButtonStyles.BtnIcon} />}
+            {text}
         </button>
-
         {showForm && <CredentialsForm Cancel={() => setShowForm(false)} />}
     </>
 }

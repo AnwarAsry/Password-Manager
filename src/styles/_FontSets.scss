@@ -13,9 +13,9 @@
 }
 
 @mixin UserCardTitle() {
-    font-size: v.$fontSize-x-big;
-    font-weight: v.$fontWeight-semibold;
-    line-height: 28px;
+    font-size: v.$fontSize-md;
+    font-weight: v.$fontWeight-bold;
+    line-height: 18px;
 }
 
 @mixin TableHeaderText() {
@@ -42,10 +42,27 @@
     line-height: 24px;
 }
 
-@mixin ButtonText() {
-    font-size: v.$fontSize-md;
-    font-weight: v.$fontWeight-semibold;
-    line-height: 18px;
+@mixin ButtonText($size) {
+    // font-weight: v.$fontWeight-semibold;
+
+    @if $size==small {
+        font-size: v.$fontSize-sm;
+        line-height: 16px;
+    }
+
+    @else if $size==medium {
+        font-size: v.$fontSize-md;
+        line-height: 18px;
+    }
+
+    @else if $size==large {
+        font-size: v.$fontSize-md;
+        line-height: 18px;
+    }
+
+    @else {
+        @error "Unkown button size: #{$size}";
+    }
 }
 
 @mixin TagText() {

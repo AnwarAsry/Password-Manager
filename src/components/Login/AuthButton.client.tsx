@@ -1,7 +1,9 @@
 "use client"
 
-import { signIn, signOut, useSession } from "next-auth/react"
 import ButtonStyles from "@/styles/Buttons.module.scss"
+
+import { signIn, signOut, useSession } from "next-auth/react"
+
 
 export const AuthButton = () => {
 

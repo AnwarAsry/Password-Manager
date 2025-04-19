@@ -26,25 +26,18 @@ export const getAllCredentialsForUser = async (userId: string): Promise<ServerAc
 export const createCredential = async (formData: FormData): Promise<ServerAction> => {
     try {
         // Payload
-        const payload = {
-            platform: formData.get("platform"),
-            username: formData.get("username"),
-            password: formData.get("password"),
-            notes: formData.get("notes"),
-            userID: formData.get("userID"),
-            category: JSON.parse(formData.get("category") as string), // This is an array
-        };
+        const payload = Object.fromEntries(formData);
         
-        // // Send the form entries via post
+        // Send the form entries via post
         const response = await post("/credential/item", payload)
 
-        // // Check if the Server did not succeed in creating
+        // Check if the Server did not succeed in creating
         if (!response.success) {
             // Return unsuccessfull message
             return { success: false, message: "Server Error" };
         }
 
-        // // Return successfull
+        // Return successfull
         return response;
     } catch (error) {
         // Return unsuccessfull message

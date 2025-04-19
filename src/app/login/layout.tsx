@@ -1,4 +1,4 @@
-import LoginStyles from "@/styles/login.module.scss"
+import LayoutStyles from "@/styles/Layout.module.scss"
 
 export default function LoginLayout({
     children
@@ -6,7 +6,7 @@ export default function LoginLayout({
     children: React.ReactNode
 }) {
     return (
-        <main className={LoginStyles.LoginLayout}>
+        <main className={LayoutStyles.LoginLayout}>
             {children}
         </main>
     )

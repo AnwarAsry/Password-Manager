@@ -1,7 +1,15 @@
-import DashboardStyles from "@/styles/Dashboard.module.scss"
+import HeaderStyles from "@/styles/Header.module.scss"
+import SidebarStyles from "@/styles/Menu/Sidebar.module.scss"
+import WrapperStyles from "@/styles/Wrappers.module.scss"
+
+import { SideNav } from "@/components/Navbar/SideNav"
 import { UserCard } from "@/components/UserCard"
+import { SidebarProvider } from "@/providers/SidebarProvider"
+import { RetractSidebarBtn } from "@/components/Navbar/RetractSidebarBtn"
+import { SearchBar } from "@/components/Search/SearchBar"
 import { CredentialsAddBtn } from "@/components/CredentialsAddBtn"
-import { AuthButton } from "@/components/AuthButton.client"
+import { DashboardGridLayout } from "@/components/Layouts/DashboardGridLayout"
+
 
 export default function DashboardLayout({
     children
@@ -9,23 +17,25 @@ export default function DashboardLayout({
     children: React.ReactNode
 }) {
     return (
-        <div className={DashboardStyles.Layout}>
-            <header className={DashboardStyles.header}>
-                <div className={DashboardStyles.HeaderContent}>
-                    <div className={DashboardStyles.HeaderContent}>
-                        <h2>Password Manager</h2>
-                        <CredentialsAddBtn text="ADD PASSWORD" />
-                    </div>
-                    <AuthButton />
-                </div>
-                <div>
-                    <hr className={DashboardStyles.LineBreak} />
-                    <UserCard />
-                </div>
-            </header>
-            <main className={DashboardStyles.main}>
-                {children}
-            </main>
-        </div>
+        <>
+            <header className={HeaderStyles.Header}>
+                <p className={HeaderStyles.LogoName}>PasswordManager</p>
+                <SearchBar />
+                <CredentialsAddBtn text="Add new entry" addIcon />
+            </header >
+            <SidebarProvider>
+                <DashboardGridLayout>
+                    <aside className={SidebarStyles.SidebarWrapper}>
+                        <RetractSidebarBtn />
+                        <SideNav />
+                        <hr className={SidebarStyles.Divider} />
+                        <UserCard />
+                    </aside>
+                    <main className={WrapperStyles.DashboardContent}>
+                        {children}
+                    </main>
+                </DashboardGridLayout>
+            </SidebarProvider>
+        </>
     )
 }

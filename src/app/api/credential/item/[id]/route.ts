@@ -2,7 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import IAccounts from "@/models/IAccounts";
 import { UpdateCredentialReq } from "@/models/request/UpdateCredentialReq";
 import { NextRequest } from "next/server";
-import CryptoJS from "crypto-js";
+import { decrypt, encrypt } from "@/actions/ServerActions";
 
 type Params = Promise<{ id: string }>
 
@@ -15,8 +15,6 @@ export async function GET(req: NextRequest, { params }: { params: Params}) {
         const parameters = await params;
         const id = parameters.id;
 
-        const secretKey = process.env.SECRET_KEY as string;
-
         // Find object by id
         const dbCredentialFound = await IAccounts.findById(id);
 
@@ -27,7 +25,7 @@ export async function GET(req: NextRequest, { params }: { params: Params}) {
         
         // Decrypt the password for the user to see
         if (dbCredentialFound.password) {
-            const decrypted = CryptoJS.AES.decrypt(dbCredentialFound.password, secretKey).toString(CryptoJS.enc.Utf8)
+            const decrypted = decrypt(dbCredentialFound.password);
             dbCredentialFound.password = decrypted;
         }
 
@@ -78,8 +76,7 @@ export async function PUT(req: Request, { params }: { params: Params}) {
         // Have in mind that this password is decrypted and needs to encrypt
         if (body.password) {
             // Encrypt the password
-            const secretKey = process.env.SECRET_KEY as string;
-            const encrypted = CryptoJS.AES.encrypt(body.password, secretKey).toString();
+            const encrypted = encrypt(body.password);
 
             // Change the password value to the encryption value
             body.password = encrypted;
@@ -87,6 +84,9 @@ export async function PUT(req: Request, { params }: { params: Params}) {
 
         // Update object
         const updatedCredential = await IAccounts.findByIdAndUpdate(id, { $set: {
+            image: body.image,
+            linkUrl: body.linkUrl,
+            email: body.email,
             platform: body.platform,
             username: body.username,
             password: body.password,

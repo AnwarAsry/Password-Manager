@@ -1,0 +1,83 @@
+@use "../variables" as v;
+@use "../mixins" as mx;
+
+.SidebarWrapper {
+    padding: v.$spacing-md;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid v.$borderColor;
+}
+.SidebarIcons {
+    width: 24px;
+    height: 24px;
+}
+.Divider {
+    margin: v.$spacing-sm 0;
+    border: 1px solid #6b6b6b1a;
+}
+.NavList {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    @include mx.SidebarTransition();
+    &.NavListCollapsed {
+        margin-top: 48px;
+    }
+}
+.SidebarBtn, .NavItem {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: v.$BRadius-x-sm;
+    transition: all 100ms ease-in-out;
+    &:hover {
+        background-color: #ededed;
+    }
+}
+.SidebarBtn {
+    padding: v.$spacing-xx-sm;
+    position: absolute;
+    right: -17px;
+    justify-content: center;
+    border: 1px solid v.$borderColor;
+    outline: none;
+    background-color: white;
+    z-index: 10;
+}
+// Work on this
+.NavItem {
+    padding: v.$spacing-x-sm;
+    position: relative;
+    gap: v.$spacing-sm;
+
+    &:hover .NavItemTextHover {
+        visibility: visible;
+        opacity: 1;
+        translate: 0;
+    }
+
+    // The Text squahes the icon
+    & .NavItemText {
+        width: 100%;
+        overflow: hidden;
+        @include mx.SidebarTransition();
+    }
+    & .NavItemTextCollapsed {
+        width: 0;
+        @include mx.SidebarTransition();
+    }
+}
+.NavItemTextHover {
+    margin-left: v.$spacing-x-big;
+    padding: v.$spacing-xx-sm v.$spacing-x-sm;
+    position: absolute;
+    left: 100%;
+    border-radius: v.$BRadius-x-sm;
+    visibility: hidden;
+    opacity: .2;
+    color: #fff;
+    background-color: v.$primaryBtnColor;
+    translate: -0.75rem;
+    transition: all 100ms ease-in-out;
+}

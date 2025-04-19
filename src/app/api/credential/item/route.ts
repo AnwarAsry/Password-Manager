@@ -1,7 +1,7 @@
+import { encrypt } from "@/actions/ServerActions";
 import dbConnect from "@/lib/dbConnect";
 import IAccounts from "@/models/IAccounts"
 import { CreateCredentialReq } from "@/models/request/CreateCredentialReq";
-import CryptoJS from "crypto-js"
 
 export async function POST(req: Request) {
     await dbConnect();
@@ -13,8 +13,7 @@ export async function POST(req: Request) {
         // If password is not empty
         if (body.password) {
             // Encrypt the password
-            const secretKey = process.env.SECRET_KEY as string;
-            const encrypted = CryptoJS.AES.encrypt(body.password, secretKey).toString();
+            const encrypted = encrypt(body.password);
 
             // Change the password value to the encryption value
             body.password = encrypted;
@@ -23,11 +22,13 @@ export async function POST(req: Request) {
         // Create a new Credential to save
         const createObject = new IAccounts({
             userID: body.userID,
+            image: body.image,
             platform: body.platform,
+            linkUrl: body.linkUrl,
             password: body.password,
+            email: body.email,
             username: body.username,
             notes: body.notes,
-            category: body.category,
             createdAt: new Date,
             updatedAt: new Date
         });

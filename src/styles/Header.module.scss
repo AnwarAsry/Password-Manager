@@ -1,0 +1,15 @@
+@use "variables"as v;
+@use "mixins"as mx;
+
+.Header {
+    padding: v.$spacing-md v.$spacing-sm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid v.$borderColor;
+}
+.LogoName {
+    height: fit-content;
+    font-size: 1.25rem;
+    font-weight: v.$fontWeight-bold;
+}

@@ -1,15 +1,18 @@
 import FormStyles from "@/styles/Form.module.scss"
+
 import { providerMap } from "@/auth";
-import { ProviderButton } from "@/components/ProviderButton";
+import { ProviderButton } from "@/components/Login/ProviderButton";
 
 // For future make input fields as credentials for login
 
 const LoginPage = () => {
     return <>
-        <form className={FormStyles.FormLogin}>
-            {
-                Object.values(providerMap).map(provider => <ProviderButton provider={provider} key={provider.id} />)
-            }
+        <form className={FormStyles.LoginForm}>
+            <div>
+                {
+                    Object.values(providerMap).map(provider => <ProviderButton provider={provider} key={provider.id} />)
+                }
+            </div>
         </form>
     </>
 }

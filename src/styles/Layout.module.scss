@@ -1,0 +1,33 @@
+@use "./variables"as v;
+@use "./mixins"as mx;
+
+.LandingPageLayout {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: v.$spacing-xxx-big;
+}
+.LoginLayout {
+    height: 100vh;
+    padding: v.$spacing-big;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+// Never Touch
+.DashboardLayoutExpanded, .DashboardLayoutCollapsed {
+    height: calc(100vh - v.$HeaderHeight);
+    display: grid;
+    @include mx.SidebarTransition();
+}
+.DashboardLayoutExpanded {
+    grid-template-columns: v.$SideNavWidth 1fr;
+}
+.DashboardLayoutCollapsed {
+    grid-template-columns: v.$SideNavWidthCollapsed 1fr;
+}

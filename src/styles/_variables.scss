@@ -13,14 +13,14 @@ $fontSize-xx-lg: 2.5rem;
 $fontSize-xxx-lg: 2.75rem;
 $fontSize-huge: 3.25rem;
 
-//FONT WEIGHT
+// FONT WEIGHT
 $fontWeight-extrabold: 800;
 $fontWeight-bold: 700;
 $fontWeight-semibold: 600;
 $fontWeight-medium: 500;
 $fontWeight-normal: 400;
 
-//SPACING
+// SPACING
 $spacing-xx-sm: 4px;
 $spacing-x-sm: 8px;
 $spacing-sm: 12px;
@@ -38,6 +38,24 @@ $spacing-x-huge: 128px;
 $spacing-xx-huge: 160px;
 $spacing-xxx-huge: 192px;
 
+// BORDER RADIUS
+$BRadius-xx-sm: 4px;
+$BRadius-x-sm: 8px;
+$BRadius-sm: 12px;
+$BRadius-md: 16px;
+$BRadius-big: 20px;
+$BRadius-x-big: 24px;
+$BRadius-xx-big: 28px;
+$BRadius-xxx-big: 32px;
+$BRadius-lg: 40px;
+$BRadius-x-lg: 48px;
+$BRadius-xx-lg: 64px;
+$BRadius-xxx-lg: 80px;
+$BRadius-huge: 96px;
+$BRadius-x-huge: 128px;
+$BRadius-xx-huge: 160px;
+$BRadius-xxx-huge: 192px;
+
 // COLORS
 $primaryBtnColor: #2E54FF;
 $primaryBtnColorHover: rgb(79, 111, 255);
@@ -47,16 +65,15 @@ $tableHeaderBgc: #26272B;
 $tableRow: #212226;
 $tableTextColor: #9CA3AF;
 
+$danger200: #FECACA;
 $danger400: #F87171;
+$danger500: #EF4444;
 $danger600: #DC2626;
+$danger700: #B91C1C;
 $headerBgc: #212226;
 $tagBgc: #2A2B2F;
 
 $formBgc: #212226;
-
-$inputBgc: #2A2B2F;
-$inputBgcOnFocus: #373743;
-$inputBoxShadow: #101828;
 $searchInpBgc: #2A2B2F;
 $searchResultBgc: #212226;
 $searchResultOnFocus: #2F3137;
@@ -77,3 +94,24 @@ $neutral-900: #111827;
 $tabletWidth: 1024px;
 $mobileLandscapeWidth: 768px;
 $mobilePortraitWidth: 480px;
+
+$borderColor: #e3e3e3;
+
+// INPUT
+$InputHeight: 52px;
+$InputBgc: transparent;
+$InputBgcOnFocus: #268AFF;
+$InputBgcOnValid: #37DC94;
+$InputBgcOnInvalid: #FA5C65;
+$InputBoxShadow: #101828;
+
+// BUTTON
+$sizeSmallBtn: 32px;
+$sizeMediumBtn: 44px;
+$sizeLargeBtn: 52px;
+
+
+// WIDTHS
+$HeaderHeight: 73px;
+$SideNavWidth: 272px;
+$SideNavWidthCollapsed: 73px;

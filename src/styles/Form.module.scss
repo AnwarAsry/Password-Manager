@@ -2,234 +2,121 @@
 @use "variables"as v;
 @use "mixins"as mx;
 
-@mixin Input($height: 42px) {
+.Form {
     width: 100%;
-    height: $height;
-    border: none;
-    outline: none;
-    background-color: transparent;
-
-    @include text.InputText();
+    max-width: 600px;
+    height: 100%;
+    max-height: 700px;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    border-radius: v.$BRadius-sm;
+    background-color: #fff;
 }
-
-@mixin LabelContainer($elementOnFocus, $alignLabel: center, $height: 42px) {
-    width: 100%;
-    max-width: 460px;
-    height: $height;
-    display: flex;
-    align-items: $alignLabel;
-    gap: v.$spacing-x-big;
-    border-radius: 8px;
-    background-color: v.$inputBgc;
-
-    @include mx.InputBoxShadow();
-
-    @if $elementOnFocus==input {
-        &:has(input:focus) {
-            background-color: v.$inputBgcOnFocus;
-        }
-    }
-
-    @if $elementOnFocus==textarea {
-        &:has(textarea:focus) {
-            background-color: v.$inputBgcOnFocus;
-        }
-    }
-}
-
-.FormLogin {
-    width: fit-content;
-    padding: v.$spacing-md;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px 0 rgba(16, 24, 40, 0.06);
-    background-color: v.$formBgc;
-}
-
-.ProviderLogin {
-    min-width: 150px;
-    padding: v.$spacing-md v.$spacing-sm;
-
-    font-size: v.$fontSize-md;
-    font-weight: v.$fontWeight-semibold;
-
-    // border: 2px solid #bdbdbd;
-    border: none;
-    border-radius: 8px;
-    outline: none;
-    background-color: v.$inputBgc;
-    
-    &:hover {
-        cursor: pointer;
-        background-color: v.$inputBgcOnFocus;
-    }
-}
-
-.formBackground {
-    padding: v.$spacing-md;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 100;
-    background-color: rgba(22, 22, 22, 0.5);
-}
-
 .FormHeader {
-    width: 100%;
-}
-
-.SubmitForm {
-    width: 460px;
-    padding: v.$spacing-md;
+    margin-bottom: v.$spacing-lg;
     display: flex;
-    flex-direction: column;
-    gap: v.$spacing-x-big;
-    border-radius: 12px;
-    background-color: v.$formBgc;
-
-    hr {
-        border: 1px solid v.$inputBgc;
-
-        @include mx.Tablet {
-            width: 100%;
-            // height: 100;
-        }
-    }
-
-    @include mx.Tablet {
-        width: 100%;
-        height: fit-content;
-        max-height: 100%;
-        align-items: center;
-        overflow-y: scroll;
-        // height: 100;
-    }
+    justify-content: space-between;
 }
-
-.SubmitFormAlt {
-    width: 100%;
-    max-width: 460px;
-    display: flex;
-    flex-direction: column;
-    gap: v.$spacing-x-big;
-    border-radius: 12px;
-
-    hr {
-        border: 1px solid v.$inputBgc;
-    }
+.FormContent {
+    padding: v.$spacing-xxx-big;
+    overflow-y: scroll;
 }
-
-.LabelContainer {
-    padding: 0 v.$spacing-sm;
-    @include LabelContainer(input);
-}
-
-.Input {
-    @include Input();
-}
-
-.LabelTextareaContainer {
-    padding: v.$spacing-sm;
-    @include LabelContainer(textarea, flex-start, fit-content);
-}
-
-.FormTextarea {
-    @include Input(100px);
-}
-
-.closeIcon {
-    cursor: pointer;
-    width: 32px;
-    height: 32px;
-}
-
-.tagsContainer {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: v.$spacing-xx-sm;
-}
-
-.BtnsContainer {
-    width: 100%;
-    max-width: 460px;
+.FormFooter {
+    padding: v.$spacing-md v.$spacing-xxx-big;
     display: flex;
     justify-content: flex-end;
     gap: v.$spacing-x-sm;
+    border-top: 1px solid v.$borderColor;
+    box-shadow: 0 -1px 2px 0 rgb(0 0 0 / 0.05);
+}
+.InputsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-big;
+}
+.InputsContainerAlt {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: v.$spacing-big;
 }
 
-.SearchContainer {
-    height: 70px;
+
+.ImageUploadInput {
+    cursor: pointer;
+    width: 120px;
+    height: 80px;
+    padding: v.$spacing-md;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    position: relative;
-    z-index: 1;
+    border: 1px solid v.$borderColor;
+    border-radius: 8px;
+    color: v.$neutral-400;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+.HideInput {
+    display: none;
 }
 
-.SearchForm {
-    width: 100%;
-    height: 48px;
-    padding: 0 v.$spacing-sm;
+
+.InputButtonContainer {
     display: flex;
     align-items: center;
-    gap: v.$spacing-sm;
-    border-radius: 8px;
-    background-color: v.$searchInpBgc;
+    gap: v.$spacing-x-sm;
 }
 
-.SearchIcon {
-    width: 20px;
-    height: 20px;
-    color: v.$neutral-400;
-}
 
-.SearchInput {
-    @include Input();
-}
 
-.SearchResults {
+
+
+
+.UpdateCredentialForm {
     width: 100%;
-    height: fit-content;
-    padding: 20px 0 12px;
+    max-width: 460px;
+    padding: v.$spacing-md;
     display: flex;
     flex-direction: column;
-    gap: v.$spacing-x-sm;
-    position: absolute;
-    z-index: -1;
-    top: 48px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    list-style: none;
-    border-radius: 0 0 8px 8px;
-    background-color: v.$searchResultBgc;
+    gap: v.$spacing-x-big;
+}
 
-    li {
-        cursor: pointer;
-        height: fit-content;
-        padding: 4px 12px;
+.TextAreaInput {
+    width: 100%;
+    height: 150px;
+    padding: .7rem 1rem;
+    outline: none;
+    border: 1px solid v.$borderColor;
+    border-radius: 8px;
+    background-color: v.$InputBgc;
 
-        &:hover {
-            background-color: v.$searchResultOnFocus;
-        }
+    font-family: inherit;
+    @include text.InputText();
+
+    &:focus {
+        border-color: #268AFF;
     }
 }
 
-.Result {
-    height: 34px;
-    display: flex;
+.LoginForm {
+    width: 100%;
+    max-width: 360px;
+}
 
-    div {
-        flex-grow: 1;
-    }
+// .InputButtonContainer {
+//     height: v.$InputHeight;
+//     display: flex;
+//     gap: v.$spacing-x-sm;
+// }
 
-    p {
-        color: v.$neutral-400;
-    }
+.FormBackgroundLayer {
+    @include mx.LayerCoverBackground();
+}
+
+.CloseIcon {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background-color: #ECEEF0;
 }
