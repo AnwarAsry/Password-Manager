@@ -3,7 +3,7 @@
 @use "mixins"as mx;
 
 
-.PrimaryBtn {
+@mixin Btn($Bgc, $HoverColor) {
     cursor: pointer;
     padding: v.$spacing-sm v.$spacing-md;
     display: flex;
@@ -14,7 +14,7 @@
     border-radius: v.$BRadius-x-sm;    
     font-weight: v.$fontWeight-medium;
     color: #fff;
-    background-color: v.$primaryBtnColor;
+    background-color: $Bgc;
     transition: all ease-in-out 200ms;
     
     @include text.ButtonText(small);
@@ -25,8 +25,21 @@
     }
 
     &:hover {
-        background-color: rgb(79, 111, 255);
+        background-color: $HoverColor;
     }
+}
+
+
+.PrimaryBtn {
+    @include Btn(v.$primaryBtnColor, rgb(79, 111, 255));
+}
+.SecondaryBtn {
+    @include Btn(transparent, rgb(243, 243, 243));
+    border: 1px solid v.$borderColor;
+    color: black;
+}
+.DeleteBtnPrimary {
+    @include Btn(v.$danger500, v.$danger700);
 }
 .CopyBtn, .EyeBtn, .GeneratePass, .LinkBtn {
     cursor: pointer;
@@ -81,60 +94,16 @@
         height: 24px;
     }
 }
-.SecondaryBtn {
-    cursor: pointer;
-    padding: v.$spacing-sm v.$spacing-md;
+.BtnsContainer {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    gap: v.$spacing-xx-sm;
-    outline: none;
-    border: 1px solid v.$borderColor;
-    border-radius: v.$BRadius-x-sm;    
-    font-weight: v.$fontWeight-medium;
-    background-color: transparent;
-    transition: all ease-in-out 200ms;
-    
-    @include text.ButtonText(small);
-
-    & .BtnIcon {
-        width: 16px;
-        height: 16px;
-    }
-
-    &:hover {
-        background-color: rgb(243, 243, 243);
-    }
+    gap: v.$spacing-sm;
 }
 
 
 
 
-
-
-
-
-.DeleteBtnPrimary {
-    border: none;
-
-    @include mx.Btn(v.$danger500, #fff, medium);
-
-    &:hover {
-        background-color: v.$danger700;
-    }
-
-}
-
-.DeleteBtn {
-    border: 2px solid v.$danger400;
-
-    @include mx.Btn(transparent, v.$danger400, medium);
-
-    &:hover {
-        color: #f5f5f5;
-        border-color: v.$danger600;
-        background-color: v.$danger600;
-    }
-}
 
 .LogoutBtn {
     cursor: pointer;
@@ -146,37 +115,4 @@
     background-color: transparent;
 
     @include text.ButtonText(medium);
-}
-
-.Cancel {
-    border: 1px solid rgb(99, 99, 99);
-
-    @include mx.Btn(transparent, black, medium);
-}
-
-.BtnsContainer {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: v.$spacing-sm;
-}
-
-.InputBtn {
-    cursor: pointer;
-    height: 100%;
-    padding: 0 v.$spacing-md;
-    border: none;
-    border-radius: v.$BRadius-x-sm;
-    outline: none;
-    color: #fff;
-    background-color: v.$primaryBtnColor;
-    transition: all ease-in-out 200ms;
-
-    @include text.ButtonText(small);
-    font-weight: 500;
-    letter-spacing: .1rem;
-
-    &:hover {
-        background-color: v.$primaryBtnColorHover;
-    }
 }

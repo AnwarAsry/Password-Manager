@@ -9,6 +9,7 @@ import { RetractSidebarBtn } from "@/components/Navbar/RetractSidebarBtn"
 import { SearchBar } from "@/components/Search/SearchBar"
 import { CredentialsAddBtn } from "@/components/CredentialsAddBtn"
 import { DashboardGridLayout } from "@/components/Layouts/DashboardGridLayout"
+import { AuthButton } from "@/components/Login/AuthButton.client"
 
 
 export default function DashboardLayout({

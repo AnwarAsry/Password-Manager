@@ -54,9 +54,9 @@ export const ConfirmationModal = ({
                 </div>
                 <p className={ModalStyles.ConfirmationMessage}>{message}</p>
 
-                <div className={`${ButtonStyles.BtnsContainer} ${ModalStyles.ConfirmationFooter}`}>
+                <div className={ModalStyles.ConfirmationFooter}>
                     <button
-                        className={ButtonStyles.Cancel}
+                        className={ButtonStyles.SecondaryBtn}
                         onClick={onClose}
                     >
                         {cancelText}

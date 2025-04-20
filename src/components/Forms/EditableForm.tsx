@@ -2,6 +2,7 @@
 
 import ButtonStyles from "@/styles/Buttons.module.scss"
 import FormStyles from "@/styles/Form.module.scss"
+import InputStyles from "@/styles/Form/Inputs.module.scss"
 
 import { updateCredential } from "@/actions/account";
 import { FormInput } from "../Inputs/FormInput";
@@ -47,9 +48,9 @@ export const EditableForm = ({ entityToEdit, abort, updatePageContent }: Editabl
             {/* <FormInput name="password" label="Password" type="password" defaultValue={entityToEdit.password} /> */}
             <PasswordInput value={password} setValue={setPassword} />
 
-            <div className={FormStyles.FormControl}>
-                <label className={FormStyles.Label}>Notes</label>
-                <textarea name="notes" className={FormStyles.TextAreaInput} defaultValue={entityToEdit.notes}></textarea>
+            <div>
+                <label className={InputStyles.Label}>Notes</label>
+                <textarea name="notes" className={InputStyles.TextAreaInput} defaultValue={entityToEdit.notes}></textarea>
             </div>
 
             <div className={ButtonStyles.BtnsContainer}>

@@ -1,25 +1,17 @@
 @use "./variables"as v;
 @use "./mixins"as mx;
 
-.LandingPageLayout {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: v.$spacing-xxx-big;
-}
-.LoginLayout {
+.LoginLayout, .LandingPageLayout {
     height: 100vh;
     padding: v.$spacing-big;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-
-
-// Never Touch
+.LandingPageLayout {
+    flex-direction: column;
+    gap: v.$spacing-xxx-big;
+}
 .DashboardLayoutExpanded, .DashboardLayoutCollapsed {
     height: calc(100vh - v.$HeaderHeight);
     display: grid;

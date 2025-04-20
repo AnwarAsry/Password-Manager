@@ -9,6 +9,10 @@
 // The Name increses the height of the card
 .UserCardRightSide {
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     line-height: 16px;
     overflow: hidden;
     @include mx.SidebarTransition();

@@ -45,13 +45,12 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
         <div className={FormStyles.FormBackgroundLayer}>
             <form action={formAction} ref={formRef} className={FormStyles.Form}>
                 {/* Close form icon */}
+                <div className={FormStyles.FormHeader}>
+                    <h2>Add new entry</h2>
+                    <IoIosClose className={FormStyles.CloseIcon} onClick={Cancel} />
+                </div>
                 <div className={FormStyles.FormContent}>
-                    <div className={FormStyles.FormHeader}>
-                        <h2>Add new entry</h2>
-                        <IoIosClose className={FormStyles.CloseIcon} onClick={Cancel} />
-                    </div>
-
-                    <div className={FormStyles.InputsContainer}>
+                    <div className={InputStyles.InputsContainer}>
                         {/* Platform */}
                         <FormInput
                             label="Platform"
@@ -90,12 +89,11 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                         />
                         {/* Notes */}
                         <div>
-                            <label className={FormStyles.Label}>Note</label>
-                            <textarea className={FormStyles.TextAreaInput} name="notes"></textarea>
+                            <label className={InputStyles.Label}>Note</label>
+                            <textarea className={InputStyles.TextAreaInput} name="notes"></textarea>
                         </div>
                     </div>
                 </div>
-
                 <FormFooter isLoading={pending} onCancel={Cancel} />
             </form>
         </div>
