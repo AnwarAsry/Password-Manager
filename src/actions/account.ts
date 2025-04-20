@@ -1,5 +1,6 @@
+import { CredentialFormSchema } from "@/lib/definitions";
 import { IAccounts } from "@/models/IAccounts";
-import { ServerAction, ServerActionResponse } from "@/models/responses/ServerAction";
+import { FormState, ServerAction, ServerActionResponse } from "@/models/responses/ServerAction";
 import { get, post, put, remove } from "@/serviceBase";
 
 // Fetch all Credentials saved by user
@@ -23,7 +24,19 @@ export const getAllCredentialsForUser = async (userId: string): Promise<ServerAc
 };
 
 // When you want a credentials saved call this function that takes form entries as argument
-export const createCredential = async (formData: FormData): Promise<ServerAction> => {
+export const createCredential = async (formState: FormState, formData: FormData): Promise<FormState> => {
+    const validatedFields = CredentialFormSchema.safeParse({
+        platform: formData.get("platform"),
+        email: formData.get("email"),
+    });
+
+    if (!validatedFields.success) {
+        // Return unsuccessfull message
+        return {
+            errors: validatedFields.error.flatten().fieldErrors,
+        }
+    }
+
     try {
         // Payload
         const payload = Object.fromEntries(formData);
@@ -106,30 +119,45 @@ export const deleteCredential = async (id: string): Promise<ServerAction> => {
 }
 
 // Update request for updating a credential based on id
-export const updateCredential = async (id: string, formData: FormData): Promise<ServerActionResponse<IAccounts | null>> => {
-    try {
+export function updateCredential(id: string) {
+    return async (prevState: FormState, formData: FormData): Promise<FormState> => {
+        const validatedFields = CredentialFormSchema.safeParse({
+            platform: formData.get('platform'),
+            email: formData.get('email'),
+        });
+  
+        if (!validatedFields.success) {
+            return {
+                success: false,
+                errors: validatedFields.error.flatten().fieldErrors,
+            };
+        }
+
         // Payload
         const payload = {
             platform: formData.get("platform"),
+            email: formData.get("email"),
             username: formData.get("username"),
             password: formData.get("password"),
+            linkUrl: formData.get("linkUrl"),
             notes: formData.get("notes"),
             category: JSON.parse(formData.get("category") as string)  // This is an array
         };
+        
+        try {
+            const response = await put(`/credential/item/${id}`, payload);
+  
+            if (!response.success) {
+                return {
+                    success: false,
+                    message: 'Server Error.',
+                };
+            }
 
-        // Send the id as param and obj with values to update
-        const response = await put(`/credential/item/${id}`, payload);
-
-        // Check if the Server did not succeed in searching
-        if (!response.success) {
+            return response
+        } catch (error) {
             // Return unsuccessfull message
-            return { success: false, data: null, message: "Server Error" };
+            return { success: false, data: null, message: JSON.stringify(error)};
         }
-
-        // Return successfull
-        return response;
-    } catch (error) {
-        // Return unsuccessfull message
-        return { success: false, data: null, message: JSON.stringify(error)};
-    }
+    };
 }

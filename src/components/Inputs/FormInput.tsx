@@ -7,13 +7,13 @@ interface IFormInputProps {
     type?: string;
     placeholder?: string;
     value?: string;
+    defaultValue?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     hasExternalLink?: boolean;
     required?: boolean;
-    error?: string;
 }
 
-export const FormInput = ({ label, name, type = "text", placeholder, value, onChange, hasExternalLink, required, error }: IFormInputProps) => {
+export const FormInput = ({ label, name, type = "text", placeholder, value, defaultValue, onChange, hasExternalLink, required }: IFormInputProps) => {
     return <>
         <div>
             <label className={InputStyles.Label}>{label}</label>
@@ -22,6 +22,7 @@ export const FormInput = ({ label, name, type = "text", placeholder, value, onCh
                 name={name}
                 placeholder={placeholder}
                 value={value}
+                defaultValue={defaultValue}
                 onChange={onChange}
                 className={InputStyles.Input}
                 autoComplete="off"
@@ -31,7 +32,6 @@ export const FormInput = ({ label, name, type = "text", placeholder, value, onCh
                 <LinkBtn value={value} />
             )}
 
-            {error && <p className={InputStyles.ErrorText}>{error}</p>}
         </div>
     </>
 };

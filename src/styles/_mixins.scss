@@ -110,6 +110,7 @@
     left: 0;
     right: 0;
     background-color: #1f29375f;
+    z-index: 100;
 }
 
 @mixin SidebarTransition() {

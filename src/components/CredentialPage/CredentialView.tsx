@@ -33,7 +33,7 @@ export const CredentialView = ({ entity, edit, deleteFn }: CredentialViewProps) 
 
             <ViewOnlyField
                 label="Password:"
-                content={entity.password || ""}
+                content={entity.password ? "••••••••" : ""}
             />
 
             <ViewOnlyField
