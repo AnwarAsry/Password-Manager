@@ -1,3 +1,4 @@
+"use client"
 import InputStyles from "@/styles/Form/Inputs.module.scss";
 import { useState } from "react";
 import { CopyBtn } from "../Buttons/CopyBtn";
@@ -7,10 +8,9 @@ import { EyeBtn } from "../Buttons/EyeBtn";
 interface IPasswordInputProps {
     value: string;
     setValue: (value: string) => void;
-    error?: string;
 }
 
-export const PasswordInput = ({ value, setValue, error }: IPasswordInputProps) => {
+export const PasswordInput = ({ value, setValue }: IPasswordInputProps) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     return (
@@ -31,7 +31,6 @@ export const PasswordInput = ({ value, setValue, error }: IPasswordInputProps) =
                 <EyeBtn showValueAction={() => setIsPasswordVisible(prev => !prev)} showValue={isPasswordVisible} />
                 <GeneratePasswordBtn assignToInput={setValue} />
             </div>
-            {error && <p className={InputStyles.ErrorText}>{error}</p>}
         </div>
     );
 };

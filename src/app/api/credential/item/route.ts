@@ -1,10 +1,18 @@
 import { encrypt } from "@/actions/ServerActions";
+import { auth } from "@/auth";
 import dbConnect from "@/lib/dbConnect";
 import IAccounts from "@/models/IAccounts"
 import { CreateCredentialReq } from "@/models/request/CreateCredentialReq";
 
 export async function POST(req: Request) {
     await dbConnect();
+
+    const session = await auth();
+    const userID = session?.user?.id;
+
+    if (!userID) {
+        return new Response(JSON.stringify({ success: false, message: "Unauthorized" }));
+    }
 
     try {
         // Get the data passed through body and turn it into an object
@@ -21,7 +29,7 @@ export async function POST(req: Request) {
 
         // Create a new Credential to save
         const createObject = new IAccounts({
-            userID: body.userID,
+            userID,
             image: body.image,
             platform: body.platform,
             linkUrl: body.linkUrl,
@@ -29,8 +37,6 @@ export async function POST(req: Request) {
             email: body.email,
             username: body.username,
             notes: body.notes,
-            createdAt: new Date,
-            updatedAt: new Date
         });
 
         // Save the updataed database

@@ -84,19 +84,34 @@ export async function PUT(req: Request, { params }: { params: Params}) {
 
         // Update object
         const updatedCredential = await IAccounts.findByIdAndUpdate(id, { $set: {
-            image: body.image,
-            linkUrl: body.linkUrl,
-            email: body.email,
             platform: body.platform,
+            email: body.email,
             username: body.username,
             password: body.password,
+            linkUrl: body.linkUrl,
             notes: body.notes,
             category: body.category,
-            updatedAt: new Date
-        }}, { new: true });        
+        }}, { new: true });
+
+        if (!updatedCredential) {
+            return new Response(JSON.stringify({ success: false, message: "Credential not found." }));
+        }
+
+        const returnObject = {
+            id: updatedCredential.id,
+            platform: updatedCredential.platform,
+            email: updatedCredential.email,
+            username: updatedCredential.username,
+            linkUrl: updatedCredential.linkUrl,
+            notes: updatedCredential.notes,
+            category: updatedCredential.category,
+            createdAt: updatedCredential.createdAt,
+            updatedAt: updatedCredential.updatedAt,
+            password: updatedCredential.password ? decrypt(updatedCredential.password) : ""
+        }
 
         // Return successfull
-        return new Response(JSON.stringify({success: true, data: updatedCredential, message: "Updated Credentials" }));
+        return new Response(JSON.stringify({success: true, data: returnObject, message: "Updated Credentials" }));
     } catch (error) {
         // Return unsuccessfull message        
         return new Response(JSON.stringify({success: false, message: JSON.stringify(error)}));

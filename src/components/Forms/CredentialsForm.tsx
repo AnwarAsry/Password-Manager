@@ -1,18 +1,18 @@
 "use client"
 
 import FormStyles from "@/styles/Form.module.scss"
+import InputStyles from "@/styles/Form/Inputs.module.scss"
 
 import { createCredential } from "@/actions/account"
 
 import { IoIosClose } from "react-icons/io"
-import { useCallback, useRef, useState } from "react"
-import { useSession } from "next-auth/react"
+import { useActionState, useEffect, useRef, useState } from "react"
 
 import { useRouter } from "next/navigation";
-import { UploadImage } from "./UploadImage";
 import { FormInput } from "../Inputs/FormInput";
 import { PasswordInput } from "../Inputs/PasswordInput";
 import { FormFooter } from "./FormFooter";
+import { FormState } from "@/models/responses/ServerAction"
 
 
 interface IFormProps {
@@ -22,72 +22,28 @@ interface IFormProps {
 export const CredentialsForm = ({ Cancel }: IFormProps) => {
     const router = useRouter();
     const formRef = useRef<HTMLFormElement>(null);
-
-    const [errors, setErrors] = useState<Record<string, string>>({});
-
-    // Get the id of the current user in the session
-    const { data: session } = useSession();
-    const [isPending, setIsPending] = useState<boolean>(false);
-
     const [password, setPassword] = useState<string>("");
 
-    const handleSubmit = useCallback(async (e: React.FormEvent) => {
-        e.preventDefault();
+    const initialState: FormState = {
+        success: false,
+        message: "",
+        errors: {},
+    };
 
-        if (!session?.user) return console.error("No session ID");
+    const [state, formAction, pending] = useActionState(createCredential, initialState);
 
-        const form = e.currentTarget as HTMLFormElement;
-        const formData = new FormData(form);
-
-        const platform = formData.get("platform")?.toString().trim();
-        const email = formData.get("email")?.toString().trim();
-        const password = formData.get("password")?.toString().trim();
-
-        const newErrors: Record<string, string> = {};
-
-        // Platform required
-        if (!platform) newErrors.platform = "Platform is required";
-
-        // Email validation
-        if (!email) {
-            newErrors.email = "Email is required";
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            newErrors.email = "Please enter a valid email";
+    useEffect(() => {
+        if (state?.success) {
+            formRef.current?.reset();
+            setPassword("");
+            router.refresh();
+            if (Cancel) Cancel();
         }
-
-        // Password required
-        if (!password) newErrors.password = "Password is required";
-
-        // If there are errors, stop the form and display them
-        if (Object.keys(newErrors).length > 0) {
-            setErrors(newErrors);
-            return;
-        }
-
-        setErrors({});
-        setIsPending(true);
-
-        try {
-            formData.append("userID", session.user.id);
-
-            const response = await createCredential(formData);
-
-            if (response.success) {
-                formRef.current?.reset();
-                setPassword("");
-                router.refresh();
-                if (Cancel) Cancel();
-            }
-        } catch (err) {
-            console.error("FAILED TO ADD NEW CREDENTIAL", err);
-        } finally {
-            setIsPending(false);
-        }
-    }, [session, Cancel, router]);
+    }, [state]);
 
     return <>
         <div className={FormStyles.FormBackgroundLayer}>
-            <form ref={formRef} onSubmit={handleSubmit} className={FormStyles.Form}>
+            <form action={formAction} ref={formRef} className={FormStyles.Form}>
                 {/* Close form icon */}
                 <div className={FormStyles.FormContent}>
                     <div className={FormStyles.FormHeader}>
@@ -102,8 +58,8 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                             name="platform"
                             placeholder="Platform"
                             required
-                            error={errors.platform}
                         />
+                        {state?.errors?.platform && (<p className={InputStyles.ErrorText}>{state.errors.platform}</p>)}
                         {/* Email */}
                         <FormInput
                             label="Email"
@@ -111,8 +67,8 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                             name="email"
                             placeholder="something@some.com"
                             required
-                            error={errors.email}
                         />
+                        {state?.errors?.email && (<p className={InputStyles.ErrorText}>{state.errors.email}</p>)}
                         {/* Username */}
                         <FormInput
                             label="Username"
@@ -123,7 +79,6 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                         <PasswordInput
                             value={password}
                             setValue={setPassword}
-                            error={errors.password}
                         />
                         {/* Website Link */}
                         <FormInput
@@ -141,7 +96,7 @@ export const CredentialsForm = ({ Cancel }: IFormProps) => {
                     </div>
                 </div>
 
-                <FormFooter isLoading={isPending} onCancel={Cancel} />
+                <FormFooter isLoading={pending} onCancel={Cancel} />
             </form>
         </div>
     </>
