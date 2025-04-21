@@ -2,11 +2,10 @@ import TableStyles from "@/styles/CredentialsTable.module.scss";
 import TagStyles from "@/styles/Tag.module.scss";
 
 import { getAllCredentialsForUser } from "@/actions/account";
-import { validateSession } from "@/utils/ValidateSession";
+import { validateSession } from "@/lib/ValidateSession";
 
 import { CredentialsTable } from "@/components/Table/CredentialsTable";
 import { TableRow } from "@/components/Table/TableRow";
-import { FilterBtn } from "@/components/Buttons/FilterBtn";
 
 const Dashboard = async () => {
     const session = await validateSession();
