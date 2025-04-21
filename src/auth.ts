@@ -3,6 +3,11 @@ import NextAuth from "next-auth"
 import Google, { GoogleProfile } from "next-auth/providers/google"
 import client from "@/lib/db";
 import { Provider } from "next-auth/providers";
+import dbConnect from "./lib/dbConnect";
+
+const dbPromise = dbConnect().then(() => {
+    return MongoDBAdapter(client);
+});
 
 // Any future providers or custom credentials add to this list
 const providers: Provider[] = [
@@ -50,7 +55,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return session; 
         },
     },
-    adapter: MongoDBAdapter(client),
+    adapter: await dbPromise,
     session: {
         strategy: "database",
     },

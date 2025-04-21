@@ -32,8 +32,8 @@ async function dbConnect() {
         return cached.conn;
     }
 
-  if (!cached.promise) {
-    const opts = {
+    if (!cached.promise) {
+        const opts = {
             bufferCommands: false,
             dbName: "pm",
         };
