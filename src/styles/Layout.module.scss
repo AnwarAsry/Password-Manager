@@ -1,12 +1,22 @@
-@use "./variables"as v;
-@use "./mixins"as mx;
+@use "./Abstracts/variables" as v;
+@use "./Abstracts/mixin" as mx;
+@use "./Abstracts/fontSets" as text;
 
 .LoginLayout, .LandingPageLayout {
-    height: 100vh;
+    height: calc(100vh - v.$HeaderHeight);
     padding: v.$spacing-big;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    h1 {
+        @include text.DesktopDisplayLarge();
+    }
+
+    p {
+        width: 500px;
+        text-align: center;
+    }
 }
 .LandingPageLayout {
     flex-direction: column;

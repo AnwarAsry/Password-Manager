@@ -1,29 +1,25 @@
-import SearchBarStyles from "@/styles/SearchBar.module.scss"
-
-import Link from "next/link"
-
+import SearchBarStyles from '@styles/Search.module.scss'
+import Link from 'next/link'
 
 interface SearchItemProps {
+    clickAction?: () => void
     item: {
         id: string
         platform: string
-        username: string
+        email: string
     }
 }
-
-export const SearchItem = ({ item }: SearchItemProps) => {
-    return <>
-        <Link href={`view/${item.id}`} className={SearchBarStyles.Result}>
-            <li>
-                <div>
-                    <p>Platform</p>
-                    <span>{item.platform}</span>
-                </div>
-                <div>
-                    <p>Username</p>
-                    <span>{item.username}</span>
-                </div>
-            </li>
+export const SearchItem = ({ item, clickAction }: SearchItemProps) => {
+    return (
+        <Link href={`dashboard/view/${item.id}`} className={SearchBarStyles.SearchResultItem} onClick={clickAction}>
+            <div>
+                <p>Platform</p>
+                <span>{item.platform}</span>
+            </div>
+            <div>
+                <p>Email</p>
+                <span>{item.email}</span>
+            </div>
         </Link>
-    </>
+    )
 }

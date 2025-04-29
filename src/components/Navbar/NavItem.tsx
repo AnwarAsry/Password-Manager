@@ -1,20 +1,18 @@
 "use client"
 
-import { useSidebar } from "@/hooks/useSidebar";
-import SidebarStyles from "@/styles/Menu/Sidebar.module.scss"
+import SidebarStyles from "@styles/Menu/Sidebar.module.scss"
 import Link from "next/link"
+import { SidebarContext } from "@context/SidebarContext";
+import { useContext } from "react";
 
 interface NavItemProps {
     href: string;
     children: React.ReactNode;
     label: string;
 }
-
 export const NavItem = ({ href, children, label }: NavItemProps) => {
-
-    const { isCollapsed } = useSidebar();
-
-    return <>
+    const { isCollapsed } = useContext(SidebarContext);
+    return (
         <Link href={href} className={SidebarStyles.NavItem}>
             {children}
 
@@ -26,5 +24,5 @@ export const NavItem = ({ href, children, label }: NavItemProps) => {
                 </span>
             )}
         </Link>
-    </>;
+    )
 }

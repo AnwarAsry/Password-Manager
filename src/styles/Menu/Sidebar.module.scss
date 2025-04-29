@@ -1,5 +1,5 @@
-@use "../variables" as v;
-@use "../mixins" as mx;
+@use "../Abstracts/variables" as v;
+@use "../Abstracts/mixin" as mx;
 
 .SidebarWrapper {
     padding: v.$spacing-md;
@@ -14,7 +14,8 @@
 }
 .Divider {
     margin: v.$spacing-sm 0;
-    border: 1px solid #6b6b6b1a;
+    border: none;
+    border-top: 1px solid #e2e2e2;
 }
 .NavList {
     flex: 1;
@@ -30,42 +31,38 @@
     display: flex;
     align-items: center;
     border-radius: v.$BRadius-x-sm;
-    transition: all 100ms ease-in-out;
+    transition: background-color 100ms ease-in-out;
     &:hover {
-        background-color: #ededed;
+        color: v.$primaryBtnColor-700;
+        background-color: v.$primaryBtnColor-100;
     }
 }
 .SidebarBtn {
     padding: v.$spacing-xx-sm;
     position: absolute;
     right: -17px;
-    justify-content: center;
     border: 1px solid v.$borderColor;
-    outline: none;
     background-color: white;
     z-index: 10;
 }
-// Work on this
 .NavItem {
     padding: v.$spacing-x-sm;
     position: relative;
-    gap: v.$spacing-sm;
-
+    font-weight: 600;
     &:hover .NavItemTextHover {
         visibility: visible;
         opacity: 1;
         translate: 0;
     }
-
-    // The Text squahes the icon
     & .NavItemText {
         width: 100%;
+        margin-left: v.$spacing-x-sm;
         overflow: hidden;
         @include mx.SidebarTransition();
     }
     & .NavItemTextCollapsed {
         width: 0;
-        @include mx.SidebarTransition();
+        margin-left: 0;
     }
 }
 .NavItemTextHover {
@@ -76,8 +73,8 @@
     border-radius: v.$BRadius-x-sm;
     visibility: hidden;
     opacity: .2;
-    color: #fff;
-    background-color: v.$primaryBtnColor;
+    font-weight: 600;
+    background-color: v.$primaryBtnColor-100;
     translate: -0.75rem;
     transition: all 100ms ease-in-out;
 }

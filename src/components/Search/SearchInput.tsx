@@ -1,13 +1,10 @@
-import SearchBarStyles from "@/styles/SearchBar.module.scss"
-
-import { useRef, useEffect } from "react";
-import { IoSearch } from "react-icons/io5";
-
+import SearchBarStyles from '@styles/Search.module.scss'
+import { useRef, useEffect } from 'react'
+import { IoSearch } from 'react-icons/io5'
 
 interface SearchInputProps {
     onSearch: (query: string) => void
 }
-
 export const SearchInput = ({ onSearch }: SearchInputProps) => {
     // Timer to keep track how long user is not typing
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -24,7 +21,7 @@ export const SearchInput = ({ onSearch }: SearchInputProps) => {
             } catch (error) {
                 console.log("[Search error] Could not send query:", error);
             }
-        }, 800);
+        }, 1000);
     }
 
     useEffect(() => {
@@ -33,17 +30,17 @@ export const SearchInput = ({ onSearch }: SearchInputProps) => {
         }
     }, [])
 
-    return <>
+    return (
         <form className={SearchBarStyles.SearchForm}>
             <IoSearch className={SearchBarStyles.SearchIcon} />
             <input
                 className={SearchBarStyles.SearchInput}
                 type="text"
                 name="searchQuery"
-                placeholder="Search credentials..."
+                placeholder="Search platform..."
                 onChange={handleSearchOnChange}
                 autoComplete="off"
             />
         </form>
-    </>
+    )
 }

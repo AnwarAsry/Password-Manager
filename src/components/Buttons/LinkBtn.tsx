@@ -1,10 +1,9 @@
-import ButtonStyles from "@/styles/Buttons.module.scss"
-import { FiExternalLink } from "react-icons/fi";
+import ButtonStyles from '@styles/Button.module.scss'
+import { FiExternalLink } from 'react-icons/fi'
 
 interface ILinkBtnProps {
     value: string;
 }
-
 export const LinkBtn = ({ value }: ILinkBtnProps) => {
 
     const openExternalLink = () => {
@@ -13,9 +12,9 @@ export const LinkBtn = ({ value }: ILinkBtnProps) => {
         }
     };
 
-    return <>
+    return (
         <button className={ButtonStyles.LinkBtn} onClick={openExternalLink}>
-            <FiExternalLink className={ButtonStyles.LinkBtn} />
+            <FiExternalLink className={ButtonStyles.BtnIcon} />
         </button>
-    </>
+    )
 };
