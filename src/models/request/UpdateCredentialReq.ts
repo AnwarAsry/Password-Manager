@@ -8,4 +8,3 @@ export type UpdateCredentialReq = {
     notes: string
     category: string[]
 };
-  

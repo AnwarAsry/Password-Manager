@@ -1,30 +1,29 @@
-@use "variables"as v;
-@use "FontSets"as text;
-@use "mixins"as mx;
+@use "./Abstracts/variables" as v;
+@use "./Abstracts/mixin" as mx;
+@use "./Abstracts/fontSets" as text;
 
 .UserCard {
     display: flex;
     align-items: center;
 }
-// The Name increses the height of the card
-.UserCardRightSide {
-    width: 100%;
-    height: 100%;
+.UserCardPic {
+    border-radius: v.$BRadius-x-sm;
+}
+// The text is increasing the height of the card
+.UserCardRightSide, .UserCardRightSideCollapsed {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    line-height: 16px;
-    overflow: hidden;
+    overflow-x: hidden;
     @include mx.SidebarTransition();
-
-    &.UserCardRightSideCollapsed {
-        margin-left: 0.75rem;
-        width: 0;
-    }
 }
-.UserCardPic {
-    margin-right: 8px;
-    border-radius: v.$BRadius-x-sm;
+.UserCardRightSide {
+    width: 100%;
+    margin-left: v.$spacing-x-sm;
+}
+.UserCardRightSideCollapsed {
+    width: 0;
+    margin-left: 0;
 }
 
 .UserCardName {
