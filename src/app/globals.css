@@ -24,8 +24,9 @@ html {
 }
 
 body {
+  height: 100vh;
   display: grid;
-  grid-template-rows: 73px auto;
+  grid-template-rows: 73px 1fr;
 }
 
 a {

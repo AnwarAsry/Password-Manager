@@ -16,11 +16,16 @@
     background-color: $Bgc;
     transition: all ease-in-out 200ms;
     
+    span {
+        width: 100%;
+        overflow-x: hidden;
+        text-align: start
+    }
     @include text.ButtonText(small);
 
     & .BtnIcon {
-        width: 16px;
-        height: 16px;
+        width: 20px;
+        height: 20px;
     }
 
     &:hover {
@@ -35,6 +40,8 @@
     @include Btn(transparent, rgb(243, 243, 243));
     border: 1px solid v.$borderColor;
     color: black;
+    overflow-x: hidden;
+
 }
 .ProviderLogin {
     cursor: pointer;

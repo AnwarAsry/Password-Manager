@@ -1,6 +1,4 @@
 @use "./Abstracts/variables" as v;
-@use "./Abstracts/mixin" as mx;
-@use "./Abstracts/fontSets" as text;
 
 .UserCard {
     display: flex;
@@ -8,28 +6,4 @@
 }
 .UserCardPic {
     border-radius: v.$BRadius-x-sm;
-}
-// The text is increasing the height of the card
-.UserCardRightSide, .UserCardRightSideCollapsed {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow-x: hidden;
-    @include mx.SidebarTransition();
-}
-.UserCardRightSide {
-    width: 100%;
-    margin-left: v.$spacing-x-sm;
-}
-.UserCardRightSideCollapsed {
-    width: 0;
-    margin-left: 0;
-}
-
-.UserCardName {
-    @include text.UserCardTitle();
-}
-.UserCardEmail {
-    @include text.LabelMedium();
-    color: #737373;
 }

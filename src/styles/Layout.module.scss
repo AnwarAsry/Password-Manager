@@ -1,35 +1,28 @@
 @use "./Abstracts/variables" as v;
-@use "./Abstracts/mixin" as mx;
-@use "./Abstracts/fontSets" as text;
 
-.LoginLayout, .LandingPageLayout {
-    height: calc(100vh - v.$HeaderHeight);
-    padding: v.$spacing-big;
+.LoginLayout {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    h1 {
-        @include text.DesktopDisplayLarge();
-    }
-
-    p {
-        width: 500px;
-        text-align: center;
-    }
 }
 .LandingPageLayout {
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+
+    p {
+        margin-top: v.$spacing-big;
+    }
+}
+.AboutSection {
+    width: 500px;
+    margin: 0 auto;
+    display: flex;
     flex-direction: column;
-    gap: v.$spacing-xxx-big;
-}
-.DashboardLayoutExpanded, .DashboardLayoutCollapsed {
-    height: calc(100vh - v.$HeaderHeight);
-    display: grid;
-    @include mx.SidebarTransition();
-}
-.DashboardLayoutExpanded {
-    grid-template-columns: v.$SideNavWidth 1fr;
-}
-.DashboardLayoutCollapsed {
-    grid-template-columns: v.$SideNavWidthCollapsed 1fr;
+    gap: v.$spacing-xx-big;
+
+    ul {
+        -webkit-padding-start: v.$spacing-big;
+    }
 }

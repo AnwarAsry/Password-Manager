@@ -1,9 +1,9 @@
 @use "./Abstracts/variables" as v;
 
-.DashboardContent {
+.MainWrapper {
     width: 100%;
     max-width: 964px;
     margin: 0 auto;
-    padding: v.$spacing-big 0 v.$spacing-lg;
+    padding: v.$spacing-big v.$spacing-big v.$spacing-lg;
     overflow-y: auto;
 }

@@ -6,6 +6,9 @@ import { TbLogout2 } from 'react-icons/tb'
 
 export const AuthSignOut = () => {
     return (
-        <button className={ButtonStyles.SecondaryBtn} onClick={async () => await signOut()}><TbLogout2 />Log out</button>
+        <button className={ButtonStyles.SecondaryBtn} onClick={async () => await signOut()}>
+            <TbLogout2 className={ButtonStyles.BtnIcon} />
+            <span>Log out</span>
+        </button>
     )
 }

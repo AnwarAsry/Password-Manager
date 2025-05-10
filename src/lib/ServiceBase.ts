@@ -1,4 +1,4 @@
-const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api`;
+const BASE_URL = `${process.env.NEXT_PUBLIC_SITE_URL}/api`;
 
 // Get function
 export const get = async <T>(url: string) => {

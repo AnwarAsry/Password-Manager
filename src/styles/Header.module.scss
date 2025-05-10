@@ -1,5 +1,4 @@
 @use "./Abstracts/variables" as v;
-@use "./Abstracts/mixin" as mx;
 
 .Header {
     height: v.$HeaderHeight;
@@ -11,10 +10,17 @@
 }
 .LogoName {
     height: fit-content;
-    font-size: 1.25rem;
     font-weight: v.$fontWeight-bold;
     color: v.$primaryBtnColor-700;
     span {
         color: v.$primaryBtnColor-400;
     }
+}
+.LandingNav {
+    display: flex;
+    gap: v.$spacing-sm;
+}
+.NavIcon {
+    width: 24px;
+    height: 24px;
 }

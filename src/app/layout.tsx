@@ -1,33 +1,34 @@
 import "./globals.css";
-import HeaderStyles from '@styles/Header.module.scss'
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
+import Header from "@components/Header";
+import { auth } from "@lib/auth";
+import WrapperStyles from "@styles/Wrappers.module.scss";
 
 const openSans = Open_Sans({
 	subsets: ['latin'],
 })
 
 export const metadata: Metadata = {
-	title: "PassMan",
-	description: "Welcome to PassMan! This is a simple password manager that allows you to securely store and manage your passwords. You can add, edit, and delete passwords, as well as generate strong passwords for your accounts. The passwords are stored securely using encryption, so you can be sure that your data is safe.",
+	title: "PassMan lets you securely store and manage passwords",
+	description: "Welcome to PassMan! A simple, secure password manager. Store, edit, delete, and generate strong passwords, all safely encrypted for your peace of mind",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const session = await auth();
 	return (
 		<html lang="en" className={openSans.className}>
 			<body>
-				<header className={HeaderStyles.Header}>
-					<a href="/">
-						<p className={HeaderStyles.LogoName}><span>Pass</span>Man</p>
-					</a>
-				</header>
-				<SessionProvider>
-					{children}
+				<SessionProvider session={session}>
+					<Header />
+					<main className={WrapperStyles.MainWrapper}>
+						{children}
+					</main>
 				</SessionProvider>
 			</body>
 		</html>

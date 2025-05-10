@@ -3,6 +3,7 @@ import { getAllCredentialsForUser } from '@actions/StoredCredentials'
 import { SessionValidate } from "@lib/SessionValidate"
 import { CredentialsTable } from '@components/Table/CredentialsTable'
 import { TableRow } from '@components/Table/TableRow'
+import { AddEntryBtn } from '@components/Buttons/AddEntryBtn'
 
 const Dashboard = async () => {
     const session = await SessionValidate();
@@ -16,6 +17,7 @@ const Dashboard = async () => {
                     Saved Credentials
                     {res.data && <span className={TableStyles.NumberOfRowSpan}>{res.data.length}</span>}
                 </h2>
+                <AddEntryBtn />
             </div>
 
             <CredentialsTable>

@@ -1,8 +1,6 @@
 "use client"
 
 import TableStyles from '@styles/Table.module.scss'
-// import imgBils from '@public/placeholder.png'
-// import Image from 'next/image'
 import { useState } from 'react'
 import { redirect } from 'next/navigation'
 import { StoredCredential } from '@prismaModels'
