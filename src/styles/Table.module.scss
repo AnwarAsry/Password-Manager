@@ -2,10 +2,11 @@
 @use "./Abstracts/fontSets" as text;
 
 .TitleAndFilter {
-    // height: 40px;
-    margin-bottom: v.$spacing-sm;
+    margin-bottom: v.$spacing-big;
+    padding-bottom: v.$spacing-big;
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid v.$borderColor;
 }
 .Title {
     display: flex;
