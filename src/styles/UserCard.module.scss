@@ -1,32 +1,52 @@
-@use "variables"as v;
-@use "FontSets"as text;
-@use "mixins"as mx;
+@use "./Abstracts/variables" as v;
 
+.User {
+    position: relative;
+}
 .UserCard {
+    cursor: pointer;
+    padding: v.$spacing-xx-sm;
     display: flex;
     align-items: center;
-}
-// The Name increses the height of the card
-.UserCardRightSide {
-    width: 100%;
-    line-height: 16px;
-    overflow: hidden;
-    @include mx.SidebarTransition();
+    gap: v.$spacing-xx-sm;
+    border-radius: v.$BRadius-x-sm;
 
-    &.UserCardRightSideCollapsed {
-        margin-left: 0.75rem;
-        width: 0;
+    p {
+        font-weight: 600;
+    }
+
+    &:hover {
+        background-color: rgba(3, 7, 18, 5%);
     }
 }
 .UserCardPic {
-    margin-right: 8px;
+    border-radius: calc(infinity * 1px);
+}
+.UserDropdown {
+    width: 250px;
+    padding: v.$spacing-xx-sm;
+    position: absolute;
+    top: v.$spacing-x-lg;
+    right: 0;
+    border: 1px solid v.$borderColor;
     border-radius: v.$BRadius-x-sm;
-}
+    list-style: none;
+    background-color: #fff;
 
-.UserCardName {
-    @include text.UserCardTitle();
-}
-.UserCardEmail {
-    @include text.LabelMedium();
-    color: #737373;
+    li {
+        cursor: pointer;
+        height: 40px;
+        padding: 0 v.$spacing-sm;
+        display: flex;
+        align-items: center;
+        gap: v.$spacing-x-sm;
+        border-radius: v.$BRadius-xx-sm;
+        font-weight: 600;
+        color: v.$neutral-500;
+
+        &:hover {
+            color: #000;
+            background-color: rgba(3, 7, 18, 5%);
+        }
+    }
 }

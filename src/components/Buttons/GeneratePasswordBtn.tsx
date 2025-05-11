@@ -1,14 +1,13 @@
 "use client"
 
-import ButtonStyles from "@/styles/Buttons.module.scss";
-import { randomBytes } from "crypto";
-import { useCallback } from "react";
-import { MdOutlineLockReset } from "react-icons/md";
+import ButtonStyles from '@styles/Button.module.scss'
+import { randomBytes } from 'crypto'
+import { useCallback } from 'react'
+import { MdOutlineLockReset } from 'react-icons/md'
 
 interface IGeneratePasswordBtnProps {
     assignToInput: (value: string) => void
 }
-
 export const GeneratePasswordBtn = ({ assignToInput }: IGeneratePasswordBtnProps) => {
     // Password generate
     const generatePassword = useCallback(() => {
@@ -25,7 +24,7 @@ export const GeneratePasswordBtn = ({ assignToInput }: IGeneratePasswordBtnProps
         assignToInput(pass);
     }, []);
 
-    return <>
+    return (
         <button
             type="button"
             className={ButtonStyles.GeneratePass}
@@ -33,5 +32,5 @@ export const GeneratePasswordBtn = ({ assignToInput }: IGeneratePasswordBtnProps
         >
             <MdOutlineLockReset className={ButtonStyles.BtnIcon} />
         </button>
-    </>
+    )
 }

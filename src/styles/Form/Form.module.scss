@@ -1,0 +1,52 @@
+@use "../Abstracts/variables" as v;
+@use "../Abstracts/mixin" as mx;
+
+.LoginForm {
+    width: 100%;
+    max-width: 360px;
+}
+.FormBackgroundLayer {
+    @include mx.LayerCoverBackground();
+}
+.Form {
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    max-height: 700px;
+    display: grid;
+    grid-template-rows: 72px auto 75px;
+    border-radius: v.$BRadius-sm;
+    background-color: #fff;
+}
+.CloseIcon {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    transition: all 100ms ease-in-out;
+    &:hover {
+        background-color: #ECEEF0;
+    }
+}
+.FormHeader {
+    padding: 0 v.$spacing-xxx-big;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.FormContent {
+    padding: v.$spacing-sm v.$spacing-xxx-big;
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-big;
+    overflow-y: scroll;
+}
+.FormFooter {
+    padding: v.$spacing-md v.$spacing-xxx-big;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: v.$spacing-x-sm;
+    border-top: 1px solid v.$borderColor;
+    box-shadow: 0 -1px 2px 0 rgb(0 0 0 / 0.05);
+}

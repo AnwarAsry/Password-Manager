@@ -1,58 +1,9 @@
-@use "variables"as v;
-@use "mixins"as mx;
+@use "./Abstracts/variables" as v;
 
-.DashboardContent {
+.MainWrapper {
     width: 100%;
-    max-width: 1064px;
+    max-width: 964px;
     margin: 0 auto;
-    padding: v.$spacing-big v.$spacing-x-big v.$spacing-lg;
+    padding: v.$spacing-big v.$spacing-big v.$spacing-lg;
     overflow-y: auto;
-}
-
-
-
-
-
-.TagsContainer {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: v.$spacing-xx-sm;
-}
-.PageInfoMainContainer {
-    display: flex;
-    justify-content: center;
-}
-.PageInfoContainer {
-    width: 100%;
-    max-width: 460px;
-    padding: v.$spacing-md;
-    display: flex;
-    flex-direction: column;
-    gap: v.$spacing-x-big;
-}
-.PageInfoHeader {
-    padding-bottom: v.$spacing-x-sm;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: 1fr 1fr;
-    column-gap: v.$spacing-big;
-    align-items: center;
-    border-bottom: 1px solid v.$borderColor;
-
-    img {
-        grid-row: span 2;
-        width: 120px;
-        height: 80px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid v.$borderColor;
-        border-radius: 8px;
-        object-fit: cover;
-    }
-
-    p {
-        color: v.$neutral-600;
-    }
 }

@@ -1,12 +1,11 @@
-import TableStyles from "@/styles/CredentialsTable.module.scss"
-
+import TableStyles from '@styles/Table.module.scss'
 
 export const CredentialsTable = ({
     children
 }: {
     children: React.ReactNode
 }) => {
-    return <>
+    return (
         <table className={TableStyles.Table}>
             <thead className={TableStyles.TableHead}>
                 <tr>
@@ -19,5 +18,5 @@ export const CredentialsTable = ({
                 {children}
             </tbody>
         </table>
-    </>
+    )
 };

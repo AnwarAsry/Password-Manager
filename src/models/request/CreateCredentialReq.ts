@@ -8,4 +8,3 @@ export type CreateCredentialReq = {
     username: string
     notes: string
 };
-  

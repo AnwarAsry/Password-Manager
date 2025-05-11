@@ -1,8 +1,8 @@
-@use "variables"as v;
-@use "mixins"as mx;
+@use "./Abstracts/variables" as v;
 
 .Header {
-    padding: v.$spacing-md v.$spacing-sm;
+    height: v.$HeaderHeight;
+    padding: v.$spacing-md v.$spacing-big;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,6 +10,17 @@
 }
 .LogoName {
     height: fit-content;
-    font-size: 1.25rem;
     font-weight: v.$fontWeight-bold;
+    color: v.$primaryBtnColor-700;
+    span {
+        color: v.$primaryBtnColor-400;
+    }
+}
+.LandingNav {
+    display: flex;
+    gap: v.$spacing-sm;
+}
+.NavIcon {
+    width: 24px;
+    height: 24px;
 }

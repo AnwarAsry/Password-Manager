@@ -1,0 +1,87 @@
+@use "./Abstracts/variables" as v;
+@use "./Abstracts/fontSets" as text;
+
+@mixin Btn($Bgc, $HoverColor) {
+    cursor: pointer;
+    max-height: 40px;
+    padding: v.$spacing-sm v.$spacing-md;
+    display: flex;
+    align-items: center;
+    gap: v.$spacing-xx-sm;
+    outline: none;
+    border: none;
+    border-radius: v.$BRadius-x-sm;    
+    font-weight: v.$fontWeight-medium;
+    color: #fff;
+    background-color: $Bgc;
+    transition: all ease-in-out 200ms;
+    
+    span {
+        width: 100%;
+        overflow-x: hidden;
+        text-align: start
+    }
+    @include text.ButtonText(small);
+
+    & .BtnIcon {
+        width: 20px;
+        height: 20px;
+    }
+
+    &:hover {
+        background-color: $HoverColor;
+    }
+}
+
+.PrimaryBtn {
+    @include Btn(v.$primaryBtnColor, rgb(79, 111, 255));
+}
+.SecondaryBtn {
+    @include Btn(transparent, rgb(243, 243, 243));
+    border: 1px solid v.$borderColor;
+    color: black;
+    overflow-x: hidden;
+
+}
+.ProviderLogin {
+    cursor: pointer;
+    width: 100%;
+    padding: v.$spacing-md;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: v.$spacing-xx-sm;
+    border: 1px solid v.$borderColor;
+    border-radius: 8px;
+    outline: none;
+    background-color: v.$InputBgc;
+    transition: all ease-in-out 100ms;
+
+    @include text.ButtonText(medium);
+
+    &:hover {
+        background-color: #86868638;
+    }
+}
+.LinkBtn, .CopyBtn, .EyeBtn, .GeneratePass {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    color: #909090;
+    background-color: transparent;
+
+    & .BtnIcon {
+        width: 16px;
+        height: 16px;
+    }
+
+    &:hover {
+        color: rgb(103, 103, 103);
+    }
+}
+.GeneratePass, .EyeBtn {
+    & .BtnIcon {
+        width: 24px;
+        height: 24px;
+    }
+}

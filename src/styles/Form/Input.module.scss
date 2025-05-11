@@ -1,0 +1,40 @@
+@use "../Abstracts/variables" as v;
+@use "../Abstracts/mixin" as mx;
+@use "../Abstracts/fontSets" as text;
+
+.Label {
+    margin-bottom: .25rem;
+    display: block;
+    color: v.$neutral-600;
+    @include text.LabelMedium();
+}
+.Input, .TextAreaInput {
+    width: 100%;
+    padding: v.$spacing-x-sm v.$spacing-sm;
+    outline: none;
+    border: 1px solid v.$borderColor;
+    border-radius: v.$BRadius-x-sm;
+    @include text.InputText();
+    &:focus {
+        border-color: #268AFF;
+    }
+}
+.Input {
+    height: 42px;
+}
+.TextAreaInput {
+    height: 150px;
+    font-family: inherit;
+}
+.InputButtonContainer {
+    display: flex;
+    align-items: center;
+    gap: v.$spacing-x-sm;
+}
+.ErrorText {
+    margin-top: v.$spacing-sm;
+    padding: v.$spacing-x-sm v.$spacing-sm;
+    border-radius: v.$BRadius-xx-sm;
+    color: v.$danger700;
+    background-color: v.$danger200;
+}

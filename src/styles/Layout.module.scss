@@ -1,33 +1,28 @@
-@use "./variables"as v;
-@use "./mixins"as mx;
+@use "./Abstracts/variables" as v;
 
+.LoginLayout {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .LandingPageLayout {
-    height: 100vh;
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+
+    p {
+        margin-top: v.$spacing-big;
+    }
+}
+.AboutSection {
+    width: 500px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: v.$spacing-xxx-big;
-}
-.LoginLayout {
-    height: 100vh;
-    padding: v.$spacing-big;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    gap: v.$spacing-xx-big;
 
-
-
-// Never Touch
-.DashboardLayoutExpanded, .DashboardLayoutCollapsed {
-    height: calc(100vh - v.$HeaderHeight);
-    display: grid;
-    @include mx.SidebarTransition();
-}
-.DashboardLayoutExpanded {
-    grid-template-columns: v.$SideNavWidth 1fr;
-}
-.DashboardLayoutCollapsed {
-    grid-template-columns: v.$SideNavWidthCollapsed 1fr;
+    ul {
+        -webkit-padding-start: v.$spacing-big;
+    }
 }

@@ -1,20 +1,19 @@
-import FormStyles from "@/styles/Form.module.scss"
-
-import { providerMap } from "@/auth";
-import { ProviderButton } from "@/components/Login/ProviderButton";
+import FormStyles from '@styles/Form/Form.module.scss'
+import LayoutStyles from '@styles/Layout.module.scss'
+import { providerMap } from '@lib/auth'
+import { ProviderButton } from '@components/Auth/ProviderButton'
 
 // For future make input fields as credentials for login
-
 const LoginPage = () => {
-    return <>
-        <form className={FormStyles.LoginForm}>
-            <div>
+    return (
+        <section className={LayoutStyles.LoginLayout}>
+            <form className={FormStyles.LoginForm}>
                 {
-                    Object.values(providerMap).map(provider => <ProviderButton provider={provider} key={provider.id} />)
+                    Object.values(providerMap).map(provider => <ProviderButton key={provider.id} provider={provider} />)
                 }
-            </div>
-        </form>
-    </>
+            </form>
+        </section>
+    )
 }
 
 export default LoginPage;

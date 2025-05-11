@@ -1,3 +1,2 @@
-import { handlers } from "@/auth"
-// This syntax does not work when next-auth package version 4
+import { handlers } from "@lib/auth"
 export const { GET, POST } = handlers

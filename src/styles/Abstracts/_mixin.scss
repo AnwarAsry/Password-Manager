@@ -1,0 +1,18 @@
+@use "variables" as v;
+
+@mixin SidebarTransition() {
+    transition: all 200ms ease-in-out;
+}
+@mixin LayerCoverBackground() {
+    padding: v.$spacing-big;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #1f29375f;
+    z-index: 100;
+}

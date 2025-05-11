@@ -1,32 +1,27 @@
 "use client"
 
-import TableStyles from "@/styles/CredentialsTable.module.scss"
-
-import { IAccounts } from "@/models/IAccounts";
-import { CopyBtn } from "../Buttons/CopyBtn";
-import { EyeBtn } from "../Buttons/EyeBtn";
-
-import imgBils from "@/public/placeholder.png";
-import Image from "next/image";
-import { useState } from "react";
-import { redirect } from "next/navigation";
+import TableStyles from '@styles/Table.module.scss'
+import { useState } from 'react'
+import { redirect } from 'next/navigation'
+import { StoredCredential } from '@prismaModels'
+import { CopyBtn } from '@components/Buttons/CopyBtn'
+import { EyeBtn } from '@components/Buttons/EyeBtn'
 
 
 interface TableRowProps {
-    entity: IAccounts
+    entity: StoredCredential
 }
-
 export const TableRow = ({ entity }: TableRowProps) => {
     const [showPassword, setShowPassword] = useState(false);
-    return <>
+    return (
         <tr className={TableStyles.TableRow}>
             <td>
                 <div className={TableStyles.TableRowFirstColumn}>
-                    <Image src={imgBils} alt="Logo" />
+                    {/* <Image src={imgBils} alt="Logo" /> */}
 
                     <p>
-                        <span onClick={() => redirect(`/view/${entity.id}`)}>{entity.platform}</span>
-                        <span><a href={entity.linkUrl} target="_blank">{entity.linkUrl}</a></span>
+                        <span onClick={() => redirect(`/dashboard/view/${entity.id}`)}>{entity.platform}</span>
+                        {/* <span><a href={entity.linkUrl} target="_blank">{entity.linkUrl}</a></span> */}
                     </p>
                 </div>
             </td>
@@ -49,5 +44,5 @@ export const TableRow = ({ entity }: TableRowProps) => {
                 </div>
             </td>
         </tr>
-    </>
-};
+    )
+}
