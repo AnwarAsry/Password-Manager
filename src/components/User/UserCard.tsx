@@ -23,10 +23,6 @@ export const UserCard = () => {
                 {
                     showDropdown && (
                         <ul className={UserCardStyles.UserDropdown}>
-                            <li>
-                                <TbSettings />
-                                Account Settings
-                            </li>
                             <li onClick={async () => await signOut()}>
                                 <TbLogout2 />
                                 Log out
